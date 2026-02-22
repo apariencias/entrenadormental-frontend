@@ -1,127 +1,56 @@
-// stripe-checkout.js
-// Este archivo maneja la integración con Stripe Checkout
+// js/stripe-checkout-v2.js
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Elementos del DOM
-    const showFormBtn = document.getElementById('show-form-btn');
-    const inscriptionForm = document.getElementById('inscription-form');
-    
-    // Mostrar formulario al hacer clic en el botón inicial
-    if (showFormBtn && inscriptionForm) {
-        showFormBtn.addEventListener('click', () => {
-            showFormBtn.style.display = 'none';
-            inscriptionForm.style.display = 'block';
-            inscriptionForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
+// Asegúrate de que esta clave pública es la correcta
+const stripe = Stripe("***REMOVED******REMOVED***"); 
+// ...POR ESTA
+const checkoutButton = document.querySelector("#submit-payment-btn");
+
+// Si tu botón tiene otro ID, ajústalo aquí. Por ejemplo: document.querySelector("#boton-pagar")
+// Si no estás seguro, muéstrame el HTML de tu botón en index.html
+
+checkoutButton.addEventListener("click", async () => {
+  // --- INICIO DE LA MEJORA ---
+  // 1. Deshabilitar el botón para evitar clics múltiples
+  checkoutButton.disabled = true;
+  // 2. Dar feedback inmediato al usuario
+  checkoutButton.textContent = "Iniciando...";
+  // --- FIN DE LA MEJORA ---
+
+  try {
+    // 1. Deshabilitar el botón para evitar clics múltiples
+    checkoutButton.disabled = true;
+    checkoutButton.textContent = 'Procesando...';
+
+    // 2. Llamar a tu backend
+    const response = await fetch("http://localhost:3000/create-checkout-session", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error de red: ${response.statusText}`);
     }
-    
-    // Manejar envío del formulario
-    if (inscriptionForm) {
-        inscriptionForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            
-            // Obtener datos del formulario
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const whatsapp = document.getElementById('whatsapp').value;
-            
-            // Validar formulario
-            if (!name || !email || !whatsapp) {
-                showError('Por favor, completa todos los campos.');
-                return;
-            }
-            
-            // Validar formato de email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                showError('Por favor, ingresa un correo electrónico válido.');
-                return;
-            }
-            
-            // Mostrar indicador de carga
-            showLoading();
-            
-            try {
-                // >>>> CORRECCIÓN #1: URL REAL DEL SERVIDOR <<<<<
-                const response = await fetch('https://servidor-pagos.onrender.com/create-checkout-session', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        whatsapp: whatsapp,
-                        product: 'la-calma-de-mama' // Identificador del producto
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error('Error al procesar el pago');
-                }
-                
-                const session = await response.json();
-                
-                // >>>> CORRECCIÓN #2: REDIRECCIÓN SIMPLE QUE FUNCIONA CON TU BACKEND <<<<<
-                // Tu servidor devuelve { url: '...' }, así que solo redirigimos.
-                window.location.href = session.url;
-                
-            } catch (error) {
-                console.error('Error:', error);
-                showError('Ha ocurrido un error al procesar tu pago. Por favor, inténtalo de nuevo.');
-            } finally {
-                hideLoading();
-            }
-        });
+
+    const session = await response.json();
+
+    // 3. Redirigir a Stripe y esperar el resultado
+    const result = await stripe.redirectToCheckout({ sessionId: session.id });
+
+    // 4. Si redirectToCheckout falla, `result.error` no será nulo
+    if (result.error) {
+      throw new Error(result.error.message);
     }
+
+  } catch (error) {
+    // 5. Cualquier error en los pasos anteriores vendrá aquí
+    console.error("Error durante el proceso de pago:", error);
     
-    // Funciones auxiliares
-    function showError(message) {
-        let errorElement = document.getElementById('payment-error');
-        if (!errorElement) {
-            errorElement = document.createElement('div');
-            errorElement.id = 'payment-error';
-            errorElement.className = 'payment-error';
-            inscriptionForm.parentNode.insertBefore(errorElement, inscriptionForm.nextSibling);
-        }
-        
-        errorElement.textContent = message;
-        errorElement.style.display = 'block';
-        
-        setTimeout(() => {
-            errorElement.style.display = 'none';
-        }, 5000);
-    }
+    // Reactivar el botón para que el usuario pueda reintentar
+    checkoutButton.disabled = false;
+    checkoutButton.textContent = "Reintentar Pago"; 
     
-    function showLoading() {
-        const submitBtn = document.querySelector('#inscription-form button[type="submit"]');
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Procesando...';
-        }
-    }
-    
-    function hideLoading() {
-        const submitBtn = document.querySelector('#inscription-form button[type="submit"]');
-        if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Continuar al Pago Seguro';
-        }
-    }
+    alert("Ocurrió un error: " + error.message + ". Por favor, inténtalo de nuevo.");
+  }
 });
-
-/* Estilos para mensajes de error y carga */
-const style = document.createElement('style');
-style.textContent = `
-    .payment-error {
-        background: rgba(220, 53, 69, 0.1);
-        border: 1px solid rgba(220, 53, 69, 0.3);
-        color: #f8d7da;
-        padding: 12px 16px;
-        border-radius: 8px;
-        margin-top: 1rem;
-        font-size: 0.9rem;
-        display: none;
-    }
-`;
-document.head.appendChild(style);
