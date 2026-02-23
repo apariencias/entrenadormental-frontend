@@ -1,7 +1,7 @@
 // js/stripe-checkout-v2.js
 
 // Asegúrate de que esta clave pública es la correcta
-const stripe = Stripe("***REMOVED******REMOVED***"); 
+const stripe = Stripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY); 
 // ...POR ESTA
 const checkoutButton = document.querySelector("#submit-payment-btn");
 
