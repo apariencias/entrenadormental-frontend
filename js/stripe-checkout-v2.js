@@ -22,16 +22,16 @@ checkoutButton.addEventListener("click", async () => {
     checkoutButton.textContent = 'Procesando...';
 
     // 2. Llamar a tu backend
-    const response = await fetch("http://localhost:3000/create-checkout-session", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error de red: ${response.statusText}`);
-    }
+const response = await fetch("https://servidor-pagos.onrender.com/create-checkout-session", {
+  method: "POST",
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  // AÑADE ESTAS LÍNEAS
+  body: JSON.stringify({
+    items: [{ id: 1, quantity: 1 }], // Ejemplo: 1 unidad del producto con id 1
+  }),
+});
 
     const session = await response.json();
 
