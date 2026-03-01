@@ -21,18 +21,23 @@ checkoutButton.addEventListener("click", async () => {
     checkoutButton.disabled = true;
     checkoutButton.textContent = 'Procesando...';
 
-    // 2. Llamar a tu backend
-const response = await fetch("https://servidor-pagos.onrender.com/create-checkout-session", {
+    // 2. Llamar a tu backend con la URL y datos CORRECTOS
+const response = await fetch("https://servidor-pagos.onrender.com/api/create-checkout-session", {
   method: "POST",
   headers: {
     'Content-Type': 'application/json',
   },
-  // AÑADE ESTAS LÍNEAS
+  // Este es el body que tu backend espera recibir
   body: JSON.stringify({
-    items: [{ id: 1, quantity: 1 }], // Ejemplo: 1 unidad del producto con id 1
+    name: "Usuario de Prueba", // Reemplaza esto con datos de un formulario
+    email: "test@example.com", // Reemplaza esto con datos de un formulario
+    whatsapp: "+1234567890",   // Reemplaza esto con datos de un formulario
+    items: [{ 
+        id: 'la-calma-de-mama', // El ID que tu backend reconoce
+        quantity: 1 
+    }],
   }),
 });
-
     const session = await response.json();
 
     // 3. Redirigir a Stripe y esperar el resultado
