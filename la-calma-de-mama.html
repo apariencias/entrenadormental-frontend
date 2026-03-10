@@ -255,7 +255,8 @@
                 </div>
             </div>
         </section>
-        <section id="detalles" class="section payment-section">
+        <!-- HTML CORREGIDO -->
+<section id="detalles" class="section payment-section">
     <div class="container">
         <div class="payment-portal">
             <div class="payment-left">
@@ -283,8 +284,8 @@
                     <p>Al inscribirte, recibes un audio binaural de alta fidelidad diseñado para guiar tu mente a un estado calma (Alfa) y reducir el estrés (Beta) desde el primer día.</p>
                 </div>
                 
-                <!-- Formulario de inscripción -->
-                <form id="inscription-form" class="inscription-form" style="display: none;">
+                <!-- Formulario de inscripción (AHORA VISIBLE) -->
+                <form id="inscription-form" class="inscription-form">
                     <div class="form-group">
                         <label for="name">Nombre y Apellido</label>
                         <input type="text" id="name" name="name" required autocomplete="name">
@@ -297,12 +298,8 @@
                         <label for="whatsapp">WhatsApp (con lada)</label>
                         <input type="tel" id="whatsapp" name="whatsapp" required autocomplete="tel">
                     </div>
-                    <!-- LÍNEA CORREGIDA -->
-<button type="submit" id="submit-payment-btn" class="cta-button large">Continuar al Pago Seguro</button>
+                    <button type="submit" id="submit-payment-btn" class="cta-button large">Inscribirme y Pagar Seguro</button>
                 </form>
-                
-                <!-- Botón CTA inicial para mostrar el formulario -->
-                <button id="show-form-btn" class="cta-button large">Inscribirme y Recibir Bonus</button>
                 
                 <!-- Mensaje de seguridad -->
                 <div class="security-message">
@@ -326,6 +323,5 @@
     </a>
     <script src="https://js.stripe.com/v3/"></script>
 <script src="js/landing-calma.js"></script>
-<!-- <script src="js/stripe-checkout-v2.js"></script> -->
 </body>
 </html>
