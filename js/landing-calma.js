@@ -1,56 +1,47 @@
-// js/landing-calma.js (Versión Corregida y Final)
-
-// INICIO: Esperamos a que toda la página se cargue
+// js/landing-calma.js (VERSIÓN FINAL LIMPIA)
 document.addEventListener('DOMContentLoaded', () => {
-
-    // --- Lógica del Cuestionario ---
-    // (No necesita cambios, los checkboxes funcionan por defecto)
 
     // --- Lógica del Formulario y Stripe ---
     const inscriptionForm = document.getElementById('inscription-form');
-    const submitButton = document.getElementById('submit-payment-btn');
 
-    // Verificamos que los elementos existan antes de usarlos
-    if (inscriptionForm && submitButton) {
-
-        // INICIO: Evento principal al enviar el formulario
+    // Verificamos que el formulario exista antes de añadirle el evento
+    if (inscriptionForm) {
         inscriptionForm.addEventListener('submit', async (event) => {
-            // 1. Prevenimos que la página se recargue
-            event.preventDefault();
+            event.preventDefault(); // Evitamos que la página se recargue
 
-            // 2. Obtenemos los valores de los campos
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const whatsapp = document.getElementById('whatsapp').value;
+            // 1. Obtenemos los datos del formulario
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const whatsapp = document.getElementById('whatsapp').value.trim();
 
-            // 3. Validamos que los campos no estén vacíos
+            // 2. Validación simple en el frontend
             if (!name || !email || !whatsapp) {
                 alert('Por favor, completa todos los campos.');
-                return; // Detenemos la ejecución si faltan datos
+                return;
             }
 
-            // 4. Mostramos un estado de "cargando" en el botón
+            // 3. Mostramos un estado de "cargando" en el botón
+            const submitButton = document.getElementById('submit-payment-btn');
+            const originalButtonText = submitButton.innerText;
             submitButton.disabled = true;
             submitButton.innerText = 'Procesando pago...';
 
-            // 5. Preparamos y enviamos la petición al backend
+            // 4. Conectamos con el backend
             try {
-                console.log("Enviando datos al servidor:", { name, email, whatsapp });
-
-                // >>>>> ¡URL CORREGIDA Y BODY SIN ID DE PRODUCTO! <<<<<
-                // El backend está configurado para un solo producto, no necesita un ID.
+                console.log('Enviando datos al servidor:', { name, email, whatsapp });
+                
+                // >>>>> ¡URL CORRECTA Y BODY CON DATOS! <<<<<
                 const response = await fetch('https://servidor-pagos.onrender.com/api/create-checkout-session', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         name: name,
                         email: email,
-                        whatsapp: whatsapp,
-                        // items: [{ id: 'la-calma-de-mama' }] // Esta línea se elimina
+                        whatsapp: whatsapp
                     })
                 });
 
-                // Si la respuesta no es "ok", lanzamos un error
+                // 5. Manejamos la respuesta del servidor
                 if (!response.ok) {
                     const errorData = await response.json();
                     throw new Error(errorData.message || 'Error del servidor al crear la sesión de pago.');
@@ -68,9 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // 7. En caso de error, reactivamos el botón
                 submitButton.disabled = false;
-                submitButton.innerText = 'Inscribirme y Recibir Bonus';
+                submitButton.innerText = originalButtonText;
             }
-        }); // FIN del evento 'submit'
-    } // FIN del bloque "if"
-
-}); // FIN del evento 'DOMContentLoaded'
+        });
+    }
+});
