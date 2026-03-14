@@ -31,15 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('Enviando datos al servidor:', { name, email, whatsapp });
                 
                 // >>>>> ¡URL CORRECTA Y BODY CON DATOS! <<<<<
-                const response = await fetch('https://servidor-pagos.onrender.com/api/create-checkout-session', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        whatsapp: whatsapp
-                    })
-                });
+const response = await fetch('https://servidor-pagos.onrender.com/api/create-checkout-session', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        name: name,
+        email: email,
+        whatsapp: whatsapp,
+        priceId: 'price_1SJkrS49pVvXIqagmqSmEOtf' // <--- ¡PEGA AQUÍ TU ID DE PRECIO!
+    }),
+});
 
                 // 5. Manejamos la respuesta del servidor
                 if (!response.ok) {
