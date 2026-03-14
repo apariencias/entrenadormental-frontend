@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 4. Conectamos con el backend (Bloque try/catch único y corregido)
             try {
                 // Define el priceId aquí (¡ASEGÚRATE DE QUE SEA EL CORRECTO!)
-                const priceId = 'price_1SJkrS49pVvXIqagmqSmEOtf';
+                const priceId = 'price_1TB01m49pVvXIqaguJHNWTsQ';
 
                 // Crea el objeto con todos los datos que se enviarán
                 const dataToSend = {
