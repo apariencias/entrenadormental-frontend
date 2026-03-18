@@ -1,0 +1,10 @@
+{
+    "name": "entrenador-mental-app",
+    "version": "1.0.0",
+    "description": "App del Entrenador Mental con pagos en Netlify",
+    "license": "ISC",
+    "dependencies": {
+      "nodemailer": "^8.0.2",
+      "stripe": "^20.3.1"
+    }
+  }

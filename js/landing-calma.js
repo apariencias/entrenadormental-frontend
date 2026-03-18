@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // La URL de tu API local
-                const response = await fetch('http://localhost:3000/api/create-checkout-session', {
+                const response = await fetch('/.netlify/functions/create-checkout-session', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
