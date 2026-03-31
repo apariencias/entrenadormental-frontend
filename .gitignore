@@ -26,3 +26,5 @@ Thumbs.db
 # Archivos de build (el resultado final)
 /dist
 /build
+# Local Netlify folder
+.netlify
