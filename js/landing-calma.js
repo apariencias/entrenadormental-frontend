@@ -1,6 +1,6 @@
 // entrenadormental-frontend/js/landing-calma.js
 
-const stripe = Stripe('pk_test_51SJJiW49pVvXIqag9YrzkSIeeNbJAPjscrwv66U3SuW8T79HlToatexZNuOwQsbXnfSnNIVCu5Em1i4drDgyYDGB00Md2IPxR0');
+const stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY);
 
 document.addEventListener('DOMContentLoaded', () => {
     const paymentForm = document.getElementById('inscription-form');
