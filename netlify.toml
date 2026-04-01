@@ -1,8 +1,4 @@
 [build]
+  # Este comando reemplazará el marcador de posición por la clave real
+  command = "sed -i 's/_STRIPE_PUBLISHABLE_KEY_/'\"$STRIPE_PUBLISHABLE_KEY\"'/g' js/landing-calma.js"
   functions = "netlify/functions"
-
-[[plugins]]
-  package = "@netlify/plugin-substitute"
-
-  [plugins.inputs]
-    '_STRIPE_PUBLISHABLE_KEY_' = '${STRIPE_PUBLISHABLE_KEY}'
