@@ -1,2 +1,8 @@
 [build]
   functions = "netlify/functions"
+
+[[plugins]]
+  package = "@netlify/plugin-substitute"
+
+  [plugins.inputs]
+    '_STRIPE_PUBLISHABLE_KEY_' = '${STRIPE_PUBLISHABLE_KEY}'
