@@ -7,40 +7,4 @@
 [build.environment]
   # Le dice al escáner de secretos de Netlify que ignore la clave pública de Stripe.
   # Las claves 'pk_' están diseñadas para ser seguras en el lado del cliente.
-  SECRETS_SCAN_OMIT_KEYS = "STRIPE_PUBLISHABLE_KEY"[build]
-  # La clave NO va en el repo: Netlify expone STRIPE_PUBLISHABLE_KEY en el entorno de build.
-  command = "npm run build"
-  publish = "."
-  functions = "netlify/functions"
-
-[build.environment]
-  # Le dice al escáner de secretos de Netlify que ignore la clave pública de Stripe.
-  # Las claves 'pk_' están diseñadas para ser seguras en el lado del cliente.
-  SECRETS_SCAN_OMIT_KEYS = "STRIPE_PUBLISHABLE_KEY"[build]
-  # La clave NO va en el repo: Netlify expone STRIPE_PUBLISHABLE_KEY en el entorno de build.
-  command = "npm run build"
-  publish = "."
-  functions = "netlify/functions"
-
-[build.environment]
-  # Le dice al escáner de secretos de Netlify que ignore la clave pública de Stripe.
-  # Las claves 'pk_' están diseñadas para ser seguras en el lado del cliente.
-  SECRETS_SCAN_OMIT_KEYS = "STRIPE_PUBLISHABLE_KEY"[build]
-  # La clave NO va en el repo: Netlify expone STRIPE_PUBLISHABLE_KEY en el entorno de build.
-  command = "npm run build"
-  publish = "."
-  functions = "netlify/functions"
-
-[build.environment]
-  # Le dice al escáner de secretos de Netlify que ignore la clave pública de Stripe.
-  # Las claves 'pk_' están diseñadas para ser seguras en el lado del cliente.
-  SECRETS_SCAN_OMIT_KEYS = "STRIPE_PUBLISHABLE_KEY"[build]
-  # La clave NO va en el repo: Netlify expone STRIPE_PUBLISHABLE_KEY en el entorno de build.
-  command = "npm run build"
-  publish = "."
-  functions = "netlify/functions"
-
-[build.environment]
-  # Le dice al escáner de secretos de Netlify que ignore la clave pública de Stripe.
-  # Las claves 'pk_' están diseñadas para ser seguras en el lado del cliente.
   SECRETS_SCAN_OMIT_KEYS = "STRIPE_PUBLISHABLE_KEY"
