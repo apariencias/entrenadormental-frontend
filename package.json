@@ -4,7 +4,7 @@
   "description": "App del Entrenador Mental con pagos en Netlify",
   "license": "ISC",
   "scripts": {
-    "build": "node scripts/inject-stripe-key.mjs"
+    "build": "node scripts/inject-stripe-key.js"
   },
   "dependencies": {
     "nodemailer": "^8.0.2",
