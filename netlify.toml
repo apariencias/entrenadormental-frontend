@@ -1,4 +1,5 @@
 [build]
-  # Este comando reemplazará el marcador de posición por la clave real
-  command = "sed -i 's/_STRIPE_PUBLISHABLE_KEY_/'\"$STRIPE_PUBLISHABLE_KEY\"'/g' js/landing-calma.js"
+  # La clave NO va en el repo: Netlify expone STRIPE_PUBLISHABLE_KEY en el entorno de build.
+  command = "npm run build"
+  publish = "."
   functions = "netlify/functions"
