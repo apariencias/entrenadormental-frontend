@@ -313,6 +313,47 @@
         <i class="fab fa-whatsapp"></i>
     </a>
     <script src="https://js.stripe.com/v3/"></script>
-<script src="js/landing-calma.js"></script>
+<script>
+    document.getElementById('inscription-form').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Evita que el formulario se envíe de la forma tradicional
+
+        const submitBtn = document.getElementById('submit-payment-btn');
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = 'Procesando...';
+        submitBtn.disabled = true;
+
+        // 1. Recopilar todos los datos del formulario
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const whatsapp = document.getElementById('whatsapp').value;
+
+        try {
+            // 2. Enviar los datos a tu función de Netlify
+            const response = await fetch('/.netlify/functions/create-checkout-session', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    customerEmail: email,
+                    customerName: name,
+                    customerWhatsapp: whatsapp,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (data.url) {
+                // 3. Redirigir al usuario a Stripe para el pago
+                window.location.href = data.url;
+            } else {
+                throw new Error('No se pudo crear la sesión de pago.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Hubo un error al procesar el pago. Por favor, intenta de nuevo.');
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+</script>
 </body>
 </html>
