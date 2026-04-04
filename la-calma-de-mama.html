@@ -317,6 +317,10 @@
     document.getElementById('inscription-form').addEventListener('submit', async (event) => {
         event.preventDefault(); // Evita que el formulario se envíe de la forma tradicional
 
+        // AÑADIMOS ESTA LÍNEA para que el script de build tenga qué reemplazar.
+        // No la usaremos para la redirección, pero es necesaria para el proceso.
+        const stripe = Stripe('_STRIPE_PUBLISHABLE_KEY_');
+
         const submitBtn = document.getElementById('submit-payment-btn');
         const originalText = submitBtn.innerText;
         submitBtn.innerText = 'Procesando...';
@@ -342,7 +346,7 @@
             const data = await response.json();
 
             if (data.url) {
-                // 3. Redirigir al usuario a Stripe para el pago
+                // 3. Redirigir al usuario a Stripe para el pago (tu método original es correcto)
                 window.location.href = data.url;
             } else {
                 throw new Error('No se pudo crear la sesión de pago.');
