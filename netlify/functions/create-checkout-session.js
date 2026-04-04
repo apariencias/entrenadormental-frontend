@@ -60,6 +60,15 @@ exports.handler = async (event) => {
     }
 
     try {
+        // Stripe guarda `metadata` en el objeto Checkout Session. El panel suele mostrar
+        // el pago a través del PaymentIntent; ese objeto NO hereda la metadata de la sesión.
+        // Hay que repetirla en payment_intent_data.metadata para verla en Pagos / PaymentIntent.
+        const metadata = {
+            customerName: String(customerName),
+            customerEmail: String(customerEmail),
+            customerWhatsapp: String(customerWhatsapp),
+        };
+
         const session = await stripe.checkout.sessions.create({
             customer_email: customerEmail,
             payment_method_types: ["card"],
@@ -67,11 +76,9 @@ exports.handler = async (event) => {
             mode: "payment",
             success_url: `${successUrl}?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: cancelUrl,
-            // Metadatos visibles en Stripe Dashboard → Payment / Checkout Session
-            metadata: {
-                customerName,
-                customerEmail,
-                customerWhatsapp,
+            metadata,
+            payment_intent_data: {
+                metadata,
             },
         });
 
