@@ -312,48 +312,53 @@
     <a href="https://wa.me/525511195800" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
-    <script src="https://js.stripe.com/v3/"></script>
 <script>
     document.getElementById('inscription-form').addEventListener('submit', async (event) => {
-        event.preventDefault(); // Evita que el formulario se envíe de la forma tradicional
-
-        // AÑADIMOS ESTA LÍNEA para que el script de build tenga qué reemplazar.
-        // No la usaremos para la redirección, pero es necesaria para el proceso.
-        const stripe = Stripe('_STRIPE_PUBLISHABLE_KEY_');
+        event.preventDefault();
 
         const submitBtn = document.getElementById('submit-payment-btn');
         const originalText = submitBtn.innerText;
         submitBtn.innerText = 'Procesando...';
         submitBtn.disabled = true;
 
-        // 1. Recopilar todos los datos del formulario
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const whatsapp = document.getElementById('whatsapp').value;
+        const customerName = document.getElementById('name').value.trim();
+        const customerEmail = document.getElementById('email').value.trim();
+        const customerWhatsapp = document.getElementById('whatsapp').value.trim();
+
+        if (!customerName || !customerEmail || !customerWhatsapp) {
+            alert('Por favor completa nombre, correo y WhatsApp.');
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+            return;
+        }
 
         try {
-            // 2. Enviar los datos a tu función de Netlify
             const response = await fetch('/.netlify/functions/create-checkout-session', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    customerEmail: email,
-                    customerName: name,
-                    customerWhatsapp: whatsapp,
+                    customerName,
+                    customerEmail,
+                    customerWhatsapp,
                 }),
             });
 
-            const data = await response.json();
+            const data = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                const msg = data.error || 'No se pudo iniciar el pago.';
+                throw new Error(msg);
+            }
 
             if (data.url) {
-                // 3. Redirigir al usuario a Stripe para el pago (tu método original es correcto)
                 window.location.href = data.url;
-            } else {
-                throw new Error('No se pudo crear la sesión de pago.');
+                return;
             }
+
+            throw new Error('Respuesta inválida del servidor.');
         } catch (error) {
             console.error('Error:', error);
-            alert('Hubo un error al procesar el pago. Por favor, intenta de nuevo.');
+            alert(error.message || 'Hubo un error al procesar el pago. Por favor, intenta de nuevo.');
             submitBtn.innerText = originalText;
             submitBtn.disabled = false;
         }
