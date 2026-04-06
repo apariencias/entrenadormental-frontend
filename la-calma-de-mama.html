@@ -29,7 +29,6 @@
         <section class="hero">
             <canvas id="flow-canvas" aria-hidden="true"></canvas>
             <div class="hero-content">
-                <div class="hero-eyebrow">Neuro-Alineación para madres</div>
                 <h1>La calma no se conquista.<br>Se <em>deja de resistir</em>.</h1>
                 <p class="subtitle">Deja de 'sobrevivir' a tus días y recupera tu calma natural. A través de Neuro-Alineación, reprogramas el estado de alerta para que tu situación diaria deje de agotarte y comiences a dirigirla con energía real.</p>
                 <a href="#detalles" class="cta-button">Inicia mi Neuro-Alineación</a>
@@ -352,8 +351,7 @@
     <script>
     window.addEventListener('DOMContentLoaded', () => {
         const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-        tl.from('.hero-eyebrow',     { y:24, opacity:0, duration:.7, delay:.3 })
-          .from('.hero h1',          { y:44, opacity:0, duration:1.0 }, '-=.4')
+        tl.from('.hero h1',          { y:44, opacity:0, duration:1.0, delay:.3 })
           .from('.hero .subtitle',   { y:28, opacity:0, duration:.8 }, '-=.5')
           .from('.hero .cta-button', { y:20, opacity:0, duration:.7 }, '-=.4')
           .from('.hero-scroll-hint', { opacity:0, duration:1 }, '-=.2');
