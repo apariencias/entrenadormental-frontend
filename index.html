@@ -4,20 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrenador Mental — Selecciona tu Realidad</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- GSAP (defer: no bloquea el análisis del HTML) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
+    <!-- HEADER -->
     <header class="main-header" id="main-header">
         <div class="container">
             <a href="index.html" class="logo-container">
@@ -29,10 +25,8 @@
                     <li><a href="#seleccion-realidad">Selección de Realidad</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
-                <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
                 </button>
             </nav>
         </div>
@@ -40,7 +34,7 @@
 
     <main>
 
-        <!-- ===== HERO ===== -->
+        <!-- HERO -->
         <section class="hero">
             <canvas id="flow-canvas" aria-hidden="true"></canvas>
             <div class="hero-content">
@@ -52,45 +46,69 @@
             <div class="hero-scroll-hint" aria-hidden="true"><span></span></div>
         </section>
 
-        <!-- ===== PILARES ===== -->
+        <!-- PILARES -->
         <section id="pilares" class="section">
             <div class="container">
                 <div class="section-title reveal">
                     <h2>Los Pilares de tu Transformación</h2>
                 </div>
                 <div class="pilars-content">
+
+                    <!-- Pilar 1: Causa Raíz — eye with root tendrils -->
                     <div class="pilar-item reveal">
-                        <div class="pilar-number-wrap">
-                            <span class="pilar-number">1</span>
+                        <div class="pilar-icon-wrap">
+                            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 13c3-6 18-6 22 0c-3 6-18 6-22 0"/>
+                                <circle cx="13" cy="13" r="4"/>
+                                <circle cx="13" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+                                <path d="M13 19 Q11 22 9 24 M13 19 Q15 22 17 24"/>
+                            </svg>
                         </div>
                         <div class="pilar-text">
                             <h3>Localizar la Causa Raíz</h3>
                             <p>Tu experiencia actual no es un reflejo de tu capacidad, sino de la información que has aceptado como verdad. Aunque la mayor carga de <strong>programación</strong> ocurre hasta los 9 años, tu mente sigue consolidando verdades por repetición emocional. Este primer paso consiste en detectar las <strong>instrucciones invisibles</strong> que hoy dictan tus reacciones automáticas y seleccionan los resultados que se repiten en tu vida.</p>
                         </div>
                     </div>
+
+                    <!-- Pilar 2: Calibración — tuning fork -->
                     <div class="pilar-item reveal">
-                        <div class="pilar-number-wrap">
-                            <span class="pilar-number">2</span>
+                        <div class="pilar-icon-wrap">
+                            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M13 3 L10 9 Q10 14 13 14 Q16 14 16 9 Z"/>
+                                <line x1="13" y1="14" x2="13" y2="24"/>
+                                <line x1="10" y1="20" x2="16" y2="20"/>
+                                <path d="M4 7 Q8 5 8 9" stroke-width="1" opacity="0.6"/>
+                                <path d="M22 7 Q18 5 18 9" stroke-width="1" opacity="0.6"/>
+                            </svg>
                         </div>
                         <div class="pilar-text">
                             <h3>Calibración Interna</h3>
                             <p>La transformación no es una lucha por conseguir algo que te falta, sino un proceso de <strong>calibración interna</strong>. Si tu sistema nervioso está habituado a la tensión, a la carencia o al miedo, tu mente rechazará cualquier escenario distinto por simple "comodidad" biológica. El Entrenamiento Mental interviene ese ciclo para que el resultado que buscas se convierta en tu única opción coherente.</p>
                         </div>
                     </div>
+
+                    <!-- Pilar 3: Estabilización — sine wave with center point -->
                     <div class="pilar-item reveal">
-                        <div class="pilar-number-wrap">
-                            <span class="pilar-number">3</span>
+                        <div class="pilar-icon-wrap">
+                            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 13 Q5 7 8 13 Q11 19 14 13 Q17 7 20 13 Q23 19 26 13" opacity="0.45"/>
+                                <path d="M2 13 Q5.5 8 8.5 13 Q12 18.5 13 13 Q14 7.5 17.5 13 Q20.5 18 24 13"/>
+                                <circle cx="13" cy="13" r="2" fill="currentColor" stroke="none"/>
+                                <line x1="13" y1="2" x2="13" y2="5" stroke-width="1" opacity="0.5"/>
+                                <line x1="13" y1="21" x2="13" y2="24" stroke-width="1" opacity="0.5"/>
+                            </svg>
                         </div>
                         <div class="pilar-text">
                             <h3>Estabilización del Estado de Consciencia</h3>
                             <p>Cuando tu <strong>estado de consciencia</strong> cambia, tu realidad se reorganiza. Al sostener una nueva configuración interna, permites que los hechos externos se sintonicen con tu nueva instrucción mental. No estás forzando al mundo a cambiar; estás eliminando la interferencia interna para que la realidad que deseas se manifieste por <span class="accent">Ley de Correspondencia</span>.</p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- ===== CIENCIA DE LA REALIDAD ===== -->
+        <!-- CIENCIA DE LA REALIDAD -->
         <section id="ciencia-realidad" class="section section-dark">
             <div class="container">
                 <div class="section-title reveal">
@@ -104,7 +122,7 @@
             </div>
         </section>
 
-        <!-- ===== TESTIMONIOS ===== -->
+        <!-- TESTIMONIOS — NO TOCAR -->
         <section id="capturas-realidad" class="section">
             <div class="container">
                 <div class="section-title reveal">
@@ -114,71 +132,36 @@
             </div>
             <div class="carousel-container">
                 <div class="testimonial-track">
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>¡Gracias! Por enseñarme a tener fe en mí, más allá de los rituales mágicos. Por encender mi magia, por devolverme a la vida. Por hacer de mi vida un sueño y de mi sueño una hermosa realidad.</p>
-                            <span class="chat-time">20:08 ✓✓</span>
-                        </div>
-                    </div>
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Oye tengo que contarte lo que pasó hoy es de locos. Llevaba meses bloqueada con el tema del dinero y hoy, después de la sesión de sintonía, me llamaron para un proyecto que ni siquiera estaba buscando. Es como si de repente el mundo se hubiera dado cuenta de que ya estoy en otra frecuencia. ¡Aún no me lo creo!</p>
-                            <span class="chat-time">21:34 ✓✓</span>
-                        </div>
-                    </div>
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Por primera vez en años, hoy mi casa fue un refugio. No hubo gritos, no hubo tensión y lo más increíble es que yo no hice nada diferente en acciones. Simplemente mantuve mi estado como enseñaste y mis hijos reaccionaron solos. Es real que cuando uno se mueve, todo se mueve.</p>
-                            <span class="chat-time">19:57 ✓✓</span>
-                        </div>
-                    </div>
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Me escribió mi ex, el de siempre, y por primera vez en la vida no sentí NADA de necesidad de contestar. Ni coraje, ni ganas. Mi mente ya no reconoce ese drama como algo familiar. Se siente tan bien dejar de ser adicta al conflicto.</p>
-                            <span class="chat-time">23:32 ✓✓</span>
-                        </div>
-                    </div>
-                    <!-- Duplicates for seamless loop -->
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>¡Gracias! Por enseñarme a tener fe en mí, más allá de los rituales mágicos. Por encender mi magia, por devolverme a la vida. Por hacer de mi vida un sueño y de mi sueño una hermosa realidad.</p>
-                            <span class="chat-time">20:08 ✓✓</span>
-                        </div>
-                    </div>
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Oye tengo que contarte lo que pasó hoy es de locos. Llevaba meses bloqueada con el tema del dinero y hoy, después de la sesión de sintonía, me llamaron para un proyecto que ni siquiera estaba buscando. Es como si de repente el mundo se hubiera dado cuenta de que ya estoy en otra frecuencia. ¡Aún no me lo creo!</p>
-                            <span class="chat-time">21:34 ✓✓</span>
-                        </div>
-                    </div>
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Por primera vez en años, hoy mi casa fue un refugio. No hubo gritos, no hubo tensión y lo más increíble es que yo no hice nada diferente en acciones. Simplemente mantuve mi estado como enseñaste y mis hijos reaccionaron solos. Es real que cuando uno se mueve, todo se mueve.</p>
-                            <span class="chat-time">19:57 ✓✓</span>
-                        </div>
-                    </div>
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Me escribió mi ex, el de siempre, y por primera vez en la vida no sentí NADA de necesidad de contestar. Ni coraje, ni ganas. Mi mente ya no reconoce ese drama como algo familiar. Se siente tan bien dejar de ser adicta al conflicto.</p>
-                            <span class="chat-time">23:32 ✓✓</span>
-                        </div>
-                    </div>
+                    <div class="whatsapp-card"><div class="chat-bubble"><p>¡Gracias! Por enseñarme a tener fe en mí, más allá de los rituales mágicos. Por encender mi magia, por devolverme a la vida. Por hacer de mi vida un sueño y de mi sueño una hermosa realidad.</p><span class="chat-time">20:08 ✓✓</span></div></div>
+                    <div class="whatsapp-card"><div class="chat-bubble"><p>Oye tengo que contarte lo que pasó hoy es de locos. Llevaba meses bloqueada con el tema del dinero y hoy, después de la sesión de sintonía, me llamaron para un proyecto que ni siquiera estaba buscando. Es como si de repente el mundo se hubiera dado cuenta de que ya estoy en otra frecuencia. ¡Aún no me lo creo!</p><span class="chat-time">21:34 ✓✓</span></div></div>
+                    <div class="whatsapp-card"><div class="chat-bubble"><p>Por primera vez en años, hoy mi casa fue un refugio. No hubo gritos, no hubo tensión y lo más increíble es que yo no hice nada diferente en acciones. Simplemente mantuve mi estado como enseñaste y mis hijos reaccionaron solos. Es real que cuando uno se mueve, todo se mueve.</p><span class="chat-time">19:57 ✓✓</span></div></div>
+                    <div class="whatsapp-card"><div class="chat-bubble"><p>Me escribió mi ex, el de siempre, y por primera vez en la vida no sentí NADA de necesidad de contestar. Ni coraje, ni ganas. Mi mente ya no reconoce ese drama como algo familiar. Se siente tan bien dejar de ser adicta al conflicto.</p><span class="chat-time">23:32 ✓✓</span></div></div>
+                    <!-- duplicates -->
+                    <div class="whatsapp-card"><div class="chat-bubble"><p>¡Gracias! Por enseñarme a tener fe en mí, más allá de los rituales mágicos. Por encender mi magia, por devolverme a la vida. Por hacer de mi vida un sueño y de mi sueño una hermosa realidad.</p><span class="chat-time">20:08 ✓✓</span></div></div>
+                    <div class="whatsapp-card"><div class="chat-bubble"><p>Oye tengo que contarte lo que pasó hoy es de locos. Llevaba meses bloqueada con el tema del dinero y hoy, después de la sesión de sintonía, me llamaron para un proyecto que ni siquiera estaba buscando. Es como si de repente el mundo se hubiera dado cuenta de que ya estoy en otra frecuencia. ¡Aún no me lo creo!</p><span class="chat-time">21:34 ✓✓</span></div></div>
+                    <div class="whatsapp-card"><div class="chat-bubble"><p>Por primera vez en años, hoy mi casa fue un refugio. No hubo gritos, no hubo tensión y lo más increíble es que yo no hice nada diferente en acciones. Simplemente mantuve mi estado como enseñaste y mis hijos reaccionaron solos. Es real que cuando uno se mueve, todo se mueve.</p><span class="chat-time">19:57 ✓✓</span></div></div>
+                    <div class="whatsapp-card"><div class="chat-bubble"><p>Me escribió mi ex, el de siempre, y por primera vez en la vida no sentí NADA de necesidad de contestar. Ni coraje, ni ganas. Mi mente ya no reconoce ese drama como algo familiar. Se siente tan bien dejar de ser adicta al conflicto.</p><span class="chat-time">23:32 ✓✓</span></div></div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== SELECCIÓN DE REALIDAD (SERVICIOS) ===== -->
+        <!-- SELECCIÓN DE REALIDAD (SERVICIOS) -->
         <section id="seleccion-realidad" class="section section-dark">
             <div class="container">
                 <div class="section-title reveal">
                     <h2>Selecciona tu Nueva Realidad</h2>
-                    <p class="section-subtitle">No eres víctima de las circunstancias, eres quien <span class="accent">selecciona las experiencias</span>. Elige el camino que deseas comenzar hoy.</p>
+                    <p class="section-subtitle">No eres víctima de las circunstancias, eres quien <span class="accent">selecciona las experiencias</span>.</p>
                 </div>
                 <div class="services-grid">
-                    <a href="la-calma-de-mama.html" class="service-card reveal">
+
+                    <!-- La Calma de Mamá — gold border -->
+                    <a href="la-calma-de-mama.html" class="service-card gold-border reveal">
                         <div class="service-card-top">
                             <div class="service-icon">
-                                <img src="assets/images/icons/icono-calma.svg" alt="Icono La Calma de Mamá">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M11 2 C7 2 4 5 4 8.5 C4 13 8 16 11 20 C14 16 18 13 18 8.5 C18 5 15 2 11 2Z"/>
+                                    <path d="M8 9 Q11 13 14 9" stroke-width="1.2"/>
+                                </svg>
                             </div>
                             <span class="service-tag">Programa · 4 semanas</span>
                         </div>
@@ -189,10 +172,18 @@
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </div>
                     </a>
-                    <a href="#proximamente" class="service-card reveal">
+
+                    <!-- Sintoniza tu Pareja — gold border -->
+                    <a href="#proximamente" class="service-card gold-border reveal">
                         <div class="service-card-top">
                             <div class="service-icon">
-                                <img src="assets/images/icons/icono-pareja.svg" alt="Icono Sintoniza a tu Pareja Ideal">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="8" cy="8" r="4"/>
+                                    <circle cx="14" cy="8" r="4"/>
+                                    <path d="M11 11 L11 19"/>
+                                    <path d="M8 19 L14 19"/>
+                                    <line x1="5" y1="16" x2="17" y2="16" stroke-width="1" opacity="0.5"/>
+                                </svg>
                             </div>
                             <span class="service-tag">Programa · 4 semanas</span>
                         </div>
@@ -203,10 +194,14 @@
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </div>
                     </a>
+
+                    <!-- Mentoría — featured (no gold-border) -->
                     <a href="#proximamente" class="service-card service-card--featured reveal">
                         <div class="service-card-top">
                             <div class="service-icon">
-                                <img src="assets/images/icons/icono-mentoria.svg" alt="Icono Mentoría">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="11 2 13.5 8.5 20.5 8.5 15 12.5 17 19 11 15 5 19 7 12.5 1.5 8.5 8.5 8.5"/>
+                                </svg>
                             </div>
                             <span class="service-tag service-tag--gold">Acceso privado</span>
                         </div>
@@ -217,11 +212,12 @@
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </div>
                     </a>
+
                 </div>
             </div>
         </section>
 
-        <!-- ===== CLOSING ===== -->
+        <!-- CLOSING -->
         <section id="closing-statement" class="section">
             <div class="container">
                 <div class="closing-wrap reveal">
@@ -231,7 +227,35 @@
             </div>
         </section>
 
-        <!-- ===== PRÓXIMAMENTE ===== -->
+        <!-- PASO FINAL -->
+        <section id="paso-final" class="paso-final-section reveal">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Estás a un paso de tu Calma</h2>
+                    <p class="section-subtitle">Una inversión en ti que se expande a toda tu familia.</p>
+                </div>
+                <div class="paso-final-grid">
+                    <div class="detalles-entrenamiento">
+                        <h3>Detalles del Entrenamiento</h3>
+                        <ul>
+                            <li><strong>4 Clases en Vivo (90 min):</strong> Vía Zoom, en grupo con seguimiento personal.</li>
+                            <li><strong>Espacio de Confianza Absoluta:</strong> Clases no grabadas para total libertad.</li>
+                            <li><strong>Kit de Reprogramación:</strong> 2 audios binaurales y material semanal de práctica.</li>
+                            <li><strong>Acompañamiento Directo:</strong> Guiada personal durante todo el proceso de transformación.</li>
+                        </ul>
+                        <p class="precio">Inversión: <strong>$2,997 MXN</strong></p>
+                    </div>
+                    <div class="garantia-box">
+                        <h4>Garantía de Resultados</h4>
+                        <p>Si después de la primera clase sientes que no es para ti, te devolvemos el 100%. Sin preguntas. La transformación comienza cuando decides que ya es tiempo.</p>
+                        <a href="la-calma-de-mama.html#detalles" class="cta-button">Inscribirme Ahora</a>
+                        <p class="disponibilidad">(Últimos lugares disponibles)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRÓXIMAMENTE -->
         <section id="proximamente" class="section section-dark reveal">
             <div class="container">
                 <div class="proximamente-inner">
@@ -243,7 +267,7 @@
 
     </main>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- FOOTER -->
     <footer id="contacto" class="main-footer">
         <div class="container">
             <div class="footer-inner">
@@ -252,87 +276,57 @@
                     <span class="logo-text">ENTRENADOR MENTAL</span>
                 </a>
                 <div class="footer-contact">
-                    <a href="https://wa.me/525511195800" class="footer-link">
-                        <i class="fab fa-whatsapp"></i>+52 55 111 95 800
-                    </a>
-                    <a href="mailto:mentalentrenador@gmail.com" class="footer-link">
-                        <i class="fas fa-envelope"></i>mentalentrenador@gmail.com
-                    </a>
-                    <span class="footer-link footer-location">
-                        <i class="fas fa-map-marker-alt"></i>Bosques de las Lomas, CDMX
-                    </span>
+                    <a href="https://wa.me/525511195800" class="footer-link"><i class="fab fa-whatsapp"></i>+52 55 111 95 800</a>
+                    <a href="mailto:mentalentrenador@gmail.com" class="footer-link"><i class="fas fa-envelope"></i>mentalentrenador@gmail.com</a>
+                    <span class="footer-link footer-location"><i class="fas fa-map-marker-alt"></i>Bosques de las Lomas, CDMX</span>
                 </div>
                 <div class="footer-social">
-                    <a href="https://www.instagram.com/entrenador.mental" target="_blank" rel="noopener" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://www.facebook.com/entrenador.mental" target="_blank" rel="noopener" aria-label="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
+                    <a href="https://www.instagram.com/entrenador.mental" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/entrenador.mental" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>© 2025 Entrenador Mental · Todos los derechos reservados</p>
-            </div>
+            <div class="footer-bottom"><p>© 2025 Entrenador Mental · Todos los derechos reservados</p></div>
         </div>
     </footer>
 
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/525511195800" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <a href="https://wa.me/525511195800" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Flow Field -->
     <script src="flow-field.js"></script>
-
-    <!-- GSAP + Scroll Reveal + Nav Toggle -->
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', () => {
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        tl.from('.hero-eyebrow',     { y:24, opacity:0, duration:.7, delay:.3 })
+          .from('.hero h1',          { y:44, opacity:0, duration:1.0 }, '-=.4')
+          .from('.hero .subtitle',   { y:28, opacity:0, duration:.8 }, '-=.5')
+          .from('.hero .cta-button', { y:20, opacity:0, duration:.7 }, '-=.4')
+          .from('.hero-scroll-hint', { opacity:0, duration:1 }, '-=.2');
 
-            // --- GSAP Hero Entrance ---
-            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-            tl.from('.hero-eyebrow',    { y: 24, opacity: 0, duration: 0.7, delay: 0.3 })
-              .from('.hero h1',         { y: 44, opacity: 0, duration: 1.0 }, '-=0.4')
-              .from('.hero .subtitle',  { y: 28, opacity: 0, duration: 0.8 }, '-=0.5')
-              .from('.hero .cta-button',{ y: 20, opacity: 0, duration: 0.7 }, '-=0.4')
-              .from('.hero-scroll-hint',{ opacity: 0, duration: 1 }, '-=0.2');
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); } });
+        }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-            // --- Scroll Reveal ---
-            const revealEls = document.querySelectorAll('.reveal');
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                    if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-            revealEls.forEach(el => io.observe(el));
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 60), { passive: true });
 
-            // --- Header scroll style ---
-            const header = document.getElementById('main-header');
-            window.addEventListener('scroll', () => {
-                header.classList.toggle('scrolled', window.scrollY > 60);
-            }, { passive: true });
-
-            // --- Hamburger menu ---
-            const toggle = document.getElementById('nav-toggle');
-            const navList = document.getElementById('nav-list');
-            if (toggle && navList) {
-                toggle.addEventListener('click', () => {
-                    const open = toggle.getAttribute('aria-expanded') === 'true';
-                    toggle.setAttribute('aria-expanded', !open);
-                    toggle.classList.toggle('is-open', !open);
-                    navList.classList.toggle('is-open', !open);
-                });
-                // Close on nav link click
-                navList.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        toggle.setAttribute('aria-expanded', 'false');
-                        toggle.classList.remove('is-open');
-                        navList.classList.remove('is-open');
-                    });
-                });
-            }
-
-        });
+        const toggle = document.getElementById('nav-toggle');
+        const navList = document.getElementById('nav-list');
+        if (toggle && navList) {
+            toggle.addEventListener('click', () => {
+                const open = toggle.getAttribute('aria-expanded') === 'true';
+                toggle.setAttribute('aria-expanded', !open);
+                toggle.classList.toggle('is-open', !open);
+                navList.classList.toggle('is-open', !open);
+            });
+            navList.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+                toggle.setAttribute('aria-expanded', 'false');
+                toggle.classList.remove('is-open');
+                navList.classList.remove('is-open');
+            }));
+        }
+    });
     </script>
 </body>
 </html>

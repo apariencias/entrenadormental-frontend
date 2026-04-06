@@ -4,22 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Calma de Mamá — Entrenador Mental</title>
-
-    <!-- Google Fonts: Cormorant Garamond (display) + Inter (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="la-calma-de-mama">
 
-    <!-- ===== HEADER ===== -->
+    <!-- HEADER -->
     <header class="main-header" id="main-header">
         <div class="container">
             <a href="index.html" class="logo-container">
@@ -31,33 +25,33 @@
 
     <main>
 
-        <!-- ===== HERO ===== -->
+        <!-- HERO -->
         <section class="hero">
             <canvas id="flow-canvas" aria-hidden="true"></canvas>
-
             <div class="hero-content">
                 <div class="hero-eyebrow">Neuro-Alineación para madres</div>
                 <h1>La calma no se conquista.<br>Se <em>deja de resistir</em>.</h1>
                 <p class="subtitle">Deja de 'sobrevivir' a tus días y recupera tu calma natural. A través de Neuro-Alineación, reprogramas el estado de alerta para que tu situación diaria deje de agotarte y comiences a dirigirla con energía real.</p>
-                <a href="#es-para-ti" class="cta-button">Inicia mi Neuro-Alineación</a>
+                <a href="#detalles" class="cta-button">Inicia mi Neuro-Alineación</a>
             </div>
-
-            <div class="hero-scroll-hint" aria-hidden="true">
-                <span></span>
-            </div>
+            <div class="hero-scroll-hint" aria-hidden="true"><span></span></div>
         </section>
 
-        <!-- ===== INTRO ===== -->
+        <!-- INTRO — Corrected quotes -->
         <section id="intro" class="section section-dark">
             <div class="container">
                 <div class="authority-content reveal">
-                    <p><span class="quote-mark">"</span>La calma se entrena, no es un golpe de suerte.<span class="quote-mark">"</span></p>
+                    <blockquote>
+                        <p style="font-family:var(--font-display);font-size:clamp(1.5rem,2.8vw,2rem);font-style:italic;font-weight:300;color:var(--text-accent);line-height:1.35;margin-bottom:1.5rem;">
+                            «La calma se entrena, no es un golpe de suerte.»
+                        </p>
+                    </blockquote>
                     <p class="body-copy">La Calma de Mamá es un proceso diseñado para que dejes de luchar contra el entorno. Si hoy te sientes drenada, es porque tu mente está habituada a operar en alerta. Al adoptar nuevos pensamientos de forma dirigida, utilizas la <strong>neuroplasticidad</strong> a tu favor para que la calma sea tu respuesta automática, no tu mayor esfuerzo.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ===== ¿ES PARA TI? ===== -->
+        <!-- ¿ES PARA TI? -->
         <section id="es-para-ti" class="section">
             <div class="container">
                 <div class="section-title reveal">
@@ -92,92 +86,152 @@
                     </label>
                 </div>
                 <div class="text-center reveal">
-                    <a href="#proceso" class="cta-button">Sí, esto es para mí. Quiero empezar</a>
+                    <a href="#detalles" class="cta-button">Sí, esto es para mí. Quiero empezar</a>
                 </div>
             </div>
         </section>
 
-        <!-- ===== PROCESO ===== -->
+        <!-- PROCESO 4 SEMANAS — SVG icons -->
         <section id="proceso" class="section section-dark">
             <div class="container">
                 <div class="section-title reveal">
                     <h2>Tu Proceso de 4 Semanas</h2>
                 </div>
                 <div class="process-zigzag">
+
+                    <!-- Paso 1: Fundamentos — magnifying glass + grid -->
                     <div class="process-step reveal">
-                        <div class="process-number">01</div>
+                        <div class="process-icon-wrap">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="10" cy="10" r="6"/>
+                                <line x1="14.5" y1="14.5" x2="20" y2="20"/>
+                                <line x1="7" y1="10" x2="13" y2="10"/>
+                                <line x1="10" y1="7" x2="10" y2="13"/>
+                            </svg>
+                        </div>
                         <div class="process-content">
-                            <h4>Fundamentos y Diagnóstico</h4>
+                            <h4>Fase 1 — Fundamentos y Diagnóstico</h4>
                             <p>Reconocerás la <strong>programación específica</strong> que hoy drena tu energía y mapearás con precisión el origen del estado de alerta.</p>
                         </div>
                     </div>
+
+                    <!-- Paso 2: Reset — circular arrow with spark -->
                     <div class="process-step reveal">
-                        <div class="process-number">02</div>
+                        <div class="process-icon-wrap">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 11A8 8 0 1 0 19 15.5"/>
+                                <polyline points="20 4 20 11 13 11"/>
+                                <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
+                            </svg>
+                        </div>
                         <div class="process-content">
-                            <h4>El Reset (Selección)</h4>
+                            <h4>Fase 2 — El Reset (Selección)</h4>
                             <p>Aprendes a interrumpir el patrón automático y <span class="accent">seleccionas</span> una configuración mental diferente en tiempo real.</p>
                         </div>
                     </div>
+
+                    <!-- Paso 3: Ocupa — person grounded -->
                     <div class="process-step reveal">
-                        <div class="process-number">03</div>
+                        <div class="process-icon-wrap">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="5" r="3"/>
+                                <path d="M6 21 L8 15 L12 17 L16 15 L18 21"/>
+                                <path d="M9 11 Q10 9 12 9 Q14 9 15 11"/>
+                                <line x1="12" y1="13" x2="12" y2="17"/>
+                                <path d="M5 19 Q8 17 12 17 Q16 17 19 19" stroke-width="1" opacity="0.4"/>
+                            </svg>
+                        </div>
                         <div class="process-content">
-                            <h4>Ocupa el Estado</h4>
+                            <h4>Fase 3 — Ocupa el Estado</h4>
                             <p>Llevamos la práctica a tu terreno real para que tu sistema acepte y ancle la nueva <strong>programación</strong>.</p>
                         </div>
                     </div>
+
+                    <!-- Paso 4: Integración — infinity / anchor -->
                     <div class="process-step reveal">
-                        <div class="process-number">04</div>
+                        <div class="process-icon-wrap">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12 Q5 8 9 8 Q12 8 12 12 Q12 16 15 16 Q19 16 19 12 Q19 8 15 8 Q12 8 12 12 Q12 16 9 16 Q5 16 5 12Z"/>
+                                <line x1="12" y1="16" x2="12" y2="22"/>
+                                <line x1="9" y1="22" x2="15" y2="22"/>
+                            </svg>
+                        </div>
                         <div class="process-content">
-                            <h4>Integración y Dirección</h4>
+                            <h4>Fase 4 — Integración y Dirección</h4>
                             <p>Consolidas el nuevo <strong>estado</strong> para que la calma sea tu centro permanente, no un destino por alcanzar.</p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- ===== BENEFICIOS ===== -->
+        <!-- BENEFICIOS — feature-card redesign with SVG icons -->
         <section id="beneficios" class="section">
             <div class="container">
                 <div class="section-title reveal">
                     <h2>Lo que comienzas a notar desde la Fase 1</h2>
                 </div>
                 <div class="benefits-mosaic">
-                    <div class="mosaic-item item-1 reveal">
+
+                    <div class="mosaic-item item-1 feature-card reveal">
                         <div class="benefit-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 9 L11 2 L20 9 L20 20 L2 20 Z"/>
+                                <path d="M8 20 L8 13 L14 13 L14 20"/>
+                                <line x1="11" y1="2" x2="11" y2="9" stroke-width="1" opacity="0.4"/>
+                            </svg>
                         </div>
                         <h4>Tu casa como refugio</h4>
                         <p>Menos tensión y un ambiente más suave como resultado natural de tu nuevo estado interno.</p>
                     </div>
-                    <div class="mosaic-item item-2 reveal">
+
+                    <div class="mosaic-item item-2 feature-card reveal">
                         <div class="benefit-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 3 C6 3 3 7 3 10 C3 15 7 18 11 21 C15 18 19 15 19 10 C19 7 16 3 11 3Z"/>
+                                <path d="M8 11 Q11 14.5 14 11" stroke-width="1.3"/>
+                                <line x1="11" y1="7" x2="11" y2="9" stroke-width="1" opacity="0.5"/>
+                            </svg>
                         </div>
                         <h4>Cuerpo liberado</h4>
                         <p>Un sistema que deja de "escanear" y permite el descanso real y profundo.</p>
                     </div>
-                    <div class="mosaic-item item-3 reveal">
+
+                    <div class="mosaic-item item-3 feature-card reveal">
                         <div class="benefit-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="3"/>
+                                <path d="M11 2 L11 5 M11 17 L11 20 M2 11 L5 11 M17 11 L20 11"/>
+                                <path d="M4.9 4.9 L7 7 M15 15 L17.1 17.1 M17.1 4.9 L15 7 M7 15 L4.9 17.1" stroke-width="1.1"/>
+                            </svg>
                         </div>
                         <h4>Respuestas, no reacciones</h4>
                         <p>El fin del piloto automático. Eliges desde la calma, no desde el miedo.</p>
                     </div>
-                    <div class="mosaic-item item-4 reveal">
+
+                    <div class="mosaic-item item-4 feature-card reveal">
                         <div class="benefit-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="12 2 3 13 11 13 10 21 19 9 11 9 12 2"/>
+                            </svg>
                         </div>
                         <h4>Energía real</h4>
                         <p>Terminar el día con vitalidad disponible para lo que verdaderamente importa.</p>
                     </div>
-                    <div class="mosaic-item item-5 reveal">
+
+                    <div class="mosaic-item item-5 feature-card reveal">
                         <div class="benefit-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="4"/>
+                                <path d="M11 1 L11 4 M11 18 L11 21 M1 11 L4 11 M18 11 L21 11"/>
+                                <path d="M4.2 4.2 L6.3 6.3 M15.7 15.7 L17.8 17.8 M17.8 4.2 L15.7 6.3 M6.3 15.7 L4.2 17.8"/>
+                            </svg>
                         </div>
                         <h4>Vitalidad para vivir</h4>
                         <p>Despiertas con energía y claridad mental para disfrutar cada día desde la plenitud.</p>
                     </div>
+
                 </div>
                 <div class="text-center reveal" style="margin-top:3rem;">
                     <a href="#detalles" class="cta-button">Quiero seleccionar esta realidad</a>
@@ -185,14 +239,14 @@
             </div>
         </section>
 
-        <!-- ===== CIENCIA ===== -->
+        <!-- CIENCIA DE LA CALMA — NO TOCAR -->
         <section id="ciencia-calma" class="section section-dark">
             <div class="container">
                 <div class="science-layout reveal">
                     <div class="science-content">
                         <h2>La Ciencia de la Calma</h2>
                         <p>Físicamente, la diferencia entre el hielo y el vapor es solo la frecuencia de sus moléculas. El hielo es una estructura rígida; el vapor es energía en libertad. Algo similar ocurre contigo: la distancia entre el agotamiento y la serenidad es la frecuencia de tu <strong>programación mental</strong>.</p>
-                        <p><strong>La Verdad Cerebral:</strong> Tu cerebro te miente. Su prioridad no es tu plenitud, es el ahorro de energía. Si hoy vives en alerta, es porque tu cerebro ha etiquetado ese estado como "seguro" solo por ser lo conocido. La Neuro-Alineación corrige esa etiqueta.</p>
+                        <p><strong>La Verdad Cerebral:</strong> Tu cerebro te miente. Su prioridad no es tu plenitud, es el ahorro de energía. Reconfigurarse requiere un gasto energético que tu cerebro intenta evitar; por eso, es más 'cómodo' para tu sistema vivir en una mentira coherente (el caos que ya conoce) que en una verdad nueva. Si hoy vives en alerta, es porque tu cerebro ha etiquetado ese estado como "seguro" solo por ser lo conocido.</p>
                     </div>
                     <div class="science-visual" aria-hidden="true">
                         <div class="orbit-rings">
@@ -206,7 +260,7 @@
             </div>
         </section>
 
-        <!-- ===== TESTIMONIOS ===== -->
+        <!-- EVIDENCIAS — NO TOCAR -->
         <section id="evidencias" class="section">
             <div class="container">
                 <div class="section-title reveal">
@@ -215,48 +269,17 @@
             </div>
             <div class="carousel-container">
                 <div class="testimonial-track">
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Sí, y no sé qué pasó hoy pero el caos de la mañana me dio risa en lugar de darme el microinfarto de siempre 😂. Siento que tengo un botón de paz que antes no existía. Qué alivio!</p>
-                            <span class="chat-time">17:58 ✓✓</span>
-                        </div>
-                    </div>
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Te juro que pensé que esto sería otra cosa teórica, pero se apagó el piloto automático y por primera vez en meses llegué a la noche sin sentir que me pasó un camión por encima. Gracias!</p>
-                            <span class="chat-time">21:26 ✓✓</span>
-                        </div>
-                    </div>
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Ayer tuve una situación que antes me hubiera arruinado el día, y simplemente no me enganché. Es como si mi mente hubiera decidido que eso ya no es relevante. Es maravilloso tener ese control!</p>
-                            <span class="chat-time">13:02 ✓✓</span>
-                        </div>
-                    </div>
-                    <!-- Duplicated for seamless loop -->
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Sí, y no sé qué pasó hoy pero el caos de la mañana me dio risa en lugar de darme el microinfarto de siempre 😂. Siento que tengo un botón de paz que antes no existía. Qué alivio!</p>
-                            <span class="chat-time">17:58 ✓✓</span>
-                        </div>
-                    </div>
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Te juro que pensé que esto sería otra cosa teórica, pero se apagó el piloto automático y por primera vez en meses llegué a la noche sin sentir que me pasó un camión por encima. Gracias!</p>
-                            <span class="chat-time">21:26 ✓✓</span>
-                        </div>
-                    </div>
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Ayer tuve una situación que antes me hubiera arruinado el día, y simplemente no me enganché. Es como si mi mente hubiera decidido que eso ya no es relevante. Es maravilloso tener ese control!</p>
-                            <span class="chat-time">13:02 ✓✓</span>
-                        </div>
-                    </div>
+                    <div class="whatsapp-card"><div class="chat-bubble"><p>Sí, y no sé qué pasó hoy pero el caos de la mañana me dio risa en lugar de darme el microinfarto de siempre 😂. Siento que tengo un botón de paz que antes no existía. Qué alivio!</p><span class="chat-time">17:58 ✓✓</span></div></div>
+                    <div class="whatsapp-card"><div class="chat-bubble"><p>Te juro que pensé que esto sería otra cosa teórica, pero se apagó el piloto automático y por primera vez en meses llegué a la noche sin sentir que me pasó un camión por encima. Gracias!</p><span class="chat-time">21:26 ✓✓</span></div></div>
+                    <div class="whatsapp-card"><div class="chat-bubble"><p>Ayer tuve una situación que antes me hubiera arruinado el día, y simplemente no me enganché. Es como si mi mente hubiera decidido que eso ya no es relevante. Es maravilloso tener ese control!</p><span class="chat-time">13:02 ✓✓</span></div></div>
+                    <div class="whatsapp-card"><div class="chat-bubble"><p>Sí, y no sé qué pasó hoy pero el caos de la mañana me dio risa en lugar de darme el microinfarto de siempre 😂. Siento que tengo un botón de paz que antes no existía. Qué alivio!</p><span class="chat-time">17:58 ✓✓</span></div></div>
+                    <div class="whatsapp-card"><div class="chat-bubble"><p>Te juro que pensé que esto sería otra cosa teórica, pero se apagó el piloto automático y por primera vez en meses llegué a la noche sin sentir que me pasó un camión por encima. Gracias!</p><span class="chat-time">21:26 ✓✓</span></div></div>
+                    <div class="whatsapp-card"><div class="chat-bubble"><p>Ayer tuve una situación que antes me hubiera arruinado el día, y simplemente no me enganché. Es como si mi mente hubiera decidido que eso ya no es relevante. Es maravilloso tener ese control!</p><span class="chat-time">13:02 ✓✓</span></div></div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== FILTRO ===== -->
+        <!-- FILTRO — extra spacing applied via CSS -->
         <section id="filtro" class="section section-dark">
             <div class="container">
                 <div class="authority-content reveal">
@@ -266,17 +289,18 @@
             </div>
         </section>
 
-        <!-- ===== PAGO ===== -->
+        <!-- PAGO -->
         <section id="detalles" class="section payment-section">
             <div class="container">
                 <div class="payment-portal">
                     <div class="payment-left reveal">
                         <h2>Estás a un paso de tu Calma</h2>
                         <div class="price-display">
-                            <span class="price-original">$1,200 MXN</span>
-                            <span class="price-current">$597 <small>MXN</small></span>
+                            <span class="price-strikethrough">$1,200 MXN</span>
+                            <span class="price-highlight">$597 <small>MXN</small></span>
                             <span class="price-badge">Lanzamiento</span>
                         </div>
+                        <p class="price-note">*Precio de lanzamiento por tiempo limitado.</p>
                         <ul class="benefits-list">
                             <li><i class="fas fa-check-circle"></i><span>Acceso de por vida al programa "La Calma de Mamá"</span></li>
                             <li><i class="fas fa-check-circle"></i><span>Audio binaural de alta fidelidad (Estado Alfa)</span></li>
@@ -299,9 +323,7 @@
                                 <label for="whatsapp">WhatsApp (con lada)</label>
                                 <input type="tel" id="whatsapp" name="whatsapp" required autocomplete="tel" placeholder="+52 55 0000 0000">
                             </div>
-                            <button type="submit" id="submit-payment-btn" class="cta-button cta-gold large">
-                                Inscribirme y Pagar Seguro
-                            </button>
+                            <button type="submit" id="submit-payment-btn" class="cta-button large">Inscribirme y Pagar Seguro</button>
                         </form>
                         <div class="security-message">
                             <i class="fas fa-lock"></i>
@@ -316,83 +338,62 @@
 
     <footer class="main-footer">
         <div class="container">
-            <p><a href="index.html">← Volver a Inicio</a></p>
+            <div class="footer-content">
+                <p><a href="index.html">← Volver a Inicio</a></p>
+            </div>
         </div>
     </footer>
 
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/525511195800" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <a href="https://wa.me/525511195800" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Flow Field Canvas Animation -->
     <script src="flow-field.js"></script>
-
-    <!-- GSAP Hero Entrance -->
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', () => {
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        tl.from('.hero-eyebrow',     { y:24, opacity:0, duration:.7, delay:.3 })
+          .from('.hero h1',          { y:44, opacity:0, duration:1.0 }, '-=.4')
+          .from('.hero .subtitle',   { y:28, opacity:0, duration:.8 }, '-=.5')
+          .from('.hero .cta-button', { y:20, opacity:0, duration:.7 }, '-=.4')
+          .from('.hero-scroll-hint', { opacity:0, duration:1 }, '-=.2');
 
-            // --- GSAP Hero Entrance ---
-            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-            tl.from('.hero-eyebrow',  { y: 24, opacity: 0, duration: 0.7, delay: 0.3 })
-              .from('.hero h1',       { y: 40, opacity: 0, duration: 0.9 }, '-=0.4')
-              .from('.hero .subtitle',{ y: 28, opacity: 0, duration: 0.8 }, '-=0.5')
-              .from('.hero .cta-button', { y: 20, opacity: 0, duration: 0.7 }, '-=0.4')
-              .from('.hero-scroll-hint', { opacity: 0, duration: 1 }, '-=0.2');
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); } });
+        }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-            // --- Scroll Reveal ---
-            const revealEls = document.querySelectorAll('.reveal');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-            revealEls.forEach(el => observer.observe(el));
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 60), { passive: true });
 
-            // --- Header scroll style ---
-            const header = document.getElementById('main-header');
-            if (header) {
-                window.addEventListener('scroll', () => {
-                    header.classList.toggle('scrolled', window.scrollY > 60);
-                }, { passive: true });
+        document.getElementById('inscription-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const btn = document.getElementById('submit-payment-btn');
+            const orig = btn.innerText;
+            btn.innerText = 'Procesando…'; btn.disabled = true;
+            const customerName    = document.getElementById('name').value.trim();
+            const customerEmail   = document.getElementById('email').value.trim();
+            const customerWhatsapp = document.getElementById('whatsapp').value.trim();
+            if (!customerName || !customerEmail || !customerWhatsapp) {
+                alert('Por favor completa nombre, correo y WhatsApp.');
+                btn.innerText = orig; btn.disabled = false; return;
             }
-
-            // --- Stripe payment ---
-            const inscriptionForm = document.getElementById('inscription-form');
-            if (!inscriptionForm) return;
-
-            inscriptionForm.addEventListener('submit', async (event) => {
-                event.preventDefault();
-                const btn = document.getElementById('submit-payment-btn');
-                const orig = btn.innerText;
-                btn.innerText = 'Procesando…';
-                btn.disabled = true;
-                const customerName    = document.getElementById('name').value.trim();
-                const customerEmail   = document.getElementById('email').value.trim();
-                const customerWhatsapp = document.getElementById('whatsapp').value.trim();
-                if (!customerName || !customerEmail || !customerWhatsapp) {
-                    alert('Por favor completa nombre, correo y WhatsApp.');
-                    btn.innerText = orig; btn.disabled = false; return;
-                }
-                try {
-                    const response = await fetch('/.netlify/functions/create-checkout-session', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ customerName, customerEmail, customerWhatsapp }),
-                    });
-                    const data = await response.json().catch(() => ({}));
-                    if (!response.ok) throw new Error(data.error || 'No se pudo iniciar el pago.');
-                    if (data.url) { window.location.href = data.url; return; }
-                    throw new Error('Respuesta inválida del servidor.');
-                } catch (error) {
-                    alert(error.message || 'Hubo un error. Por favor, intenta de nuevo.');
-                    btn.innerText = orig; btn.disabled = false;
-                }
-            });
+            try {
+                const response = await fetch('/.netlify/functions/create-checkout-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ customerName, customerEmail, customerWhatsapp }),
+                });
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok) throw new Error(data.error || 'No se pudo iniciar el pago.');
+                if (data.url) { window.location.href = data.url; return; }
+                throw new Error('Respuesta inválida del servidor.');
+            } catch (error) {
+                alert(error.message || 'Hubo un error. Por favor, intenta de nuevo.');
+                btn.innerText = orig; btn.disabled = false;
+            }
         });
+    });
     </script>
 </body>
 </html>
