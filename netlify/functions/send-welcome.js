@@ -5,30 +5,48 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 // - Edita aqui asunto, Zoom, fecha/hora y enlaces por cada curso.
 const COURSES_DB = {
   "La Calma de Mamá": {
-    subject: "Bienvenida a La Calma de Mamá: Tu nueva frecuencia comienza hoy",
+    subject: "Bienvenida a La Calma de Mamá: Tu proceso de reprogramación comienza hoy",
     titulo: "Bienvenida a La Calma de Mamá",
-    fechaCurso: "Lunes 27 de Abril",
-    horaCurso: "08:00 PM (Hora CDMX)",
     zoomLink: "https://us05web.zoom.us/j/123456789?pwd=ejemplo",
     zoomPass: "1234",
     audioLink: "https://entrenadormental.mx/assets/audios/neuro-alineacion-inicial.mp3",
     audioNombre: "Protocolo de Sincronicidad Cerebral",
     guiaNombre: "Guía de Entrenamiento Mental",
+    sessions: [
+      { label: "Clase 1", fecha: "[Fecha]", hora: "08:00 PM" },
+      { label: "Clase 2", fecha: "[Fecha]", hora: "08:00 PM" },
+      { label: "Clase 3", fecha: "[Fecha]", hora: "08:00 PM" },
+      { label: "Clase 4", fecha: "[Fecha]", hora: "08:00 PM" },
+    ],
   },
   "Sintoniza a tu Pareja Ideal": {
     subject: "Bienvenida a Sintoniza a tu Pareja Ideal: Tu nueva frecuencia comienza hoy",
     titulo: "Bienvenida a Sintoniza a tu Pareja Ideal",
-    fechaCurso: "Lunes 27 de Abril",
-    horaCurso: "08:00 PM (Hora CDMX)",
     zoomLink: "https://us05web.zoom.us/j/123456789?pwd=ejemplo",
     zoomPass: "1234",
     audioLink: "https://entrenadormental.mx/assets/audios/sincronicidad-inicial.mp3",
     audioNombre: "Audio de Sincronicidad",
     guiaNombre: "Guía de Sintonía",
+    sessions: [
+      { label: "Clase 1", fecha: "[Fecha]", hora: "08:00 PM" },
+      { label: "Clase 2", fecha: "[Fecha]", hora: "08:00 PM" },
+      { label: "Clase 3", fecha: "[Fecha]", hora: "08:00 PM" },
+      { label: "Clase 4", fecha: "[Fecha]", hora: "08:00 PM" },
+    ],
   },
 };
 
 function parejaBody(name, config) {
+  const agendaRows = (config.sessions || [])
+    .map(
+      (s) => `
+        <tr>
+          <td style="border:1px solid #ddd;padding:8px;">${s.label}</td>
+          <td style="border:1px solid #ddd;padding:8px;">${s.fecha}</td>
+          <td style="border:1px solid #ddd;padding:8px;">${s.hora} (CDMX)</td>
+        </tr>`
+    )
+    .join("");
   return `
   <div style="font-family: Arial, sans-serif; max-width: 680px; margin: 0 auto; color: #333;">
     <div style="background:#0a0a0a;padding:28px;border-bottom:4px solid #c4a043;text-align:center;">
@@ -36,41 +54,71 @@ function parejaBody(name, config) {
     </div>
     <div style="padding:32px 26px;line-height:1.7;">
       <p>Hola <strong>${name}</strong>,</p>
-      <p>Tu proceso no comienza en la primera sesión; comenzó en el instante en que decidiste que "esperar" a que el amor suceda ya no es una opción. A partir de hoy, dejamos de buscar afuera para comenzar a seleccionar una nueva configuración interna.</p>
+      <p>Tu proceso no comienza en la primera sesión; comenzó en el instante en que decidiste que "esperar" a que el amor sucediera por azar ya no era suficiente. A partir de hoy, dejamos de buscar afuera para enfocarnos en seleccionar una nueva configuración interna.</p>
       <p><strong>Aquí tienes tu primer recurso de reprogramación:</strong></p>
       <div style="text-align:center;margin:24px 0;">
         <a href="${config.audioLink}" target="_blank" style="display:inline-block;background:#c4a043;color:#111;padding:13px 24px;text-decoration:none;border-radius:6px;font-weight:700;">
-          Descargar Audio de Sincronicidad
+          Descargar ${config.audioNombre}
         </a>
       </div>
       <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">🎧 Instrucciones para tu Audio de Neuro-Alineación</h2>
-      <p>Este audio es una herramienta de ingeniería sonora diseñada para ajustar tu frecuencia vibratoria y preparar tu arquitectura cerebral para la conexión.</p>
+      <p>Este audio ajusta tu frecuencia vibratoria y prepara tu sistema nervioso para la apertura y la conexión.</p>
       <ul>
-        <li><strong>Inmersión:</strong> Busca un lugar donde puedas estar contigo durante 20 minutos sin interrupciones.</li>
-        <li><strong>Audífonos Indispensables:</strong> El efecto binaural crea el pulso necesario para inducir el estado alfa donde la reprogramación es posible.</li>
-        <li><strong>Entrega:</strong> Cierra los ojos y permite que el sonido guíe tu sistema nervioso hacia la apertura.</li>
-        <li><strong>Seguridad:</strong> No escuches este audio mientras conduces o realizas actividades que requieran atención plena.</li>
+        <li><strong>Inmersión:</strong> 20 minutos de introspección total, sin interrupciones.</li>
+        <li><strong>Audífonos Indispensables:</strong> Necesarios para que el efecto binaural induzca el estado alfa donde la reprogramación es posible.</li>
+        <li><strong>⚠️ Seguridad:</strong> Debido al estado de relajación profunda, no lo uses mientras conduces.</li>
       </ul>
-      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">📅 Nuestra Cita de Sintonía</h2>
-      <table style="width:100%;border-collapse:collapse;margin:14px 0 20px;">
-        <tr><td style="border:1px solid #ddd;padding:8px;"><strong>Fecha</strong></td><td style="border:1px solid #ddd;padding:8px;">${config.fechaCurso}</td></tr>
-        <tr><td style="border:1px solid #ddd;padding:8px;"><strong>Hora</strong></td><td style="border:1px solid #ddd;padding:8px;">${config.horaCurso}</td></tr>
-        <tr><td style="border:1px solid #ddd;padding:8px;"><strong>Acceso</strong></td><td style="border:1px solid #ddd;padding:8px;"><a href="${config.zoomLink}" target="_blank">ENTRAR A LA SESIÓN</a></td></tr>
-        <tr><td style="border:1px solid #ddd;padding:8px;"><strong>ID / Clave</strong></td><td style="border:1px solid #ddd;padding:8px;">${config.zoomPass || "Se comparte al ingresar"}</td></tr>
+
+      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">📑 Guía de Sintonía</h2>
+      <p>Recibirás este documento 48 horas antes de nuestra sesión. Es tu manual de referencia para mantener la coherencia y la alineación entre clases.</p>
+
+      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">📅 Tu Agenda de Sintonía</h2>
+      <table style="width:100%;border-collapse:collapse;margin:14px 0 18px;">
+        <tr>
+          <th style="border:1px solid #ddd;padding:8px;background:#f7f7f7;text-align:left;">Sesión</th>
+          <th style="border:1px solid #ddd;padding:8px;background:#f7f7f7;text-align:left;">Fecha</th>
+          <th style="border:1px solid #ddd;padding:8px;background:#f7f7f7;text-align:left;">Hora (CDMX)</th>
+        </tr>
+        ${agendaRows}
       </table>
-      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">Pautas para tu Proceso de Sincronicidad</h2>
-      <ol>
-        <li><strong>Correspondencia sobre Esfuerzo:</strong> Tu pareja ideal no es un premio por esfuerzo, es reflejo de tu configuración interna.</li>
-        <li><strong>Llega con tu realidad actual:</strong> Si llegas agotado, escéptico o con dudas, llega. El cambio ocurre en la práctica.</li>
-        <li><strong>Garantía de Resonancia Total:</strong> Si después de la primera sesión completa sientes que esta frecuencia no resuena contigo, reintegramos el 100% de tu inversión.</li>
-      </ol>
-      <p>Gracias por confiar en tu capacidad de reprogramación. Durante las próximas 4 semanas, vamos a sintonizar la realidad que ya te pertenece.</p>
+
+      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">🧠 Pautas para tu Proceso (Neuro-Alineación)</h2>
+      <ul>
+        <li><strong>Correspondencia sobre Esfuerzo:</strong> Tu pareja ideal no es un premio al esfuerzo, es un reflejo de tu configuración interna. Si cambias la señal, la realidad cambia.</li>
+        <li><strong>Llega con tu realidad actual:</strong> No necesitas estar "en paz" para entrar. El cambio ocurre en la práctica, no en la teoría previa.</li>
+        <li><strong>Guía por voz:</strong> Trabajaré exclusivamente con mi voz durante las reprogramaciones para que tu atención viaje del análisis mental a la certeza visceral.</li>
+        <li><strong>Cámara:</strong> Tienes libertad total. Enciéndela si deseas que calibre los ejercicios según tu lenguaje no verbal, o mantenla apagada si necesitas privacidad.</li>
+      </ul>
+
+      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">🛡️ Activación de tu Pase de Acceso (Zoom)</h2>
+      <p>He precargado tu correo en nuestro sistema de seguridad de Zoom para que tu entrada sea fluida y privada.</p>
+      <ul>
+        <li><strong>Tu Pase VIP:</strong> Recibirás un correo de Zoom Confirmations con tu enlace personal e intransferible.</li>
+        <li><strong>Fricción Cero:</strong> Con este enlace entrarás directo a la sesión. No necesitas que te admita en sala de espera, y si tu internet falla, puedes reingresar inmediatamente con el mismo link.</li>
+      </ul>
+
+      <div style="margin:16px 0 0;">
+        <p style="margin:0;"><strong>Enlace de acceso:</strong> <a href="${config.zoomLink}" target="_blank" rel="noopener">Entrar a Zoom</a></p>
+        <p style="margin:6px 0 0;"><strong>ID / Clave:</strong> ${config.zoomPass || "Se comparte al ingresar"}</p>
+      </div>
+
+      <p style="margin-top:20px;">Contamos con una <strong>Garantía del 100%</strong> de tu inversión tras la primera sesión si sientes que esta frecuencia no es para ti.</p>
       <p><strong>Tu Entrenador Mental.</strong></p>
     </div>
   </div>`;
 }
 
 function calmaBody(name, config) {
+  const agendaRows = (config.sessions || [])
+    .map(
+      (s) => `
+        <tr>
+          <td style="border:1px solid #ddd;padding:8px;">${s.label}</td>
+          <td style="border:1px solid #ddd;padding:8px;">${s.fecha}</td>
+          <td style="border:1px solid #ddd;padding:8px;">${s.hora} (CDMX)</td>
+        </tr>`
+    )
+    .join("");
   return `
   <div style="font-family: Arial, sans-serif; max-width: 680px; margin: 0 auto; color: #333;">
     <div style="background:#0a0a0a;padding:28px;border-bottom:4px solid #c4a043;text-align:center;">
@@ -78,20 +126,58 @@ function calmaBody(name, config) {
     </div>
     <div style="padding:32px 26px;line-height:1.7;">
       <p>Hola <strong>${name}</strong>,</p>
-      <p>Tu proceso no comienza en la primera clase; comenzó en el momento en que decidiste iniciar tu transformación interna.</p>
+      <p>Tu proceso no comienza en la primera clase; comenzó en el segundo en que decidiste que "entender" tu cansancio ya no era suficiente. A partir de hoy, nos enfocaremos en seleccionar una nueva configuración interna.</p>
+      <p><strong>Aquí tienes tu primer recurso de reprogramación:</strong></p>
       <div style="text-align:center;margin:24px 0;">
         <a href="${config.audioLink}" target="_blank" style="display:inline-block;background:#c4a043;color:#111;padding:13px 24px;text-decoration:none;border-radius:6px;font-weight:700;">
           Descargar ${config.audioNombre}
         </a>
       </div>
-      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">📅 Nuestra Cita con la Calma</h2>
-      <table style="width:100%;border-collapse:collapse;margin:14px 0 20px;">
-        <tr><td style="border:1px solid #ddd;padding:8px;"><strong>Fecha</strong></td><td style="border:1px solid #ddd;padding:8px;">${config.fechaCurso}</td></tr>
-        <tr><td style="border:1px solid #ddd;padding:8px;"><strong>Hora</strong></td><td style="border:1px solid #ddd;padding:8px;">${config.horaCurso}</td></tr>
-        <tr><td style="border:1px solid #ddd;padding:8px;"><strong>Acceso</strong></td><td style="border:1px solid #ddd;padding:8px;"><a href="${config.zoomLink}" target="_blank">ENTRAR A LA SESIÓN</a></td></tr>
-        <tr><td style="border:1px solid #ddd;padding:8px;"><strong>ID / Clave</strong></td><td style="border:1px solid #ddd;padding:8px;">${config.zoomPass || "Se comparte al ingresar"}</td></tr>
+
+      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">🎧 Instrucciones para tu Audio de Neuro-Alineación</h2>
+      <p>Este audio es una herramienta de ingeniería sonora diseñada para preparar tu arquitectura cerebral.</p>
+      <ul>
+        <li><strong>Inmersión:</strong> Busca un lugar donde puedas estar contigo misma durante 20 minutos sin interrupciones.</li>
+        <li><strong>Audífonos Indispensables:</strong> El efecto binaural requiere que cada oído reciba una frecuencia distinta para que tu cerebro cree el pulso que induce la relajación profunda.</li>
+        <li><strong>⚠️ Seguridad:</strong> No escuches este audio mientras conduces o realizas actividades que requieran tu atención plena.</li>
+      </ul>
+
+      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">📑 ${config.guiaNombre}</h2>
+      <p>Recibirás este documento en tu correo 48 horas antes de cada sesión. Es tu mapa técnico para anclar los cambios durante la clase en vivo.</p>
+
+      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">📅 Tu Agenda con la Calma</h2>
+      <table style="width:100%;border-collapse:collapse;margin:14px 0 18px;">
+        <tr>
+          <th style="border:1px solid #ddd;padding:8px;background:#f7f7f7;text-align:left;">Sesión</th>
+          <th style="border:1px solid #ddd;padding:8px;background:#f7f7f7;text-align:left;">Fecha</th>
+          <th style="border:1px solid #ddd;padding:8px;background:#f7f7f7;text-align:left;">Hora (CDMX)</th>
+        </tr>
+        ${agendaRows}
       </table>
-      <p>Recibirás tu ${config.guiaNombre} por correo para acompañar cada sesión.</p>
+
+      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">Pautas para tu Proceso (Neuro-Alineación)</h2>
+      <p>Para que tu mente lógica se relaje y tu sistema nervioso se abra:</p>
+      <ul>
+        <li><strong>Llega como estés:</strong> No esperes a tener el día perfecto. Si llegas agotada o en medio del caos, llega. El proceso está diseñado para funcionar en tu vida real.</li>
+        <li><strong>Abandona la perfección:</strong> Aquí no buscamos "desempeño", sino alivio y consciencia.</li>
+        <li><strong>Guía por voz:</strong> Durante las prácticas profundas, trabajaré exclusivamente con mi voz. Esto reduce la carga de estímulos visuales y permite que tu atención baje de los ojos al cuerpo, donde ocurre la transformación.</li>
+        <li><strong>Uso de audífonos:</strong> Para las sesiones en vivo, te recomiendo usarlos para mantener tu atención plena dentro del proceso y minimizar distracciones externas.</li>
+        <li><strong>Cámara:</strong> Tienes libertad total. Enciéndela si deseas que calibre los ejercicios según tu lenguaje no verbal, o mantenla apagada si necesitas privacidad.</li>
+      </ul>
+
+      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">🛡️ Activación de tu Pase de Acceso (Zoom)</h2>
+      <p>Para garantizar la privacidad de nuestras sesiones, he autorizado tu correo directamente en nuestra plataforma.</p>
+      <ul>
+        <li><strong>¿Qué sigue?</strong> En unos minutos recibirás un correo de Zoom Confirmations con tu Pase de Entrada Personal.</li>
+        <li><strong>Acceso Automático:</strong> Ese enlace es único para ti. Al usarlo, entrarás directamente a la sala sin esperas. Si te desconectas, puedes volver a entrar con el mismo link.</li>
+      </ul>
+
+      <div style="margin:16px 0 0;">
+        <p style="margin:0;"><strong>Enlace de acceso:</strong> <a href="${config.zoomLink}" target="_blank" rel="noopener">Entrar a Zoom</a></p>
+        <p style="margin:6px 0 0;"><strong>ID / Clave:</strong> ${config.zoomPass || "Se comparte al ingresar"}</p>
+      </div>
+
+      <p style="margin-top:20px;"><strong>Garantía de Confianza:</strong> Recuerda que cuentas con una garantía del 100% si después de vivir la Clase 1 completa sientes que este proceso no es para ti.</p>
       <p><strong>Tu Entrenador Mental.</strong></p>
     </div>
   </div>`;

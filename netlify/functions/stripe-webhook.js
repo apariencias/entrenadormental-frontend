@@ -27,9 +27,10 @@ exports.handler = async (event) => {
         const session = webhookEvent.data.object;
 
         // CAMBIO CLAVE: Leemos los datos desde los metadatos
-        const customerName = session.metadata.customer_name;
-        const customerWhatsapp = session.metadata.customer_whatsapp;
-        const customerEmail = session.customer_details.email;
+        const md = session.metadata || {};
+        const customerName = md.customerName || md.customer_name || md.customer_name_full || md.name || 'Cliente';
+        const customerWhatsapp = md.customerWhatsapp || md.customer_whatsapp || md.whatsapp || '';
+        const customerEmail = (session.customer_details && session.customer_details.email) || md.customerEmail || md.customer_email || '';
 
         console.log(`¡Pago exitoso para ${customerName} (${customerEmail})!`);
         console.log(`WhatsApp: ${customerWhatsapp}`);

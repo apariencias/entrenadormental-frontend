@@ -85,6 +85,19 @@
         }
 
         /* ==========================================================================
+           IDENTIDAD VISUAL — PAREJA IDEAL (rosa cobre / magenta suave)
+           ========================================================================== */
+        body.page-pareja {
+            --gold-1: #8a3a4a;
+            --gold-2: #d48aa8;
+            --gold-3: #e7b3c7;
+            --gold-4: #f6dbe6;
+            --text-accent: var(--gold-2);
+            --gold-gradient-1: linear-gradient(135deg, var(--gold-2) 0%, var(--gold-3) 100%);
+            --gold-gradient-2: linear-gradient(90deg, var(--gold-1) 0%, var(--gold-2) 50%, var(--gold-3) 100%);
+        }
+
+        /* ==========================================================================
            ESPACIO NEGATIVO — SECCIONES RESPIRAN
            ========================================================================== */
 
@@ -281,7 +294,7 @@
             opacity: 0.7;
             text-align: center;
         }
-        body.page-pareja .process-empty { /* placeholder visual */ }
+        body.page-pareja .process-empty { display: block; }
 
         /* ==========================================================================
            BENEFICIOS — GLASSMORPHISM
@@ -563,6 +576,7 @@
         @media (max-width: 480px) {
             body.page-pareja .benefits-mosaic { grid-template-columns: 1fr; }
             body.page-pareja .benefits-mosaic .item-5 { grid-column: span 1; }
+            .rescue-content { padding: 24px 18px; }
         }
     </style>
 </head>
@@ -584,6 +598,24 @@
                 <img src="assets/images/logo.png" alt="Logo Entrenador Mental" class="logo-img">
                 <span class="logo-text">ENTRENADOR MENTAL</span>
             </a>
+            <nav class="main-nav" id="main-nav">
+                <ul id="nav-list">
+                    <li class="nav-dropdown" id="nav-programas">
+                        <button type="button" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            Programas <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+                        <div class="dropdown-menu" role="menu" aria-label="Programas">
+                            <a href="la-calma-de-mama.html" role="menuitem">La Calma de Mamá <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                            <a href="pareja-ideal.html" role="menuitem">Pareja Ideal <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                            <a href="mentoria.html" role="menuitem">Mentoría <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                </button>
+            </nav>
         </div>
     </header>
 
@@ -834,9 +866,10 @@
             <div class="container">
                 <div class="science-layout reveal">
                     <div class="science-content">
-                        <h2>La Ciencia de la Sintonía</h2>
-                        <p>Físicamente, la diferencia entre la estática y una señal clara es solo la frecuencia de emisión. Cuando tu radio está en la frecuencia equivocada, no es que no haya música; es que no la estás captando. Algo similar ocurre en tu vida relacional: la distancia entre los ciclos vacíos y la pareja que anhelas es la frecuencia de tu <strong>programación mental</strong>.</p>
-                        <p><strong>La Verdad Cerebral:</strong> Tu cerebro no busca el amor, busca lo conocido. Su prioridad no es tu plenitud afectiva, es la familiaridad. Si creciste habituada a la incertidumbre emocional, tu sistema reconoce eso como "amor". La neuroplasticidad nos enseña que ese mapa puede ser reescrito, pero solo si interrumpimos el patrón con una instrucción nueva, repetida y sostenida.</p>
+                        <h2>La Ciencia de la Conexión</h2>
+                        <p class="authority-italic" style="margin-bottom:18px;">No es suerte, es neurología.</p>
+                        <p>Tu cerebro no evalúa a las personas de forma objetiva. Desde la infancia, desarrolló un mapa relacional —lo que John Bowlby llamó estilo de apego— que le dice qué tipo de vínculo siente "normal" y cuál siente "seguro".</p>
+                        <p>El problema: cuando ese mapa fue dibujado en un entorno de inconsistencia o carencia, tu sistema nervioso confunde la familiaridad con la compatibilidad.</p>
                     </div>
                     <div class="science-visual" aria-hidden="true">
                         <div class="antenna-system">
@@ -962,12 +995,6 @@
                         <div class="dates-container">
                             <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;">Próximos Inicios:</p>
                             <div id="calendario-render" class="dates-grid"></div>
-                            <!-- ============================================================
-                                 ZONA DE CONFIGURACIÓN DE HORARIO — EDITA AQUÍ
-                                 ============================================================ -->
-                            <p style="font-size:0.9rem;color:var(--text-accent);text-align:center;margin-top:10px;">
-                                <i class="far fa-clock"></i> Horario: 08:00 PM (CDMX)
-                            </p>
                         </div>
 
                         <!-- GARANTÍA -->
@@ -984,15 +1011,18 @@
                         <!-- PRECIO -->
                         <div class="price-display" style="margin-bottom:24px;text-align:center;">
                             <span style="display:block;font-size:0.9rem;color:var(--text-muted);margin-bottom:5px;">Inversión Total</span>
-                            <span style="font-family:var(--font-display);font-size:3rem;font-weight:300;color:var(--text-accent);line-height:1;">$2,997</span>
+                            <span style="font-family:var(--font-display);font-size:3rem;font-weight:300;color:var(--text-accent);line-height:1;">$2,998</span>
                             <span style="font-size:1rem;color:var(--text-secondary);"> MXN</span>
                         </div>
 
                         <!-- BONUS -->
-                        <div style="background:linear-gradient(135deg,rgba(196,160,67,0.10),transparent);padding:20px;border-radius:var(--radius-md);margin-bottom:24px;border-left:3px solid var(--text-accent);">
-                            <h5 style="color:var(--text-accent);margin:0 0 8px 0;text-transform:uppercase;letter-spacing:1px;font-size:0.8rem;">Bonus: Tu Sintonía comienza hoy</h5>
-                            <p style="font-size:0.9rem;color:var(--text-secondary);margin:0;line-height:1.5;">
-                                Al inscribirte, recibes de inmediato el <strong style="color:var(--text-primary);">Audio de Sincronicidad Cerebral</strong> — un protocolo binaural diseñado para regular tu sistema emocional y asistirte en el proceso de abandonar la adicción a las emociones aflictivas. Es el primer paso para que tu sistema nervioso acepte una nueva realidad afectiva.
+                        <div style="background:linear-gradient(135deg,rgba(212,138,168,0.12),transparent);padding:20px;border-radius:var(--radius-md);margin-bottom:24px;border-left:3px solid var(--text-accent);">
+                            <h5 style="color:var(--text-accent);margin:0 0 10px 0;text-transform:uppercase;letter-spacing:1px;font-size:0.8rem;">Bonus</h5>
+                            <p style="font-size:0.9rem;color:var(--text-secondary);margin:0;line-height:1.55;">
+                                <strong style="color:var(--text-primary);">Al inscribirte ahora</strong>, recibes de inmediato un protocolo de <strong style="color:var(--text-primary);">"destintoxicación emocional"</strong> de relaciones anteriores.
+                                <span style="display:inline-flex;align-items:center;gap:8px;margin-left:8px;color:var(--text-primary);">
+                                    <i class="fas fa-headphones" aria-hidden="true"></i>
+                                </span>
                             </p>
                         </div>
 
@@ -1015,8 +1045,15 @@
                                 <input type="tel" id="whatsapp" name="whatsapp" required autocomplete="tel" placeholder="+52 55 0000 0000">
                             </div>
 
-                            <button type="submit" id="submit-payment-btn" class="cta-button large">Inscribirme Ahora</button>
+                            <button type="submit" id="submit-payment-btn" class="cta-button large">Convertirme en la frecuencia</button>
                         </form>
+
+                        <div class="payment-methods" aria-label="Métodos de pago aceptados">
+                            <i class="fab fa-cc-visa" aria-hidden="true" title="Visa"></i>
+                            <i class="fab fa-cc-mastercard" aria-hidden="true" title="Mastercard"></i>
+                            <i class="fas fa-building-columns" aria-hidden="true" title="Transferencia"></i>
+                            <span>Transferencia</span>
+                        </div>
 
                         <div style="text-align:center;margin-top:15px;">
                             <p style="font-size:0.75rem;color:var(--text-muted);">
@@ -1062,8 +1099,8 @@
             <p style="color:var(--text-secondary);margin-bottom:30px;line-height:1.7;font-size:1.05rem;">
                 Es normal que la mente busque excusas para mantener la programación actual; el cambio requiere energía. Si tuviste un problema técnico o deseas resolver una duda antes de dar el paso, contacta a coordinación.
             </p>
-            <a href="https://wa.me/525511195800?text=Hola,%20estuve%20a%20punto%20de%20inscribirme%20y%20necesito%20ayuda." target="_blank" class="cta-button large" style="background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 15px rgba(37,211,102,0.3);">
-                <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i>
+            <a href="https://wa.me/525511195800?text=Hola,%20estuve%20a%20punto%20de%20inscribirme%20y%20necesito%20ayuda." target="_blank" class="cta-button large allow-wrap" style="background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 15px rgba(37,211,102,0.3);">
+                <i class="fab fa-whatsapp cta-icon" style="font-size:1.2rem;"></i>
                 Hablar con un asesor
             </a>
         </div>
@@ -1115,7 +1152,7 @@
             const CONFIG_FECHAS = [
                 { dia: "Lunes 20 de Abril",  hora: "08:00 PM (CDMX)", estado: "lleno",      textoBadge: "Cupo Lleno" },
                 { dia: "Jueves 23 de Abril", hora: "08:00 PM (CDMX)", estado: "lleno",      textoBadge: "Cupo Lleno" },
-                { dia: "Lunes 27 de Abril",  hora: "08:00 PM (CDMX)", estado: "disponible", textoBadge: "Ultimos lugares" }
+                { dia: "Lunes 27 de Abril",  hora: "08:00 PM (CDMX)", estado: "Disponible", textoBadge: "Ultimos lugares" }
             ];
 
             // =====================================================================
@@ -1130,7 +1167,7 @@
                             <div class="date-card full">
                                 <span class="date-text">${f.dia}</span>
                                 <span class="status">${f.hora}</span>
-                                <span class="status">Cupo Lleno</span>
+                                <span class="status">${f.textoBadge || "Cupo Lleno"}</span>
                             </div>`;
                     } else {
                         html += `
@@ -1142,6 +1179,43 @@
                     }
                 });
                 container.innerHTML = html;
+            }
+
+            // =====================================================================
+            // NAV — Menú móvil + dropdown Programas
+            // =====================================================================
+            const toggle = document.getElementById('nav-toggle');
+            const navList = document.getElementById('nav-list');
+            if (toggle && navList) {
+                toggle.addEventListener('click', () => {
+                    const open = toggle.getAttribute('aria-expanded') === 'true';
+                    toggle.setAttribute('aria-expanded', (!open).toString());
+                    toggle.classList.toggle('is-open', !open);
+                    navList.classList.toggle('is-open', !open);
+                });
+                navList.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+                    toggle.setAttribute('aria-expanded', 'false');
+                    toggle.classList.remove('is-open');
+                    navList.classList.remove('is-open');
+                }));
+            }
+            const programas = document.getElementById('nav-programas');
+            if (programas) {
+                const btn = programas.querySelector('button.dropdown-toggle');
+                if (btn) {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const isOpen = programas.classList.toggle('is-open');
+                        btn.setAttribute('aria-expanded', String(isOpen));
+                    });
+                }
+                programas.querySelectorAll('.dropdown-menu a').forEach(a => a.addEventListener('click', () => {
+                    programas.classList.remove('is-open');
+                    if (btn) btn.setAttribute('aria-expanded', 'false');
+                    toggle?.setAttribute('aria-expanded', 'false');
+                    toggle?.classList.remove('is-open');
+                    navList?.classList.remove('is-open');
+                }));
             }
 
             // =====================================================================

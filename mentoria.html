@@ -325,6 +325,24 @@
                 <img src="assets/images/logo.png" alt="Logo Entrenador Mental" class="logo-img">
                 <span class="logo-text">ENTRENADOR MENTAL</span>
             </a>
+            <nav class="main-nav" id="main-nav">
+                <ul id="nav-list">
+                    <li class="nav-dropdown" id="nav-programas">
+                        <button type="button" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            Programas <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+                        <div class="dropdown-menu" role="menu" aria-label="Programas">
+                            <a href="la-calma-de-mama.html" role="menuitem">La Calma de Mamá <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                            <a href="pareja-ideal.html" role="menuitem">Pareja Ideal <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                            <a href="mentoria.html" role="menuitem">Mentoría <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                </button>
+            </nav>
         </div>
     </header>
 
@@ -662,6 +680,43 @@
                     const baseUrl = link.href.split('?')[0];
                     link.href = `${baseUrl}?text=${encodedMessage}`;
                 });
+            }
+
+            // =================================================================
+            // 7. NAV — Menú móvil + dropdown Programas
+            // =================================================================
+            const toggle = document.getElementById('nav-toggle');
+            const navList = document.getElementById('nav-list');
+            if (toggle && navList) {
+                toggle.addEventListener('click', () => {
+                    const open = toggle.getAttribute('aria-expanded') === 'true';
+                    toggle.setAttribute('aria-expanded', (!open).toString());
+                    toggle.classList.toggle('is-open', !open);
+                    navList.classList.toggle('is-open', !open);
+                });
+                navList.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+                    toggle.setAttribute('aria-expanded', 'false');
+                    toggle.classList.remove('is-open');
+                    navList.classList.remove('is-open');
+                }));
+            }
+            const programas = document.getElementById('nav-programas');
+            if (programas) {
+                const btn = programas.querySelector('button.dropdown-toggle');
+                if (btn) {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const isOpen = programas.classList.toggle('is-open');
+                        btn.setAttribute('aria-expanded', String(isOpen));
+                    });
+                }
+                programas.querySelectorAll('.dropdown-menu a').forEach(a => a.addEventListener('click', () => {
+                    programas.classList.remove('is-open');
+                    if (btn) btn.setAttribute('aria-expanded', 'false');
+                    toggle?.setAttribute('aria-expanded', 'false');
+                    toggle?.classList.remove('is-open');
+                    navList?.classList.remove('is-open');
+                }));
             }
 
         })();
