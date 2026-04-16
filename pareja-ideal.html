@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sintoniza a tu Pareja Ideal — Entrenador Mental</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+
+    <!-- Design System compartido -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ==========================================================================
+           RETINA RENDERING & TIPOGRAFÍA EDITORIAL
+           ========================================================================== */
+
+        *, *::before, *::after {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        html {
+            text-rendering: optimizeLegibility;
+            font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+        }
+
+        /* ==========================================================================
+           IDENTIDAD VISUAL — PAREJA IDEAL
+           Alma romántica y etérea sobre la misma arquitectura dorada
+           ========================================================================== */
+
+        /* Variante sutil del acento dorado — rose-gold caliente */
+        body.page-pareja {
+            --accent-romantic: rgba(210, 155, 75, 0.18);
+            --accent-romantic-glow: rgba(210, 155, 75, 0.10);
+        }
+
+        /* Canvas flow-field: más suave, etéreo, respiración más lenta */
+        body.page-pareja #flow-canvas {
+            opacity: 0.55;
+            filter: hue-rotate(-8deg) brightness(0.95);
+        }
+
+        /* ==========================================================================
+           TIPOGRAFÍA EDITORIAL — PAREJA IDEAL
+           ========================================================================== */
+
+        body.page-pareja .hero h1 {
+            line-height: 1.08;
+            letter-spacing: -0.026em;
+            font-weight: 300;
+        }
+        body.page-pareja .hero h1 em {
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: -0.018em;
+        }
+        body.page-pareja .hero .subtitle {
+            line-height: 1.78;
+            letter-spacing: 0.006em;
+            max-width: 57ch;
+        }
+
+        /* Section headings */
+        body.page-pareja .section-title h2,
+        body.page-pareja .payment-portal h2,
+        body.page-pareja .science-content h2 {
+            line-height: 1.18;
+            letter-spacing: -0.014em;
+        }
+
+        /* Body copy */
+        body.page-pareja .body-copy {
+            line-height: 1.80;
+            letter-spacing: 0.009em;
+        }
+
+        /* ==========================================================================
+           ESPACIO NEGATIVO — SECCIONES RESPIRAN
+           ========================================================================== */
+
+        body.page-pareja .section {
+            padding: 112px 0;
+        }
+        body.page-pareja .section.section-dark {
+            padding: 104px 0;
+        }
+        body.page-pareja .section-title {
+            margin-bottom: 68px;
+        }
+        body.page-pareja .section-title h2 {
+            margin-bottom: 18px;
+        }
+
+        /* ==========================================================================
+           REVEAL SYSTEM UNIFICADO
+           ========================================================================== */
+
+        body.page-pareja .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition:
+                opacity  0.96s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s),
+                transform 0.96s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s);
+        }
+        body.page-pareja .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggers quiz */
+        body.page-pareja .quiz-container .quiz-item:nth-child(1) { --reveal-delay: 0.00s; }
+        body.page-pareja .quiz-container .quiz-item:nth-child(2) { --reveal-delay: 0.10s; }
+        body.page-pareja .quiz-container .quiz-item:nth-child(3) { --reveal-delay: 0.18s; }
+        body.page-pareja .quiz-container .quiz-item:nth-child(4) { --reveal-delay: 0.26s; }
+        body.page-pareja .quiz-container .quiz-item:nth-child(5) { --reveal-delay: 0.34s; }
+
+        /* Staggers proceso */
+        body.page-pareja .timeline .process-item:nth-child(1) { --reveal-delay: 0.00s; }
+        body.page-pareja .timeline .process-item:nth-child(2) { --reveal-delay: 0.15s; }
+        body.page-pareja .timeline .process-item:nth-child(3) { --reveal-delay: 0.28s; }
+        body.page-pareja .timeline .process-item:nth-child(4) { --reveal-delay: 0.40s; }
+
+        /* Staggers beneficios */
+        body.page-pareja .benefits-mosaic .feature-card:nth-child(1) { --reveal-delay: 0.00s; }
+        body.page-pareja .benefits-mosaic .feature-card:nth-child(2) { --reveal-delay: 0.10s; }
+        body.page-pareja .benefits-mosaic .feature-card:nth-child(3) { --reveal-delay: 0.20s; }
+        body.page-pareja .benefits-mosaic .feature-card:nth-child(4) { --reveal-delay: 0.30s; }
+        body.page-pareja .benefits-mosaic .feature-card:nth-child(5) { --reveal-delay: 0.40s; }
+
+        /* ==========================================================================
+           PROCESO — TIMELINE ALTERNADO
+           ========================================================================== */
+
+        body.page-pareja .section-process {
+            padding: 112px 0;
+        }
+        body.page-pareja .timeline {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+        body.page-pareja .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                var(--text-accent) 6%,
+                var(--text-accent) 94%,
+                transparent 100%
+            );
+            opacity: 0.20;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+        body.page-pareja .process-item {
+            display: grid;
+            grid-template-columns: 1fr 84px 1fr;
+            align-items: center;
+            gap: 0;
+        }
+        body.page-pareja .process-item:nth-child(even) .process-content {
+            grid-column: 3; grid-row: 1;
+        }
+        body.page-pareja .process-item:nth-child(even) .process-node {
+            grid-column: 2; grid-row: 1;
+        }
+        body.page-pareja .process-item:nth-child(even) .process-empty {
+            grid-column: 1; grid-row: 1;
+        }
+
+        body.page-pareja .process-content {
+            padding: 30px 28px;
+            background: rgba(255, 255, 255, 0.022);
+            border: 0.5px solid rgba(196, 160, 67, 0.14);
+            border-radius: 3px;
+            transition:
+                border-color  0.45s ease,
+                transform     0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow    0.45s ease;
+            cursor: default;
+            position: relative;
+        }
+        body.page-pareja .process-content:hover {
+            border-color: rgba(196, 160, 67, 0.42);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px -16px rgba(0, 0, 0, 0.65);
+        }
+        body.page-pareja .process-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            height: 1px; width: 0;
+            background: linear-gradient(90deg, var(--text-accent), transparent);
+            transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        body.page-pareja .process-content:hover::after { width: 100%; }
+
+        body.page-pareja .process-content h4 {
+            font-family: var(--font-display);
+            font-size: 1.12rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            letter-spacing: 0.01em;
+            line-height: 1.28;
+        }
+        body.page-pareja .process-content p {
+            font-size: 0.885rem;
+            color: var(--text-secondary);
+            line-height: 1.72;
+            letter-spacing: 0.01em;
+            margin: 0;
+        }
+        body.page-pareja .process-content strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        body.page-pareja .process-content .accent {
+            color: var(--text-accent);
+            font-style: italic;
+            font-family: var(--font-display);
+        }
+
+        body.page-pareja .process-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            gap: 6px;
+        }
+        body.page-pareja .process-node-circle {
+            width: 54px; height: 54px;
+            border-radius: 50%;
+            border: 1px solid var(--text-accent);
+            background: var(--bg-deep, #0a0a0a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition:
+                transform  0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.45s ease;
+            flex-shrink: 0;
+        }
+        body.page-pareja .process-item:hover .process-node-circle {
+            transform: scale(1.13);
+            box-shadow: 0 0 28px rgba(196, 160, 67, 0.28);
+        }
+        body.page-pareja .process-node-circle svg {
+            width: 20px; height: 20px;
+            stroke: var(--text-accent);
+            stroke-width: 1.25;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        body.page-pareja .process-phase-label {
+            font-size: 0.60rem;
+            color: var(--text-accent);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-family: var(--font-body);
+            font-weight: 500;
+            opacity: 0.7;
+            text-align: center;
+        }
+        body.page-pareja .process-empty { /* placeholder visual */ }
+
+        /* ==========================================================================
+           BENEFICIOS — GLASSMORPHISM
+           ========================================================================== */
+
+        body.page-pareja .benefits-mosaic {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 16px;
+        }
+        body.page-pareja .benefits-mosaic .item-5 {
+            grid-column: span 2;
+        }
+        body.page-pareja .feature-card {
+            background: rgba(255, 255, 255, 0.022);
+            border: 0.5px solid rgba(196, 160, 67, 0.13);
+            border-radius: 5px;
+            padding: 28px 24px;
+            position: relative;
+            overflow: hidden;
+            transition:
+                border-color  0.42s ease,
+                transform     0.42s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: default;
+        }
+        body.page-pareja .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                ellipse at 24% 18%,
+                rgba(210, 155, 75, 0.09) 0%,
+                transparent 62%
+            );
+            opacity: 0;
+            transition: opacity 0.42s ease;
+            pointer-events: none;
+        }
+        body.page-pareja .feature-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            height: 1px; width: 0;
+            background: linear-gradient(90deg, var(--text-accent), transparent);
+            transition: width 0.58s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        body.page-pareja .feature-card:hover {
+            border-color: rgba(196, 160, 67, 0.44);
+            transform: translateY(-4px);
+        }
+        body.page-pareja .feature-card:hover::before { opacity: 1; }
+        body.page-pareja .feature-card:hover::after  { width: 100%; }
+        body.page-pareja .benefit-icon {
+            color: var(--text-accent);
+            margin-bottom: 18px;
+            display: flex;
+            opacity: 0.88;
+        }
+        body.page-pareja .feature-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 9px;
+            letter-spacing: 0.01em;
+            line-height: 1.28;
+        }
+        body.page-pareja .feature-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.68;
+            letter-spacing: 0.008em;
+            margin: 0;
+        }
+
+        /* ==========================================================================
+           FECHAS Y MODAL
+           ========================================================================== */
+
+        .dates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+        .date-card {
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            text-align: center;
+            position: relative;
+            background: var(--bg-surface);
+            transition: transform 0.3s;
+        }
+        .date-card:hover { transform: translateY(-2px); }
+        .date-card.available {
+            border-color: var(--text-accent);
+            background: linear-gradient(145deg, rgba(196,160,67,0.05), rgba(10,10,10,0));
+            box-shadow: 0 0 15px rgba(196,160,67,0.10);
+        }
+        .date-card.available .date-text {
+            color: var(--text-accent);
+            font-weight: 600;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+        }
+        .date-card.full {
+            opacity: 0.6;
+            border-color: #800020;
+            background: rgba(128, 0, 32, 0.08);
+        }
+        .date-card.full .date-text {
+            color: var(--text-muted);
+            text-decoration: line-through;
+            text-decoration-color: #800020;
+            text-decoration-thickness: 2px;
+            text-decoration-skip-ink: none;
+        }
+        .date-card.full .status {
+            font-size: 0.7rem;
+            color: #800020;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-top: 4px;
+            font-weight: 700;
+        }
+        .date-card.available .status {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 5px;
+        }
+        .antenna-system {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .antenna-core {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--text-accent);
+            box-shadow: 0 0 18px rgba(196, 160, 67, 0.45);
+            z-index: 2;
+        }
+        .antenna-waves {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .antenna-wave {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid rgba(196, 160, 67, 0.55);
+            animation: antennaPulse 2.6s ease-out forwards;
+        }
+        @keyframes antennaPulse {
+            0% { transform: scale(1); opacity: 0.85; }
+            100% { transform: scale(16); opacity: 0; }
+        }
+        .urgent-badge {
+            display: inline-block;
+            background: var(--text-accent);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .benefits-list-enhanced li {
+            list-style: none;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .benefits-list-enhanced i {
+            color: var(--text-accent);
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .rescue-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .rescue-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .rescue-content {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-accent);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border-radius: var(--radius-lg);
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .rescue-modal.active .rescue-content { transform: translateY(0); }
+        .rescue-close {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .rescue-close:hover { color: var(--text-primary); }
+
+        /* ==========================================================================
+           RESPONSIVE
+           ========================================================================== */
+
+        @media (max-width: 768px) {
+            body.page-pareja .section,
+            body.page-pareja .section.section-dark,
+            body.page-pareja .section-process {
+                padding: 76px 0;
+            }
+            body.page-pareja .timeline::before { left: 21px; }
+            body.page-pareja .process-item {
+                grid-template-columns: 48px 1fr;
+                grid-template-rows: auto;
+                gap: 0 14px;
+            }
+            body.page-pareja .process-item:nth-child(even) .process-content,
+            body.page-pareja .process-item:nth-child(odd)  .process-content {
+                grid-column: 2; grid-row: 1;
+            }
+            body.page-pareja .process-item:nth-child(even) .process-node,
+            body.page-pareja .process-item:nth-child(odd)  .process-node {
+                grid-column: 1; grid-row: 1;
+            }
+            body.page-pareja .process-item:nth-child(even) .process-empty,
+            body.page-pareja .process-item:nth-child(odd)  .process-empty {
+                display: none;
+            }
+            body.page-pareja .process-node { justify-content: flex-start; padding-top: 4px; }
+            body.page-pareja .process-node-circle { width: 40px; height: 40px; }
+            body.page-pareja .process-node-circle svg { width: 16px; height: 16px; }
+            body.page-pareja .process-phase-label { display: none; }
+            body.page-pareja .benefits-mosaic { grid-template-columns: repeat(2, 1fr); }
+            body.page-pareja .benefits-mosaic .item-5 { grid-column: span 2; }
+        }
+
+        @media (max-width: 480px) {
+            body.page-pareja .benefits-mosaic { grid-template-columns: 1fr; }
+            body.page-pareja .benefits-mosaic .item-5 { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body data-curso="Sintoniza a tu Pareja Ideal" class="page-pareja">
+    <!-- ZONA DE GESTION EDITABLE
+    - PRODUCTO: Sintoniza a tu Pareja Ideal
+    - PRODUCT_TONE: f
+    - FECHAS_Y_CUPOS: ver CONFIG_FECHAS en script inferior
+    - HORARIO_VISIBLE: 08:00 PM (CDMX)
+    - STRIPE_PRICE_ID: configurar en variable de entorno STRIPE_PRICE_ID_PAREJA
+    -->
+
+    <!-- =====================================================================
+         HEADER
+         ===================================================================== -->
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <img src="assets/images/logo.png" alt="Logo Entrenador Mental" class="logo-img">
+                <span class="logo-text">ENTRENADOR MENTAL</span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- =================================================================
+             HERO
+             ================================================================= -->
+        <section class="hero">
+            <canvas id="flow-canvas" aria-hidden="true"></canvas>
+            <div class="hero-content">
+                <h1>El amor no es algo que se busca;<br><em>se sintoniza.</em></h1>
+                <p class="subtitle">Buscar el amor solo te hace más consciente de su falta. Deja de vivir desde la carencia y comienza a sintonizar la experiencia que te corresponde y siempre has anhelado. A través de la Neuro-Alineación, reprogramas la instrucción mental que hoy determina quién entra y quién se queda en tu vida.</p>
+                <a href="#detalles" class="cta-button">Asegurar mi lugar en el entrenamiento</a>
+            </div>
+            <div class="hero-scroll-hint" aria-hidden="true"><span></span></div>
+        </section>
+
+        <!-- =================================================================
+             INTRO — De la Repetición a la Selección
+             ================================================================= -->
+        <section id="intro" class="section section-dark">
+            <div class="container">
+                <div class="authority-content reveal">
+                    <blockquote>
+                        <p style="font-family:var(--font-display);font-size:clamp(1.5rem,2.8vw,2rem);font-style:italic;font-weight:300;color:var(--text-accent);line-height:1.35;margin-bottom:1.5rem;">
+                            «Tu realidad de pareja es el reflejo de tu programación heredada.»
+                        </p>
+                    </blockquote>
+                    <p class="body-copy">Lo que has vivido hasta hoy — vacíos, falta de compromiso o historias que se repiten — no es mala suerte ni un destino escrito. Es el resultado de patrones de pensamiento que aprendiste y que hoy tu mente ejecuta de forma automática.</p>
+                    <p class="body-copy" style="margin-top:1.2rem;">Sintoniza a tu Pareja Ideal es el proceso para actualizar ese código. No se trata de "encontrar" a alguien, sino de convertirte en la frecuencia donde esa relación que sueñas es la única respuesta lógica de tu realidad. Utilizas la <strong>neuroplasticidad</strong> a tu favor para que la atracción consciente sea tu estado base, no un golpe de suerte.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             ¿ES PARA TI?
+             ================================================================= -->
+        <section id="es-para-ti" class="section">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2>Identifica tu programación actual</h2>
+                    <p class="section-subtitle">Si respondes "SÍ" a más de una de estas preguntas, tu sistema está operando desde un patrón que ya puede ser reescrito:</p>
+                </div>
+                <div class="quiz-container">
+                    <label class="quiz-item reveal">
+                        <input type="checkbox" class="quiz-checkbox">
+                        <span class="checkmark"></span>
+                        <span class="question-text">¿Observas que, aunque cambies de pareja, las dinámicas de vacío, falta de compromiso o incertidumbre terminan siendo las mismas?</span>
+                    </label>
+                    <label class="quiz-item reveal">
+                        <input type="checkbox" class="quiz-checkbox">
+                        <span class="checkmark"></span>
+                        <span class="question-text">¿Sientes que el amor es algo que "te sucede" o "te falta", en lugar de algo que tú seleccionas y diriges conscientemente?</span>
+                    </label>
+                    <label class="quiz-item reveal">
+                        <input type="checkbox" class="quiz-checkbox">
+                        <span class="checkmark"></span>
+                        <span class="question-text">¿Te has descubierto aceptando situaciones que no deseas, simplemente porque tu sistema nervioso se ha habituado a la falta de sintonía?</span>
+                    </label>
+                    <label class="quiz-item reveal">
+                        <input type="checkbox" class="quiz-checkbox">
+                        <span class="checkmark"></span>
+                        <span class="question-text">¿Sientes que has hecho "el trabajo interno", pero tu realidad física sigue sin mostrarte una correspondencia que esté a tu altura?</span>
+                    </label>
+                    <label class="quiz-item reveal">
+                        <input type="checkbox" class="quiz-checkbox">
+                        <span class="checkmark"></span>
+                        <span class="question-text">¿Te da miedo que tu tiempo y energía se sigan agotando en ciclos que ya sabes cómo terminan, pero no sabes cómo dejar de seleccionar?</span>
+                    </label>
+                </div>
+                <div class="text-center reveal" style="margin-top:3rem;">
+                    <a href="#detalles" class="cta-button">Sí, esto es para mí. Quiero sintonizar</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             PROCESO — 4 CLASES DE RECONFIGURACIÓN RELACIONAL
+             ================================================================= -->
+        <section id="proceso" class="section section-dark section-process">
+            <div class="container">
+                <div class="section-title reveal" style="text-align:center;">
+                    <h2>4 Clases de Reconfiguración Relacional</h2>
+                    <p class="section-subtitle">Una arquitectura mental diseñada para transformar los ciclos repetitivos en una nueva instrucción que tu realidad no tiene más opción que reflejar.</p>
+                </div>
+
+                <div class="timeline">
+
+                    <!-- CLASE 1 — tarjeta izquierda (odd) -->
+                    <div class="process-item reveal">
+                        <div class="process-content">
+                            <h4>Clase 1 — Diagnóstico de Frecuencia</h4>
+                            <p>No adivinamos. Localizamos. Identificarás la <strong>programación de base</strong> que hoy genera la falta de compromiso en tu entorno. Mapearás con precisión el origen del patrón que se ha repetido sin que lo hayas elegido conscientemente.</p>
+                        </div>
+                        <div class="process-node">
+                            <div class="process-node-circle">
+                                <!-- Señal / Frecuencia -->
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M5 12.5 C5 9 8.5 6 12 6 C15.5 6 19 9 19 12.5"/>
+                                    <path d="M8 14.5 C8 12.5 9.8 11 12 11 C14.2 11 16 12.5 16 14.5"/>
+                                    <circle cx="12" cy="17" r="1.5" fill="currentColor" stroke="none"/>
+                                </svg>
+                            </div>
+                            <span class="process-phase-label">I</span>
+                        </div>
+                        <div class="process-empty" aria-hidden="true"></div>
+                    </div>
+
+                    <!-- CLASE 2 — tarjeta derecha (even) -->
+                    <div class="process-item reveal">
+                        <div class="process-content">
+                            <h4>Clase 2 — Interrupción de Patrones</h4>
+                            <p>La técnica para detener la búsqueda externa y <span class="accent">seleccionar</span> la nueva premisa mental. Aprendes a pausar el automatismo en tiempo real y a instalar una instrucción diferente. Tú eliges desde qué frecuencia operas.</p>
+                        </div>
+                        <div class="process-node">
+                            <div class="process-node-circle">
+                                <!-- Pausa / Interrupción -->
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="6" y="4" width="4" height="16" rx="1"/>
+                                    <rect x="14" y="4" width="4" height="16" rx="1"/>
+                                </svg>
+                            </div>
+                            <span class="process-phase-label">II</span>
+                        </div>
+                        <div class="process-empty" aria-hidden="true"></div>
+                    </div>
+
+                    <!-- CLASE 3 — tarjeta izquierda (odd) -->
+                    <div class="process-item reveal">
+                        <div class="process-content">
+                            <h4>Clase 3 — Encarnación del Vínculo</h4>
+                            <p>Llevamos la nueva instrucción a tu sistema nervioso hasta que la acepte como la única verdad posible. Ya no es teoría; es <strong>experiencia somática</strong>. Tu cuerpo aprende a reconocer la sintonía como su estado natural de referencia.</p>
+                        </div>
+                        <div class="process-node">
+                            <div class="process-node-circle">
+                                <!-- Corazón / Vínculo -->
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 21C12 21 3 14.5 3 8.5C3 5.42 5.42 3 8.5 3C10.24 3 11.91 3.81 13 5.08C14.09 3.81 15.76 3 17.5 3C20.58 3 23 5.42 23 8.5C23 14.5 14 21 14 21" transform="translate(-2 0)"/>
+                                </svg>
+                            </div>
+                            <span class="process-phase-label">III</span>
+                        </div>
+                        <div class="process-empty" aria-hidden="true"></div>
+                    </div>
+
+                    <!-- CLASE 4 — tarjeta derecha (even) -->
+                    <div class="process-item reveal">
+                        <div class="process-content">
+                            <h4>Clase 4 — Dirección y Consolidación</h4>
+                            <p>Cómo mantener una sola dirección mental para que tu realidad no tenga más opción que reflejarla. La nueva frecuencia se solidifica como tu <strong>centro de gravedad</strong>. Ya no esperas el amor; eres la frecuencia donde ese amor es inevitable.</p>
+                        </div>
+                        <div class="process-node">
+                            <div class="process-node-circle">
+                                <!-- Brújula / Dirección -->
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="9"/>
+                                    <path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/>
+                                </svg>
+                            </div>
+                            <span class="process-phase-label">IV</span>
+                        </div>
+                        <div class="process-empty" aria-hidden="true"></div>
+                    </div>
+
+                </div><!-- /.timeline -->
+            </div>
+        </section>
+
+        <!-- =================================================================
+             BENEFICIOS
+             ================================================================= -->
+        <section id="beneficios" class="section">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2>Lo que comienza a cambiar desde la Clase 1</h2>
+                </div>
+                <div class="benefits-mosaic">
+
+                    <div class="mosaic-item item-1 feature-card reveal">
+                        <div class="benefit-icon">
+                            <svg width="24" height="24" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 11.5 C5 8.5 7.7 6 11 6 C14.3 6 17 8.5 17 11.5"/>
+                                <path d="M7.5 13 C7.5 11.5 9.1 10.3 11 10.3 C12.9 10.3 14.5 11.5 14.5 13"/>
+                                <circle cx="11" cy="16" r="1.4" fill="currentColor" stroke="none"/>
+                            </svg>
+                        </div>
+                        <h4>Filtro natural activado</h4>
+                        <p>Las dinámicas que antes te enganchaban simplemente dejan de activar tu sistema. Tu mente ya no las reconoce como una opción.</p>
+                    </div>
+
+                    <div class="mosaic-item item-2 feature-card reveal">
+                        <div class="benefit-icon">
+                            <svg width="24" height="24" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="M11 7 L11 11 L14 13"/>
+                            </svg>
+                        </div>
+                        <h4>Fin de los ciclos</h4>
+                        <p>El patrón repetitivo pierde su poder. Ya no es la única respuesta posible; tú seleccionas una instrucción diferente.</p>
+                    </div>
+
+                    <div class="mosaic-item item-3 feature-card reveal">
+                        <div class="benefit-icon">
+                            <svg width="24" height="24" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 3 C6 3 3 7 3 10 C3 15 7 18 11 21 C15 18 19 15 19 10 C19 7 16 3 11 3Z"/>
+                                <path d="M8 11 Q11 14.5 14 11" stroke-width="1.3"/>
+                            </svg>
+                        </div>
+                        <h4>Presencia desde la plenitud</h4>
+                        <p>Te relacionas desde lo que eres, no desde lo que te falta. La carencia deja de ser el combustible de tus decisiones.</p>
+                    </div>
+
+                    <div class="mosaic-item item-4 feature-card reveal">
+                        <div class="benefit-icon">
+                            <svg width="24" height="24" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 21C11 21 3 15 3 9C3 6.2 5.2 4 8 4C9.6 4 11 4.8 11 4.8C11 4.8 12.4 4 14 4C16.8 4 19 6.2 19 9C19 15 11 21 11 21Z"/>
+                            </svg>
+                        </div>
+                        <h4>Reconocimiento sin ansiedad</h4>
+                        <p>Identificas una conexión real sin el miedo que antes distorsionaba tu percepción y te hacía elegir desde el dolor.</p>
+                    </div>
+
+                    <div class="mosaic-item item-5 feature-card reveal">
+                        <div class="benefit-icon">
+                            <svg width="24" height="24" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="4"/>
+                                <path d="M11 1 L11 4 M11 18 L11 21 M1 11 L4 11 M18 11 L21 11"/>
+                                <path d="M4.2 4.2 L6.3 6.3 M15.7 15.7 L17.8 17.8 M17.8 4.2 L15.7 6.3 M6.3 15.7 L4.2 17.8"/>
+                            </svg>
+                        </div>
+                        <h4>Realidad correspondiente</h4>
+                        <p>Tu entorno comienza a reflejar la nueva instrucción que tu mente ya acepta como verdad. La pareja ideal no es algo que encuentras; es algo que sintonizas desde adentro hacia afuera.</p>
+                    </div>
+
+                </div><!-- /.benefits-mosaic -->
+
+                <div class="text-center reveal" style="margin-top:3.5rem;">
+                    <a href="#detalles" class="cta-button">Quiero sintonizar esta realidad</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             LA CIENCIA DE LA SINTONÍA
+             ================================================================= -->
+        <section id="ciencia-sintonia" class="section section-dark">
+            <div class="container">
+                <div class="science-layout reveal">
+                    <div class="science-content">
+                        <h2>La Ciencia de la Sintonía</h2>
+                        <p>Físicamente, la diferencia entre la estática y una señal clara es solo la frecuencia de emisión. Cuando tu radio está en la frecuencia equivocada, no es que no haya música; es que no la estás captando. Algo similar ocurre en tu vida relacional: la distancia entre los ciclos vacíos y la pareja que anhelas es la frecuencia de tu <strong>programación mental</strong>.</p>
+                        <p><strong>La Verdad Cerebral:</strong> Tu cerebro no busca el amor, busca lo conocido. Su prioridad no es tu plenitud afectiva, es la familiaridad. Si creciste habituada a la incertidumbre emocional, tu sistema reconoce eso como "amor". La neuroplasticidad nos enseña que ese mapa puede ser reescrito, pero solo si interrumpimos el patrón con una instrucción nueva, repetida y sostenida.</p>
+                    </div>
+                    <div class="science-visual" aria-hidden="true">
+                        <div class="antenna-system">
+                            <div class="antenna-core"></div>
+                            <div id="antenna-waves" class="antenna-waves"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             EVIDENCIAS DE LA NUEVA CONFIGURACIÓN
+             (Carrusel continuo — duplicar tarjetas para seamless loop)
+             ================================================================= -->
+        <section id="evidencias" class="section">
+            <div class="container">
+                <div class="section-title reveal">
+                    <h2>Evidencias de la Nueva Configuración</h2>
+                </div>
+            </div>
+            <div class="carousel-container">
+                <div class="testimonial-track">
+                    <!-- Set original -->
+                    <div class="whatsapp-card">
+                        <div class="chat-bubble">
+                            <p>Oye, qué fuerte... me buscó el tipo con el que siempre recaía y por primera vez lo vi y no sentí absolutamente nada. Es como si mi cerebro ya no lo reconociera como una opción. Se siente increíble tener este control!</p>
+                            <span class="chat-time">18:41 ✓✓</span>
+                        </div>
+                    </div>
+                    <div class="whatsapp-card">
+                        <div class="chat-bubble">
+                            <p>Hoy tuve una cita y fue diferente. Sin juegos, sin esa ansiedad de no saber si me va a volver a escribir. Siento que al cambiar yo, el tipo de personas que se me acercan también cambió. Todo está fluyendo 🥰</p>
+                            <span class="chat-time">20:15 ✓✓</span>
+                        </div>
+                    </div>
+                    <div class="whatsapp-card">
+                        <div class="chat-bubble">
+                            <p>No me vas a creer, pero tengo que contártelo. Conocí a alguien que es exactamente lo que puse en mi lista de sintonía, pero lo más loco no es eso, sino que yo me siento súper tranquila, como si fuera lo más normal del mundo que alguien así estuviera conmigo. Cero ansiedad, cero miedo a que sea un juego. Realmente mi mente ya no acepta otra cosa que no sea esto.</p>
+                            <span class="chat-time">22:07 ✓✓</span>
+                        </div>
+                    </div>
+                    <!-- Set duplicado para loop sin cortes -->
+                    <div class="whatsapp-card">
+                        <div class="chat-bubble">
+                            <p>Oye, qué fuerte... me buscó el tipo con el que siempre recaía y por primera vez lo vi y no sentí absolutamente nada. Es como si mi cerebro ya no lo reconociera como una opción. Se siente increíble tener este control!</p>
+                            <span class="chat-time">18:41 ✓✓</span>
+                        </div>
+                    </div>
+                    <div class="whatsapp-card">
+                        <div class="chat-bubble">
+                            <p>Hoy tuve una cita y fue diferente. Sin juegos, sin esa ansiedad de no saber si me va a volver a escribir. Siento que al cambiar yo, el tipo de personas que se me acercan también cambió. Todo está fluyendo 🥰</p>
+                            <span class="chat-time">20:15 ✓✓</span>
+                        </div>
+                    </div>
+                    <div class="whatsapp-card">
+                        <div class="chat-bubble">
+                            <p>No me vas a creer, pero tengo que contártelo. Conocí a alguien que es exactamente lo que puse en mi lista de sintonía, pero lo más loco no es eso, sino que yo me siento súper tranquila, como si fuera lo más normal del mundo que alguien así estuviera conmigo. Cero ansiedad, cero miedo a que sea un juego. Realmente mi mente ya no acepta otra cosa que no sea esto.</p>
+                            <span class="chat-time">22:07 ✓✓</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             FILTRO — Algo Importante
+             ================================================================= -->
+        <section id="filtro" class="section section-dark">
+            <div class="container">
+                <div class="authority-content reveal">
+                    <h3>Algo Importante</h3>
+                    <p class="body-copy">Este proceso no es para todos 🌹 Acompañamos a quienes han decidido que "entender" sus patrones relacionales ya no es suficiente y están listos para una transformación real. Es normal que aparezca la duda de "mejor después". Es solo tu programación antigua tratando de mantenerse activa. Pero la pareja ideal no es algo que vas a encontrar; es algo que vas a <span class="accent">sintonizar</span>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             SECCIÓN DE PAGO — Backend 100% intacto
+             ================================================================= -->
+        <section id="detalles" class="section payment-section">
+            <div class="container">
+                <div class="payment-portal">
+
+                    <!-- COLUMNA IZQUIERDA: DETALLES -->
+                    <div class="payment-left reveal">
+                        <h2>Comienza tu Sintonía Ahora</h2>
+
+                        <ul class="benefits-list-enhanced">
+                            <li>
+                                <i class="fas fa-video"></i>
+                                <div>
+                                    <strong style="color:var(--text-primary);display:block;margin-bottom:4px;">4 Clases en Vivo (90 min)</strong>
+                                    <span>Vía Zoom, para profundizar en la técnica y la práctica.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-shield-alt"></i>
+                                <div>
+                                    <strong style="color:var(--text-primary);display:block;margin-bottom:4px;">Espacio Seguro</strong>
+                                    <span>Sin grabaciones. Privacidad total para tu proceso de cambio.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-headphones"></i>
+                                <div>
+                                    <strong style="color:var(--text-primary);display:block;margin-bottom:4px;">Herramientas de Reprogramación</strong>
+                                    <span>2 audios de reprogramación y material de práctica semanal.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-user-astronaut"></i>
+                                <div>
+                                    <strong style="color:var(--text-primary);display:block;margin-bottom:4px;">Acompañamiento Directo</strong>
+                                    <span>Como tu Entrenador Mental, estaré guiando tu proceso.</span>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <!-- ============================================================
+                             ZONA DE CONFIGURACIÓN DE FECHAS — SOLO EDITA AQUÍ
+                             ============================================================ -->
+                        <div class="dates-container">
+                            <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;">Próximos Inicios:</p>
+                            <div id="calendario-render" class="dates-grid"></div>
+                            <!-- ============================================================
+                                 ZONA DE CONFIGURACIÓN DE HORARIO — EDITA AQUÍ
+                                 ============================================================ -->
+                            <p style="font-size:0.9rem;color:var(--text-accent);text-align:center;margin-top:10px;">
+                                <i class="far fa-clock"></i> Horario: 08:00 PM (CDMX)
+                            </p>
+                        </div>
+
+                        <!-- GARANTÍA -->
+                        <div style="border:1px solid var(--border);padding:20px;border-radius:var(--radius-md);margin-top:2rem;background:rgba(255,255,255,0.02);">
+                            <h4 style="color:var(--text-primary);margin-bottom:8px;font-size:1rem;">Garantía de Resultados</h4>
+                            <p style="font-size:0.9rem;color:var(--text-secondary);margin:0;line-height:1.6;">
+                                Porque conocemos los resultados que puedes obtener: si después de la primera clase sientes que este no es tu proceso, te devolvemos el 100% de tu inversión. Sin preguntas.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- COLUMNA DERECHA: FORMULARIO -->
+                    <div class="payment-right reveal">
+                        <!-- PRECIO -->
+                        <div class="price-display" style="margin-bottom:24px;text-align:center;">
+                            <span style="display:block;font-size:0.9rem;color:var(--text-muted);margin-bottom:5px;">Inversión Total</span>
+                            <span style="font-family:var(--font-display);font-size:3rem;font-weight:300;color:var(--text-accent);line-height:1;">$2,997</span>
+                            <span style="font-size:1rem;color:var(--text-secondary);"> MXN</span>
+                        </div>
+
+                        <!-- BONUS -->
+                        <div style="background:linear-gradient(135deg,rgba(196,160,67,0.10),transparent);padding:20px;border-radius:var(--radius-md);margin-bottom:24px;border-left:3px solid var(--text-accent);">
+                            <h5 style="color:var(--text-accent);margin:0 0 8px 0;text-transform:uppercase;letter-spacing:1px;font-size:0.8rem;">Bonus: Tu Sintonía comienza hoy</h5>
+                            <p style="font-size:0.9rem;color:var(--text-secondary);margin:0;line-height:1.5;">
+                                Al inscribirte, recibes de inmediato el <strong style="color:var(--text-primary);">Audio de Sincronicidad Cerebral</strong> — un protocolo binaural diseñado para regular tu sistema emocional y asistirte en el proceso de abandonar la adicción a las emociones aflictivas. Es el primer paso para que tu sistema nervioso acepte una nueva realidad afectiva.
+                            </p>
+                        </div>
+
+                        <!-- FORMULARIO — IDs y nombres intactos -->
+                        <form id="inscription-form" class="inscription-form">
+                            <!-- CAMPOS OCULTOS (sistema dinámico — no modificar) -->
+                            <input type="hidden" name="productName" value="Sintoniza a tu Pareja Ideal">
+                            <input type="hidden" name="productTone" value="f">
+
+                            <div class="form-group">
+                                <label for="name">Nombre Completo</label>
+                                <input type="text" id="name" name="name" required autocomplete="name" placeholder="Tu nombre">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" required autocomplete="email" placeholder="tu@correo.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="whatsapp">WhatsApp (con lada)</label>
+                                <input type="tel" id="whatsapp" name="whatsapp" required autocomplete="tel" placeholder="+52 55 0000 0000">
+                            </div>
+
+                            <button type="submit" id="submit-payment-btn" class="cta-button large">Inscribirme Ahora</button>
+                        </form>
+
+                        <div style="text-align:center;margin-top:15px;">
+                            <p style="font-size:0.75rem;color:var(--text-muted);">
+                                <i class="fas fa-lock" style="color:var(--text-accent);"></i> Pago 100% seguro
+                            </p>
+                        </div>
+                    </div><!-- /.payment-right -->
+
+                </div><!-- /.payment-portal -->
+            </div>
+        </section>
+
+    </main><!-- /main -->
+
+    <!-- =================================================================
+         FOOTER
+         ================================================================= -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p><a href="index.html">← Volver a Inicio</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/525511195800" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- =================================================================
+         MODAL DE RESCATE
+         ================================================================= -->
+    <div id="rescue-modal" class="rescue-modal">
+        <div class="rescue-content">
+            <button class="rescue-close" onclick="document.getElementById('rescue-modal').classList.remove('active')" aria-label="Cerrar">&times;</button>
+
+            <div style="width:60px;height:4px;background:var(--text-accent);margin:0 auto 30px auto;border-radius:2px;"></div>
+
+            <h3 style="color:var(--text-primary);font-family:var(--font-display);font-size:1.8rem;margin-bottom:20px;line-height:1.2;font-weight:300;">
+                El proceso sigue esperando.
+            </h3>
+            <p style="color:var(--text-secondary);margin-bottom:30px;line-height:1.7;font-size:1.05rem;">
+                Es normal que la mente busque excusas para mantener la programación actual; el cambio requiere energía. Si tuviste un problema técnico o deseas resolver una duda antes de dar el paso, contacta a coordinación.
+            </p>
+            <a href="https://wa.me/525511195800?text=Hola,%20estuve%20a%20punto%20de%20inscribirme%20y%20necesito%20ayuda." target="_blank" class="cta-button large" style="background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 15px rgba(37,211,102,0.3);">
+                <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i>
+                Hablar con un asesor
+            </a>
+        </div>
+    </div>
+
+    <!-- =================================================================
+         SCRIPTS — Flow Field + Lógica principal
+         ================================================================= -->
+
+    <!--
+        CONFIGURACIÓN DEL FLOW FIELD PARA MODO ROMÁNTICO/ETÉREO
+        Si flow-field.js expone una API de configuración global,
+        estas variables la alimentan antes de que el script cargue.
+        Ajusta los valores según los parámetros que acepte tu archivo.
+    -->
+    <script>
+        window.FLOW_FIELD_CONFIG = {
+            theme: 'romantic',
+            speedFactor: 0.32,      // más lento = más etéreo
+            opacityFactor: 0.50,    // partículas más suaves
+            lineCount: 0.75         // densidad reducida = más espacio
+        };
+    </script>
+
+    <script src="flow-field.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // =====================================================================
+            // MISIÓN 1: WHATSAPP DINÁMICO
+            // =====================================================================
+            (function() {
+                const courseName = document.body.getAttribute('data-curso');
+                if (!courseName) return;
+                const rawMessage = `Hola, estuve a punto de inscribirme a ${courseName} y necesito ayuda.`;
+                const encodedMessage = encodeURIComponent(rawMessage);
+                const waLinks = document.querySelectorAll('a[href*="wa.me"]');
+                waLinks.forEach(link => {
+                    const baseUrl = link.href.split('?')[0];
+                    link.href = `${baseUrl}?text=${encodedMessage}`;
+                });
+            })();
+
+            // =====================================================================
+            // ZONA DE CONFIGURACIÓN DE FECHAS (SOLO EDITA AQUÍ)
+            // Formato: { dia: "texto visible", estado: "disponible" | "lleno", textoBadge: "texto" }
+            // =====================================================================
+            const CONFIG_FECHAS = [
+                { dia: "Lunes 20 de Abril",  hora: "08:00 PM (CDMX)", estado: "lleno",      textoBadge: "Cupo Lleno" },
+                { dia: "Jueves 23 de Abril", hora: "08:00 PM (CDMX)", estado: "lleno",      textoBadge: "Cupo Lleno" },
+                { dia: "Lunes 27 de Abril",  hora: "08:00 PM (CDMX)", estado: "disponible", textoBadge: "Ultimos lugares" }
+            ];
+
+            // =====================================================================
+            // 1. LÓGICA AUTOMÁTICA DE FECHAS
+            // =====================================================================
+            const container = document.getElementById('calendario-render');
+            if (container) {
+                let html = '';
+                CONFIG_FECHAS.forEach(f => {
+                    if (f.estado === 'lleno') {
+                        html += `
+                            <div class="date-card full">
+                                <span class="date-text">${f.dia}</span>
+                                <span class="status">${f.hora}</span>
+                                <span class="status">Cupo Lleno</span>
+                            </div>`;
+                    } else {
+                        html += `
+                            <div class="date-card available">
+                                <span class="date-text">${f.dia}</span>
+                                <span class="status">${f.hora}</span>
+                                <span class="urgent-badge">${f.textoBadge}</span>
+                            </div>`;
+                    }
+                });
+                container.innerHTML = html;
+            }
+
+            // =====================================================================
+            // 2. LÓGICA DE RESCATE (CANCELACIÓN DINÁMICA)
+            // =====================================================================
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('estado') === 'cancelado') {
+                setTimeout(() => {
+                    const modal = document.getElementById('rescue-modal');
+                    if (modal) modal.classList.add('active');
+                }, 500);
+            }
+
+            // =====================================================================
+            // 3. REVEAL SYSTEM UNIFICADO
+            // =====================================================================
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('revealed');
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.10, rootMargin: '0px 0px -36px 0px' });
+
+            document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+            // =====================================================================
+            // 4. STICKY HEADER
+            // =====================================================================
+            const header = document.getElementById('main-header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    header.classList.toggle('scrolled', window.scrollY > 60);
+                }, { passive: true });
+            }
+
+            // =====================================================================
+            // 5. ANIMACIONES GSAP — Hero entrance
+            // =====================================================================
+            if (typeof gsap !== 'undefined') {
+                try {
+                    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+                    const heroTitle    = document.querySelector('.hero h1');
+                    const heroSubtitle = document.querySelector('.hero .subtitle');
+                    const heroCta      = document.querySelector('.hero .cta-button');
+                    const heroScroll   = document.querySelector('.hero-scroll-hint');
+
+                    if (heroTitle)    tl.from(heroTitle,    { y: 44, opacity: 0, duration: 1.05, delay: 0.3 });
+                    if (heroSubtitle) tl.from(heroSubtitle, { y: 28, opacity: 0, duration: 0.85 }, '-=0.5');
+                    if (heroCta)      tl.from(heroCta,      { y: 20, opacity: 0, duration: 0.70 }, '-=0.4');
+                    if (heroScroll)   tl.from(heroScroll,   { opacity: 0, duration: 1.0 }, '-=0.2');
+                } catch (e) {
+                    console.warn('GSAP Animation Error:', e);
+                }
+            }
+
+            // =====================================================================
+            // 6. LÓGICA DEL FORMULARIO Y PAGO — intacta
+            // =====================================================================
+            const form = document.getElementById('inscription-form');
+            if (form) {
+                form.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+
+                    const btn = document.getElementById('submit-payment-btn');
+                    const originalBtnText = btn.innerText;
+
+                    btn.innerText = 'Conectando con el servidor...';
+                    btn.disabled = true;
+
+                    const customerName     = document.getElementById('name').value.trim();
+                    const customerEmail    = document.getElementById('email').value.trim();
+                    const customerWhatsapp = document.getElementById('whatsapp').value.trim();
+                    const productName      = document.querySelector('input[name="productName"]').value;
+
+                    if (!customerName || !customerEmail || !customerWhatsapp) {
+                        alert('Por favor completa nombre, correo y WhatsApp.');
+                        btn.innerText = originalBtnText;
+                        btn.disabled = false;
+                        return;
+                    }
+
+                    try {
+                        // Notificación al Admin
+                        const emailResponse = await fetch('/.netlify/functions/send-contact', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                name:     customerName,
+                                email:    customerEmail,
+                                whatsapp: customerWhatsapp,
+                                product:  productName
+                            }),
+                        });
+                        if (!emailResponse.ok) {
+                            console.warn('El email no se envió:', await emailResponse.text());
+                        } else {
+                            console.log('✅ Notificación enviada al Admin.');
+                        }
+
+                        // Sesión de Stripe
+                        btn.innerText = 'Redirigiendo a pago seguro...';
+                        const productTone = document.querySelector('input[name="productTone"]').value;
+                        const stripeResponse = await fetch('/.netlify/functions/create-checkout-session', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ customerName, customerEmail, customerWhatsapp, productName, productTone }),
+                        });
+
+                        const data = await stripeResponse.json().catch(() => ({}));
+                        if (!stripeResponse.ok) {
+                            throw new Error(data.error || 'No se pudo iniciar la sesión de pago.');
+                        }
+                        if (data.url) {
+                            window.location.href = data.url;
+                            return;
+                        }
+                        throw new Error('Respuesta inválida del servidor.');
+
+                    } catch (error) {
+                        console.error('❌ Error en el proceso:', error);
+                        alert('Error: ' + error.message);
+                        btn.innerText = originalBtnText;
+                        btn.disabled = false;
+                    }
+                });
+            }
+
+            const waveHost = document.getElementById('antenna-waves');
+            if (waveHost) {
+                let waveDelay = 0;
+                setInterval(() => {
+                    const wave = document.createElement('span');
+                    wave.className = 'antenna-wave';
+                    wave.style.animationDelay = `${waveDelay}s`;
+                    waveHost.appendChild(wave);
+                    setTimeout(() => wave.remove(), 2600);
+                    waveDelay = (waveDelay + 0.08) % 0.32;
+                }, 650);
+            }
+        });
+    </script>
+
+</body>
+</html>

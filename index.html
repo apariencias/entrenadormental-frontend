@@ -11,7 +11,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="page-index">
+    <!-- ZONA DE GESTION EDITABLE
+    Variables editables por negocio:
+    - Fechas y horarios: se configuran en cada landing de producto.
+    - Stripe IDs: se configuran en netlify/functions/create-checkout-session.js.
+    - Estatus de cupo: se configura en CONFIG_FECHAS de cada landing.
+    -->
 
     <!-- HEADER -->
     <header class="main-header" id="main-header">
@@ -38,7 +44,7 @@
         <section class="hero">
             <canvas id="flow-canvas" aria-hidden="true"></canvas>
             <div class="hero-content">
-                <h1>No obtienes lo que deseas.<br>Experimentas lo que tu mente<br><em>ha aceptado como verdad</em>.</h1>
+                <h1>No obtienes lo que deseas.<br>Experimentas lo que tu mente<br><em>ha aceptado como verdad.</em></h1>
                 <p class="subtitle">Tu realidad es el resultado de una <strong>programación subconsciente</strong> que hoy dicta tus reacciones automáticas. A través de la Neuro-Alineación, dejas de vivir bajo patrones impuestos para comenzar a <strong>seleccionar conscientemente</strong> la experiencia de vida que deseas.</p>
                 <a href="#seleccion-realidad" class="cta-button">Comienza tu Neuro-Alineación</a>
             </div>
@@ -55,14 +61,7 @@
 
                     <!-- Pilar 1: Causa Raíz — eye with root tendrils -->
                     <div class="pilar-item reveal">
-                        <div class="pilar-icon-wrap">
-                            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M2 13c3-6 18-6 22 0c-3 6-18 6-22 0"/>
-                                <circle cx="13" cy="13" r="4"/>
-                                <circle cx="13" cy="13" r="1.5" fill="currentColor" stroke="none"/>
-                                <path d="M13 19 Q11 22 9 24 M13 19 Q15 22 17 24"/>
-                            </svg>
-                        </div>
+                        <div class="pilar-icon-wrap">I</div>
                         <div class="pilar-text">
                             <h3>Localizar la Causa Raíz</h3>
                             <p>Tu experiencia actual no es un reflejo de tu capacidad, sino de la información que has aceptado como verdad. Aunque la mayor carga de <strong>programación</strong> ocurre hasta los 9 años, tu mente sigue consolidando verdades por repetición emocional. Este primer paso consiste en detectar las <strong>instrucciones invisibles</strong> que hoy dictan tus reacciones automáticas y seleccionan los resultados que se repiten en tu vida.</p>
@@ -71,15 +70,7 @@
 
                     <!-- Pilar 2: Calibración — tuning fork -->
                     <div class="pilar-item reveal">
-                        <div class="pilar-icon-wrap">
-                            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M13 3 L10 9 Q10 14 13 14 Q16 14 16 9 Z"/>
-                                <line x1="13" y1="14" x2="13" y2="24"/>
-                                <line x1="10" y1="20" x2="16" y2="20"/>
-                                <path d="M4 7 Q8 5 8 9" stroke-width="1" opacity="0.6"/>
-                                <path d="M22 7 Q18 5 18 9" stroke-width="1" opacity="0.6"/>
-                            </svg>
-                        </div>
+                        <div class="pilar-icon-wrap">II</div>
                         <div class="pilar-text">
                             <h3>Calibración Interna</h3>
                             <p>La transformación no es una lucha por conseguir algo que te falta, sino un proceso de <strong>calibración interna</strong>. Si tu sistema nervioso está habituado a la tensión, a la carencia o al miedo, tu mente rechazará cualquier escenario distinto por simple "comodidad" biológica. El Entrenamiento Mental interviene ese ciclo para que el resultado que buscas se convierta en tu única opción coherente.</p>
@@ -88,15 +79,7 @@
 
                     <!-- Pilar 3: Estabilización — sine wave with center point -->
                     <div class="pilar-item reveal">
-                        <div class="pilar-icon-wrap">
-                            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M2 13 Q5 7 8 13 Q11 19 14 13 Q17 7 20 13 Q23 19 26 13" opacity="0.45"/>
-                                <path d="M2 13 Q5.5 8 8.5 13 Q12 18.5 13 13 Q14 7.5 17.5 13 Q20.5 18 24 13"/>
-                                <circle cx="13" cy="13" r="2" fill="currentColor" stroke="none"/>
-                                <line x1="13" y1="2" x2="13" y2="5" stroke-width="1" opacity="0.5"/>
-                                <line x1="13" y1="21" x2="13" y2="24" stroke-width="1" opacity="0.5"/>
-                            </svg>
-                        </div>
+                        <div class="pilar-icon-wrap">III</div>
                         <div class="pilar-text">
                             <h3>Estabilización del Estado de Consciencia</h3>
                             <p>Cuando tu <strong>estado de consciencia</strong> cambia, tu realidad se reorganiza. Al sostener una nueva configuración interna, permites que los hechos externos se sintonicen con tu nueva instrucción mental. No estás forzando al mundo a cambiar; estás eliminando la interferencia interna para que la realidad que deseas se manifieste por <span class="accent">Ley de Correspondencia</span>.</p>
@@ -156,12 +139,6 @@
                     <!-- La Calma de Mamá — gold border -->
                     <a href="la-calma-de-mama.html" class="service-card gold-border reveal">
                         <div class="service-card-top">
-                            <div class="service-icon">
-                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M11 2 C7 2 4 5 4 8.5 C4 13 8 16 11 20 C14 16 18 13 18 8.5 C18 5 15 2 11 2Z"/>
-                                    <path d="M8 9 Q11 13 14 9" stroke-width="1.2"/>
-                                </svg>
-                            </div>
                             <span class="service-tag">Programa · 4 semanas</span>
                         </div>
                         <h3>La Calma de Mamá</h3>
@@ -173,17 +150,8 @@
                     </a>
 
                     <!-- Sintoniza tu Pareja — gold border -->
-                    <a href="#seleccion-realidad" class="service-card gold-border reveal">
+                    <a href="pareja-ideal.html" class="service-card gold-border reveal">
                         <div class="service-card-top">
-                            <div class="service-icon">
-                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="8" cy="8" r="4"/>
-                                    <circle cx="14" cy="8" r="4"/>
-                                    <path d="M11 11 L11 19"/>
-                                    <path d="M8 19 L14 19"/>
-                                    <line x1="5" y1="16" x2="17" y2="16" stroke-width="1" opacity="0.5"/>
-                                </svg>
-                            </div>
                             <span class="service-tag">Programa · 4 semanas</span>
                         </div>
                         <h3>Sintoniza a tu Pareja Ideal</h3>
@@ -195,13 +163,8 @@
                     </a>
 
                     <!-- Mentoría — featured (no gold-border) -->
-                    <a href="#seleccion-realidad" class="service-card service-card--featured reveal">
+                    <a href="mentoria.html" class="service-card service-card--featured reveal">
                         <div class="service-card-top">
-                            <div class="service-icon">
-                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 2 13.5 8.5 20.5 8.5 15 12.5 17 19 11 15 5 19 7 12.5 1.5 8.5 8.5 8.5"/>
-                                </svg>
-                            </div>
                             <span class="service-tag service-tag--gold">Acceso privado</span>
                         </div>
                         <h3>Mentoría de Alto Impacto</h3>
@@ -246,7 +209,7 @@
                     <a href="https://www.facebook.com/entrenador.mental" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
-            <div class="footer-bottom"><p>© 2025 Entrenador Mental · Todos los derechos reservados</p></div>
+            <div class="footer-bottom"><p>© 2026 Entrenador Mental · Todos los derechos reservados</p></div>
         </div>
     </footer>
 

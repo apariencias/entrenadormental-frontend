@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "nodemailer": "^8.0.2",
+    "resend": "^6.10.0",
     "stripe": "^20.3.1"
   }
 }

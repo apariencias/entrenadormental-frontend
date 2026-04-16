@@ -5,14 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pago Exitoso | Entrenador Mental</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; background-color: #f0f8ff; }
-        h1 { color: #28a745; }
-        a { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; }
+        body { font-family: Arial, sans-serif; margin: 0; min-height: 100vh; background: #0a0a0a; color: #eaeaea; display: grid; place-items: center; padding: 24px; }
+        .wrap { width: 100%; max-width: 720px; border: 1px solid rgba(196,160,67,.25); border-radius: 14px; padding: 32px; background: #111; }
+        h1 { margin: 0 0 8px; color: #c4a043; font-size: 2.1rem; font-weight: 400; }
+        p { color: #c8c8c8; line-height: 1.65; }
+        .lead { font-size: 1.05rem; margin-bottom: 14px; }
+        .next-title { color: #c4a043; font-size: 1.05rem; margin: 22px 0 10px; }
+        .course { color: #c4a043; font-weight: 700; }
+        .cta { display: inline-block; margin-top: 16px; padding: 12px 22px; border: 1px solid #c4a043; color: #c4a043; text-decoration: none; border-radius: 999px; }
     </style>
 </head>
 <body>
-    <h1>¡Gracias por tu compra!</h1>
-    <p>Tu pago se ha procesado correctamente. Pronto recibirás un correo con los detalles de tu inscripción.</p>
-    <a href="index.html">Volver al Inicio</a>
+    <!-- ZONA DE GESTION EDITABLE
+    - MENSAJES_POR_CURSO: objeto SUCCESS_CONFIG
+    - PARAMETROS_URL: name, email, product, tone, audio
+    -->
+    <div class="wrap">
+        <h1 id="title">Tu pago fue confirmado</h1>
+        <p id="text" class="lead">Estamos validando los detalles de tu inscripcion...</p>
+        <p id="next-title" class="next-title">Que sigue ahora?</p>
+        <p id="next-text">Revisa tu bandeja de entrada para recibir tus accesos.</p>
+        <a class="cta" href="index.html">Volver al Inicio</a>
+    </div>
+    <script>
+        const SUCCESS_CONFIG = {
+            "La Calma de Mamá": {
+                title: "Tu proceso de calma ha comenzado.",
+                text: "Tu lugar en <span class='course'>La Calma de Mamá</span> está confirmado. Has dado el primer paso para recuperar tu centro y transformar tu configuración interna.",
+                nextText: "Revisa tu bandeja de entrada: tu Protocolo de Sincronicidad Cerebral y la Guía de Entrenamiento ya están en camino para iniciar tu proceso de alivio y consciencia."
+            },
+            "Sintoniza a tu Pareja Ideal": {
+                title: "Tu sintonía ha comenzado.",
+                text: "Tu lugar en <span class='course'>Sintoniza a tu Pareja Ideal</span> está confirmado. Has dado el primer paso para reprogramar tu realidad.",
+                nextText: "Revisa tu bandeja de entrada: tu Audio de Sincronicidad y tu Guía de Sintonía ya están en camino para iniciar tu proceso de apertura mental."
+            }
+        };
+
+        (async function initSuccess() {
+            const params = new URLSearchParams(window.location.search);
+            const name = params.get("name");
+            const email = params.get("email");
+            const product = params.get("product") || "La Calma de Mamá";
+            const tone = params.get("tone") || "f";
+            const audio = params.get("audio") || "";
+
+            const config = SUCCESS_CONFIG[product] || SUCCESS_CONFIG["La Calma de Mamá"];
+            document.getElementById("title").textContent = config.title;
+            document.getElementById("text").innerHTML = config.text;
+            document.getElementById("next-text").textContent = config.nextText;
+
+            if (!name || !email) return;
+            try {
+                await fetch("/.netlify/functions/send-welcome", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, product, tone, audio })
+                });
+            } catch (error) {
+                console.error("No se pudo enviar bienvenida:", error);
+            }
+        })();
+    </script>
 </body>
 </html>

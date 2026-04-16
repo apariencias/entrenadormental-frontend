@@ -4,16 +4,590 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Calma de Mamá — Entrenador Mental</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="la-calma-de-mama">
 
-    <!-- HEADER -->
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ==========================================================================
+           RETINA RENDERING & TIPOGRAFÍA EDITORIAL
+           ========================================================================== */
+
+        *, *::before, *::after {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        html {
+            text-rendering: optimizeLegibility;
+            font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+        }
+
+        /* Hero — Display Heading */
+        body.la-calma-de-mama .hero h1 {
+            line-height: 1.10;
+            letter-spacing: -0.022em;
+            font-weight: 300;
+        }
+        body.la-calma-de-mama .hero h1 em {
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: -0.015em;
+        }
+        body.la-calma-de-mama .hero .subtitle {
+            line-height: 1.74;
+            letter-spacing: 0.008em;
+            max-width: 54ch;
+        }
+
+        /* Section headings */
+        body.la-calma-de-mama .section-title h2,
+        body.la-calma-de-mama .payment-portal h2,
+        body.la-calma-de-mama .science-content h2 {
+            line-height: 1.18;
+            letter-spacing: -0.012em;
+        }
+
+        /* Body copy */
+        body.la-calma-de-mama .body-copy {
+            line-height: 1.78;
+            letter-spacing: 0.01em;
+        }
+
+        /* ==========================================================================
+           ESPACIO NEGATIVO — SECCIONES RESPIRAN
+           ========================================================================== */
+
+        body.la-calma-de-mama .section {
+            padding: 112px 0;
+        }
+        body.la-calma-de-mama .section.section-dark {
+            padding: 104px 0;
+        }
+        body.la-calma-de-mama .section-title {
+            margin-bottom: 68px;
+        }
+        body.la-calma-de-mama .section-title h2 {
+            margin-bottom: 18px;
+        }
+
+        /* ==========================================================================
+           REVEAL SYSTEM UNIFICADO — Staggers solemnes
+           ========================================================================== */
+
+        /* Reset cualquier animación residual del HTML anterior */
+        body.la-calma-de-mama .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition:
+                opacity  0.92s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s),
+                transform 0.92s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s);
+        }
+        body.la-calma-de-mama .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggers para quiz */
+        body.la-calma-de-mama .quiz-container .quiz-item:nth-child(1) { --reveal-delay: 0.00s; }
+        body.la-calma-de-mama .quiz-container .quiz-item:nth-child(2) { --reveal-delay: 0.10s; }
+        body.la-calma-de-mama .quiz-container .quiz-item:nth-child(3) { --reveal-delay: 0.18s; }
+        body.la-calma-de-mama .quiz-container .quiz-item:nth-child(4) { --reveal-delay: 0.26s; }
+        body.la-calma-de-mama .quiz-container .quiz-item:nth-child(5) { --reveal-delay: 0.34s; }
+
+        /* Staggers para proceso */
+        body.la-calma-de-mama .timeline .process-item:nth-child(1) { --reveal-delay: 0.00s; }
+        body.la-calma-de-mama .timeline .process-item:nth-child(2) { --reveal-delay: 0.15s; }
+        body.la-calma-de-mama .timeline .process-item:nth-child(3) { --reveal-delay: 0.28s; }
+        body.la-calma-de-mama .timeline .process-item:nth-child(4) { --reveal-delay: 0.40s; }
+
+        /* Staggers para beneficios */
+        body.la-calma-de-mama .benefits-mosaic .feature-card:nth-child(1) { --reveal-delay: 0.00s; }
+        body.la-calma-de-mama .benefits-mosaic .feature-card:nth-child(2) { --reveal-delay: 0.10s; }
+        body.la-calma-de-mama .benefits-mosaic .feature-card:nth-child(3) { --reveal-delay: 0.20s; }
+        body.la-calma-de-mama .benefits-mosaic .feature-card:nth-child(4) { --reveal-delay: 0.30s; }
+        body.la-calma-de-mama .benefits-mosaic .feature-card:nth-child(5) { --reveal-delay: 0.40s; }
+
+        /* ==========================================================================
+           PROCESO — TIMELINE ALTERNADO (design system unificado)
+           ========================================================================== */
+
+        body.la-calma-de-mama .section-process {
+            padding: 112px 0;
+        }
+
+        body.la-calma-de-mama .timeline {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        /* Línea central dorada */
+        body.la-calma-de-mama .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                var(--text-accent) 6%,
+                var(--text-accent) 94%,
+                transparent 100%
+            );
+            opacity: 0.20;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        /* Grid de 3 columnas: [contenido | nodo | vacío] alternado */
+        body.la-calma-de-mama .process-item {
+            display: grid;
+            grid-template-columns: 1fr 84px 1fr;
+            align-items: center;
+            gap: 0;
+        }
+
+        /* Items PARES: tarjeta va a la derecha */
+        body.la-calma-de-mama .process-item:nth-child(even) .process-content {
+            grid-column: 3;
+            grid-row: 1;
+        }
+        body.la-calma-de-mama .process-item:nth-child(even) .process-node {
+            grid-column: 2;
+            grid-row: 1;
+        }
+        body.la-calma-de-mama .process-item:nth-child(even) .process-empty {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        /* Tarjeta de proceso */
+        body.la-calma-de-mama .process-content {
+            padding: 30px 28px;
+            background: rgba(255, 255, 255, 0.022);
+            border: 0.5px solid rgba(196, 160, 67, 0.14);
+            border-radius: 3px;
+            transition:
+                border-color  0.45s ease,
+                transform     0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow    0.45s ease;
+            cursor: default;
+            position: relative;
+        }
+        body.la-calma-de-mama .process-content:hover {
+            border-color: rgba(196, 160, 67, 0.42);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px -16px rgba(0, 0, 0, 0.65);
+        }
+
+        /* Línea revelada al hover */
+        body.la-calma-de-mama .process-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 1px;
+            width: 0;
+            background: linear-gradient(90deg, var(--text-accent), transparent);
+            transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        body.la-calma-de-mama .process-content:hover::after {
+            width: 100%;
+        }
+
+        body.la-calma-de-mama .process-content h4 {
+            font-family: var(--font-display);
+            font-size: 1.12rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            letter-spacing: 0.01em;
+            line-height: 1.28;
+        }
+        body.la-calma-de-mama .process-content p {
+            font-size: 0.885rem;
+            color: var(--text-secondary);
+            line-height: 1.72;
+            letter-spacing: 0.01em;
+            margin: 0;
+        }
+        body.la-calma-de-mama .process-content strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        body.la-calma-de-mama .process-content .accent {
+            color: var(--text-accent);
+            font-style: italic;
+            font-family: var(--font-display);
+        }
+
+        /* Nodo central */
+        body.la-calma-de-mama .process-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            gap: 6px;
+        }
+        body.la-calma-de-mama .process-node-circle {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            border: 1px solid var(--text-accent);
+            background: var(--bg-deep, #0a0a0a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition:
+                transform  0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.45s ease;
+            flex-shrink: 0;
+        }
+        body.la-calma-de-mama .process-item:hover .process-node-circle {
+            transform: scale(1.13);
+            box-shadow: 0 0 28px rgba(196, 160, 67, 0.28);
+        }
+        body.la-calma-de-mama .process-node-circle svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-accent);
+            stroke-width: 1.25;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        body.la-calma-de-mama .process-phase-label {
+            font-size: 0.60rem;
+            color: var(--text-accent);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-family: var(--font-body);
+            font-weight: 500;
+            opacity: 0.7;
+            text-align: center;
+        }
+
+        /* Vacío — placeholder visual */
+        body.la-calma-de-mama .process-empty {
+            /* sin contenido visible */
+        }
+
+        /* ==========================================================================
+           BENEFICIOS — GLASSMORPHISM SUTIL
+           ========================================================================== */
+
+        body.la-calma-de-mama .benefits-mosaic {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        /* Item-5 ocupa dos columnas — ritmo visual asimétrico */
+        body.la-calma-de-mama .benefits-mosaic .item-5 {
+            grid-column: span 2;
+        }
+
+        body.la-calma-de-mama .feature-card {
+            background: rgba(255, 255, 255, 0.022);
+            border: 0.5px solid rgba(196, 160, 67, 0.13);
+            border-radius: 5px;
+            padding: 28px 24px;
+            position: relative;
+            overflow: hidden;
+            transition:
+                border-color  0.42s ease,
+                transform     0.42s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: default;
+        }
+
+        /* Shimmer radial al hover */
+        body.la-calma-de-mama .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                ellipse at 24% 18%,
+                rgba(196, 160, 67, 0.08) 0%,
+                transparent 62%
+            );
+            opacity: 0;
+            transition: opacity 0.42s ease;
+            pointer-events: none;
+        }
+
+        /* Barra dorada reveal (borde inferior) */
+        body.la-calma-de-mama .feature-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 1px;
+            width: 0;
+            background: linear-gradient(90deg, var(--text-accent), transparent);
+            transition: width 0.58s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        body.la-calma-de-mama .feature-card:hover {
+            border-color: rgba(196, 160, 67, 0.44);
+            transform: translateY(-4px);
+        }
+        body.la-calma-de-mama .feature-card:hover::before { opacity: 1; }
+        body.la-calma-de-mama .feature-card:hover::after  { width: 100%; }
+
+        body.la-calma-de-mama .benefit-icon {
+            color: var(--text-accent);
+            margin-bottom: 18px;
+            display: flex;
+            opacity: 0.88;
+        }
+        body.la-calma-de-mama .benefit-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+        body.la-calma-de-mama .feature-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 9px;
+            letter-spacing: 0.01em;
+            line-height: 1.28;
+        }
+        body.la-calma-de-mama .feature-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.68;
+            letter-spacing: 0.008em;
+            margin: 0;
+        }
+
+        /* ==========================================================================
+           FECHAS Y MODAL — mantenidos del sistema original
+           ========================================================================== */
+
+        .dates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+        .date-card {
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            text-align: center;
+            position: relative;
+            background: var(--bg-surface);
+            transition: transform 0.3s;
+        }
+        .date-card:hover { transform: translateY(-2px); }
+
+        .date-card.available {
+            border-color: var(--text-accent);
+            background: linear-gradient(145deg, rgba(196,160,67,0.05), rgba(10,10,10,0));
+            box-shadow: 0 0 15px rgba(196,160,67,0.10);
+        }
+        .date-card.available .date-text {
+            color: var(--text-accent);
+            font-weight: 600;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+        }
+        .date-card.full {
+            opacity: 0.6;
+            border-color: transparent;
+        }
+        .date-card.full .date-text {
+            color: var(--text-muted);
+            text-decoration: line-through;
+            text-decoration-color: #800020;
+            text-decoration-thickness: 2px;
+            text-decoration-skip-ink: none;
+        }
+        .date-card.full .status {
+            font-size: 0.7rem;
+            color: #800020;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-top: 4px;
+            font-weight: 700;
+        }
+        .urgent-badge {
+            display: inline-block;
+            background: var(--text-accent);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        /* Beneficios en columna de pago */
+        .benefits-list-enhanced li {
+            list-style: none;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .benefits-list-enhanced i {
+            color: var(--text-accent);
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        /* Modal de rescate */
+        .rescue-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .rescue-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .rescue-content {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-accent);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border-radius: var(--radius-lg);
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .rescue-modal.active .rescue-content {
+            transform: translateY(0);
+        }
+        .rescue-close {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .rescue-close:hover { color: var(--text-primary); }
+
+        /* ==========================================================================
+           RESPONSIVE
+           ========================================================================== */
+
+        @media (max-width: 768px) {
+            body.la-calma-de-mama .section,
+            body.la-calma-de-mama .section.section-dark,
+            body.la-calma-de-mama .section-process {
+                padding: 76px 0;
+            }
+
+            /* Timeline — linea y nodo a la izquierda */
+            body.la-calma-de-mama .timeline::before {
+                left: 21px;
+            }
+            body.la-calma-de-mama .process-item {
+                grid-template-columns: 48px 1fr;
+                grid-template-rows: auto;
+                gap: 0 14px;
+            }
+            /* Anular swaps de pares — todo va a la derecha en móvil */
+            body.la-calma-de-mama .process-item:nth-child(even) .process-content,
+            body.la-calma-de-mama .process-item:nth-child(odd)  .process-content {
+                grid-column: 2;
+                grid-row: 1;
+            }
+            body.la-calma-de-mama .process-item:nth-child(even) .process-node,
+            body.la-calma-de-mama .process-item:nth-child(odd)  .process-node {
+                grid-column: 1;
+                grid-row: 1;
+            }
+            body.la-calma-de-mama .process-item:nth-child(even) .process-empty,
+            body.la-calma-de-mama .process-item:nth-child(odd)  .process-empty {
+                display: none;
+            }
+            body.la-calma-de-mama .process-node {
+                justify-content: flex-start;
+                padding-top: 4px;
+            }
+            body.la-calma-de-mama .process-node-circle {
+                width: 40px;
+                height: 40px;
+            }
+            body.la-calma-de-mama .process-node-circle svg {
+                width: 16px;
+                height: 16px;
+            }
+            body.la-calma-de-mama .process-phase-label {
+                display: none;
+            }
+
+            /* Beneficios — 2 columnas en tablet */
+            body.la-calma-de-mama .benefits-mosaic {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            body.la-calma-de-mama .benefits-mosaic .item-5 {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body.la-calma-de-mama .benefits-mosaic {
+                grid-template-columns: 1fr;
+            }
+            body.la-calma-de-mama .benefits-mosaic .item-5 {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body data-curso="La Calma de Mamá" class="page-la-calma la-calma-de-mama">
+    <!-- ZONA DE GESTION EDITABLE
+    - PRODUCTO: La Calma de Mamá
+    - PRODUCT_TONE: f
+    - FECHAS_Y_CUPOS: ver CONFIG_FECHAS en script inferior
+    - HORARIO_VISIBLE: 08:00 PM (CDMX)
+    - STRIPE_PRICE_ID: configurar en variable de entorno STRIPE_PRICE_ID_CALMA
+    -->
+
+    <!-- =====================================================================
+         HEADER
+         ===================================================================== -->
     <header class="main-header" id="main-header">
         <div class="container">
             <a href="index.html" class="logo-container">
@@ -25,18 +599,22 @@
 
     <main>
 
-        <!-- HERO -->
+        <!-- =================================================================
+             HERO
+             ================================================================= -->
         <section class="hero">
             <canvas id="flow-canvas" aria-hidden="true"></canvas>
             <div class="hero-content">
-                <h1>La calma no se conquista.<br>Se <em>deja de resistir</em>.</h1>
+                <h1>La calma no se conquista.<br><em>Se deja de resistir.</em></h1>
                 <p class="subtitle">Deja de 'sobrevivir' a tus días y recupera tu calma natural. A través de Neuro-Alineación, reprogramas el estado de alerta para que tu situación diaria deje de agotarte y comiences a dirigirla con energía real.</p>
                 <a href="#detalles" class="cta-button">Inicia mi Neuro-Alineación</a>
             </div>
             <div class="hero-scroll-hint" aria-hidden="true"><span></span></div>
         </section>
 
-        <!-- INTRO — Corrected quotes -->
+        <!-- =================================================================
+             INTRO
+             ================================================================= -->
         <section id="intro" class="section section-dark">
             <div class="container">
                 <div class="authority-content reveal">
@@ -50,122 +628,144 @@
             </div>
         </section>
 
-        <!-- ¿ES PARA TI? -->
+        <!-- =================================================================
+             ¿ES PARA TI?
+             ================================================================= -->
         <section id="es-para-ti" class="section">
             <div class="container">
                 <div class="section-title reveal">
                     <h2>¿Este entrenamiento es para ti?</h2>
                     <p class="section-subtitle">Hazte estas 5 preguntas. Si respondes "SÍ" a más de una, tu sistema está operando en modo alerta:</p>
                 </div>
-                <div class="quiz-container reveal">
-                    <label class="quiz-item">
+                <div class="quiz-container">
+                    <label class="quiz-item reveal">
                         <input type="checkbox" class="quiz-checkbox">
                         <span class="checkmark"></span>
                         <span class="question-text">¿Sientes que, sin importar cuánto descanses, tu mente sigue escaneando el entorno buscando el siguiente inconveniente por resolver?</span>
                     </label>
-                    <label class="quiz-item">
+                    <label class="quiz-item reveal">
                         <input type="checkbox" class="quiz-checkbox">
                         <span class="checkmark"></span>
                         <span class="question-text">¿Tus reacciones ante las situaciones diarias te sorprenden por su intensidad, como si no tuvieras un "filtro" entre el evento y tu respuesta?</span>
                     </label>
-                    <label class="quiz-item">
+                    <label class="quiz-item reveal">
                         <input type="checkbox" class="quiz-checkbox">
                         <span class="checkmark"></span>
                         <span class="question-text">¿Has intentado mantener la calma mediante la fuerza de voluntad y has descubierto que es una batalla que siempre terminas perdiendo?</span>
                     </label>
-                    <label class="quiz-item">
+                    <label class="quiz-item reveal">
                         <input type="checkbox" class="quiz-checkbox">
                         <span class="checkmark"></span>
                         <span class="question-text">¿Te preocupa que tu estado actual esté programando el futuro de tus hijos, repitiendo patrones que tú misma juraste no heredar?</span>
                     </label>
-                    <label class="quiz-item">
+                    <label class="quiz-item reveal">
                         <input type="checkbox" class="quiz-checkbox">
                         <span class="checkmark"></span>
                         <span class="question-text">¿Estás cansada de "entender" por qué te sucede lo que te sucede, pero sentir que tu cuerpo reacciona igual ante la presión?</span>
                     </label>
                 </div>
-                <div class="text-center reveal">
+                <div class="text-center reveal" style="margin-top:3rem;">
                     <a href="#detalles" class="cta-button">Sí, esto es para mí. Quiero empezar</a>
                 </div>
             </div>
         </section>
 
-        <!-- PROCESO 4 SEMANAS — SVG icons -->
-        <section id="proceso" class="section section-dark">
+        <!-- =================================================================
+             PROCESO DE 4 SEMANAS — Rediseño limpio (sin HTML anidado)
+             ================================================================= -->
+        <section id="proceso" class="section section-dark section-process">
             <div class="container">
-                <div class="section-title reveal">
+                <div class="section-title reveal" style="text-align:center;">
                     <h2>Tu Proceso de 4 Semanas</h2>
+                    <p class="section-subtitle">Una arquitectura mental diseñada para transformar el caos en una estructura de calma inquebrantable.</p>
                 </div>
-                <div class="process-zigzag">
 
-                    <!-- Paso 1: Fundamentos — magnifying glass + grid -->
-                    <div class="process-step reveal">
-                        <div class="process-icon-wrap">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="10" cy="10" r="6"/>
-                                <line x1="14.5" y1="14.5" x2="20" y2="20"/>
-                                <line x1="7" y1="10" x2="13" y2="10"/>
-                                <line x1="10" y1="7" x2="10" y2="13"/>
-                            </svg>
-                        </div>
+                <div class="timeline">
+
+                    <!-- FASE 1 — tarjeta izquierda (odd) -->
+                    <div class="process-item reveal">
                         <div class="process-content">
                             <h4>Fase 1 — Fundamentos y Diagnóstico</h4>
-                            <p>Reconocerás la <strong>programación específica</strong> que hoy drena tu energía y mapearás con precisión el origen del estado de alerta.</p>
+                            <p>No adivinamos. Mapeamos. Reconocerás la <strong>programación específica</strong> que hoy drena tu energía y localizarás con precisión quirúrgica el origen de tu estado de alerta permanente.</p>
                         </div>
+                        <div class="process-node">
+                            <div class="process-node-circle">
+                                <!-- Ojo / Visión -->
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </div>
+                            <span class="process-phase-label">I</span>
+                        </div>
+                        <div class="process-empty" aria-hidden="true"></div>
                     </div>
 
-                    <!-- Paso 2: Reset — circular arrow with spark -->
-                    <div class="process-step reveal">
-                        <div class="process-icon-wrap">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M20 11A8 8 0 1 0 19 15.5"/>
-                                <polyline points="20 4 20 11 13 11"/>
-                                <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
-                            </svg>
-                        </div>
+                    <!-- FASE 2 — tarjeta derecha (even) -->
+                    <div class="process-item reveal">
                         <div class="process-content">
                             <h4>Fase 2 — El Reset (Selección)</h4>
-                            <p>Aprendes a interrumpir el patrón automático y <span class="accent">seleccionas</span> una configuración mental diferente en tiempo real.</p>
+                            <p>El poder de pausar. Aprendes a interrumpir el patrón automático y <span class="accent">seleccionas</span> conscientemente una configuración mental diferente en tiempo real. Tú tomas el control del interruptor.</p>
                         </div>
+                        <div class="process-node">
+                            <div class="process-node-circle">
+                                <!-- Espiral / Reset -->
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.66 0 5.05 1.16 6.7 3"/>
+                                    <path d="M3 12c0-3.31 2.69-6 6-6s6 2.69 6 6c0 1.66-1.34 3-3 3s-3-1.34-3-3"/>
+                                </svg>
+                            </div>
+                            <span class="process-phase-label">II</span>
+                        </div>
+                        <div class="process-empty" aria-hidden="true"></div>
                     </div>
 
-                    <!-- Paso 3: Ocupa — person grounded -->
-                    <div class="process-step reveal">
-                        <div class="process-icon-wrap">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="5" r="3"/>
-                                <path d="M6 21 L8 15 L12 17 L16 15 L18 21"/>
-                                <path d="M9 11 Q10 9 12 9 Q14 9 15 11"/>
-                                <line x1="12" y1="13" x2="12" y2="17"/>
-                                <path d="M5 19 Q8 17 12 17 Q16 17 19 19" stroke-width="1" opacity="0.4"/>
-                            </svg>
-                        </div>
+                    <!-- FASE 3 — tarjeta izquierda (odd) -->
+                    <div class="process-item reveal">
                         <div class="process-content">
                             <h4>Fase 3 — Ocupa el Estado</h4>
-                            <p>Llevamos la práctica a tu terreno real para que tu sistema acepte y ancle la nueva <strong>programación</strong>.</p>
+                            <p>Llevamos la práctica a tu terreno real. Ya no es teoría; es acción. Tu sistema nervioso aprende a anclarse en la nueva <strong>programación</strong> mientras enfrentas tu día a día.</p>
                         </div>
+                        <div class="process-node">
+                            <div class="process-node-circle">
+                                <!-- Ancla -->
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="5" r="3"/>
+                                    <line x1="12" y1="8" x2="12" y2="21"/>
+                                    <path d="M5 14c0 4 7 7 7 7s7-3 7-7"/>
+                                </svg>
+                            </div>
+                            <span class="process-phase-label">III</span>
+                        </div>
+                        <div class="process-empty" aria-hidden="true"></div>
                     </div>
 
-                    <!-- Paso 4: Integración — infinity / anchor -->
-                    <div class="process-step reveal">
-                        <div class="process-icon-wrap">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12 Q5 8 9 8 Q12 8 12 12 Q12 16 15 16 Q19 16 19 12 Q19 8 15 8 Q12 8 12 12 Q12 16 9 16 Q5 16 5 12Z"/>
-                                <line x1="12" y1="16" x2="12" y2="22"/>
-                                <line x1="9" y1="22" x2="15" y2="22"/>
-                            </svg>
-                        </div>
+                    <!-- FASE 4 — tarjeta derecha (even) -->
+                    <div class="process-item reveal">
                         <div class="process-content">
                             <h4>Fase 4 — Integración y Dirección</h4>
-                            <p>Consolidas el nuevo <strong>estado</strong> para que la calma sea tu centro permanente, no un destino por alcanzar.</p>
+                            <p>La transformación se solidifica. Consolidas el nuevo <strong>estado</strong> para que la calma sea tu centro de gravedad permanente, no un destino por alcanzar. Ya eres dueña de tu mente.</p>
                         </div>
+                        <div class="process-node">
+                            <div class="process-node-circle">
+                                <!-- Diamante / Integración -->
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2L2 12l10 10 10-10L12 2z"/>
+                                    <path d="M12 6l-6 6 6 6 6-6-6-6z" stroke-opacity="0.55"/>
+                                </svg>
+                            </div>
+                            <span class="process-phase-label">IV</span>
+                        </div>
+                        <div class="process-empty" aria-hidden="true"></div>
                     </div>
 
-                </div>
+                </div><!-- /.timeline -->
             </div>
         </section>
 
-        <!-- BENEFICIOS — feature-card redesign with SVG icons -->
+        <!-- =================================================================
+             BENEFICIOS — Glassmorphism
+             ================================================================= -->
         <section id="beneficios" class="section">
             <div class="container">
                 <div class="section-title reveal">
@@ -175,10 +775,9 @@
 
                     <div class="mosaic-item item-1 feature-card reveal">
                         <div class="benefit-icon">
-                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="24" height="24" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M2 9 L11 2 L20 9 L20 20 L2 20 Z"/>
                                 <path d="M8 20 L8 13 L14 13 L14 20"/>
-                                <line x1="11" y1="2" x2="11" y2="9" stroke-width="1" opacity="0.4"/>
                             </svg>
                         </div>
                         <h4>Tu casa como refugio</h4>
@@ -187,10 +786,9 @@
 
                     <div class="mosaic-item item-2 feature-card reveal">
                         <div class="benefit-icon">
-                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="24" height="24" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M11 3 C6 3 3 7 3 10 C3 15 7 18 11 21 C15 18 19 15 19 10 C19 7 16 3 11 3Z"/>
                                 <path d="M8 11 Q11 14.5 14 11" stroke-width="1.3"/>
-                                <line x1="11" y1="7" x2="11" y2="9" stroke-width="1" opacity="0.5"/>
                             </svg>
                         </div>
                         <h4>Cuerpo liberado</h4>
@@ -199,7 +797,7 @@
 
                     <div class="mosaic-item item-3 feature-card reveal">
                         <div class="benefit-icon">
-                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="24" height="24" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="11" cy="11" r="3"/>
                                 <path d="M11 2 L11 5 M11 17 L11 20 M2 11 L5 11 M17 11 L20 11"/>
                                 <path d="M4.9 4.9 L7 7 M15 15 L17.1 17.1 M17.1 4.9 L15 7 M7 15 L4.9 17.1" stroke-width="1.1"/>
@@ -211,7 +809,7 @@
 
                     <div class="mosaic-item item-4 feature-card reveal">
                         <div class="benefit-icon">
-                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="24" height="24" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="12 2 3 13 11 13 10 21 19 9 11 9 12 2"/>
                             </svg>
                         </div>
@@ -221,7 +819,7 @@
 
                     <div class="mosaic-item item-5 feature-card reveal">
                         <div class="benefit-icon">
-                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="24" height="24" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="11" cy="11" r="4"/>
                                 <path d="M11 1 L11 4 M11 18 L11 21 M1 11 L4 11 M18 11 L21 11"/>
                                 <path d="M4.2 4.2 L6.3 6.3 M15.7 15.7 L17.8 17.8 M17.8 4.2 L15.7 6.3 M6.3 15.7 L4.2 17.8"/>
@@ -231,14 +829,17 @@
                         <p>Despiertas con energía y claridad mental para disfrutar cada día desde la plenitud.</p>
                     </div>
 
-                </div>
-                <div class="text-center reveal" style="margin-top:3rem;">
+                </div><!-- /.benefits-mosaic -->
+
+                <div class="text-center reveal" style="margin-top:3.5rem;">
                     <a href="#detalles" class="cta-button">Quiero seleccionar esta realidad</a>
                 </div>
             </div>
         </section>
 
-        <!-- CIENCIA DE LA CALMA — NO TOCAR -->
+        <!-- =================================================================
+             CIENCIA DE LA CALMA — NO TOCAR
+             ================================================================= -->
         <section id="ciencia-calma" class="section section-dark">
             <div class="container">
                 <div class="science-layout reveal">
@@ -259,7 +860,9 @@
             </div>
         </section>
 
-        <!-- EVIDENCIAS — NO TOCAR -->
+        <!-- =================================================================
+             EVIDENCIAS — NO TOCAR (carousel)
+             ================================================================= -->
         <section id="evidencias" class="section">
             <div class="container">
                 <div class="section-title reveal">
@@ -278,41 +881,104 @@
             </div>
         </section>
 
-        <!-- FILTRO — extra spacing applied via CSS -->
+        <!-- =================================================================
+             FILTRO
+             ================================================================= -->
         <section id="filtro" class="section section-dark">
             <div class="container">
                 <div class="authority-content reveal">
-                    <h3>Algo Importante — El Filtro</h3>
+                    <h3>Algo Importante</h3>
                     <p class="body-copy">Este proceso no es para todas 🌿 Acompañamos a mamás que han decidido que "entender" su estado actual ya no es suficiente y están listas para una transformación real. Es normal que aparezca la duda de "mejor después". Es solo tu programación antigua tratando de mantenerte en lo conocido. Pero la calma no es algo que vas a encontrar, es algo que vas a <span class="accent">seleccionar</span>.</p>
                 </div>
             </div>
         </section>
 
-        <!-- PAGO -->
+        <!-- =================================================================
+             SECCIÓN DE PAGO — Backend 100% intacto
+             ================================================================= -->
         <section id="detalles" class="section payment-section">
             <div class="container">
                 <div class="payment-portal">
+
+                    <!-- COLUMNA IZQUIERDA: DETALLES -->
                     <div class="payment-left reveal">
-                        <h2>Estás a un paso de tu Calma</h2>
-                        <div class="price-display">
-                            <span class="price-strikethrough">$1,200 MXN</span>
-                            <span class="price-highlight">$597 <small>MXN</small></span>
-                            <span class="price-badge">Lanzamiento</span>
-                        </div>
-                        <p class="price-note">*Precio de lanzamiento por tiempo limitado.</p>
-                        <ul class="benefits-list">
-                            <li><i class="fas fa-check-circle"></i><span>Acceso de por vida al programa "La Calma de Mamá"</span></li>
-                            <li><i class="fas fa-check-circle"></i><span>Audio binaural de alta fidelidad (Estado Alfa)</span></li>
-                            <li><i class="fas fa-check-circle"></i><span>Soporte por WhatsApp durante el proceso</span></li>
+                        <h2>Tu Transformación en 4 Semanas</h2>
+
+                        <ul class="benefits-list-enhanced">
+                            <li>
+                                <i class="fas fa-video"></i>
+                                <div>
+                                    <strong style="color:var(--text-primary);display:block;margin-bottom:4px;">4 Clases en Vivo (90 min)</strong>
+                                    <span>Vía Zoom, enfocadas en profundizar la técnica.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-shield-alt"></i>
+                                <div>
+                                    <strong style="color:var(--text-primary);display:block;margin-bottom:4px;">Espacio de Confianza Absoluta</strong>
+                                    <span>Experiencia 100% segura. Las clases <strong>no se graban</strong>.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-headphones"></i>
+                                <div>
+                                    <strong style="color:var(--text-primary);display:block;margin-bottom:4px;">Kit de Reprogramación</strong>
+                                    <span>2 audios (20 min) y material de práctica semanal.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-user-astronaut"></i>
+                                <div>
+                                    <strong style="color:var(--text-primary);display:block;margin-bottom:4px;">Acompañamiento Directo</strong>
+                                    <span>Estaré presente para guiarte durante todo el proceso.</span>
+                                </div>
+                            </li>
                         </ul>
+
+                        <!-- FECHAS (renderizado por JS — zona editable) -->
+                        <div class="dates-container">
+                            <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;">Próximos Inicios:</p>
+                            <div id="calendario-render" class="dates-grid"></div>
+                            <p style="font-size:0.9rem;color:var(--text-accent);text-align:center;margin-top:10px;">
+                                <i class="far fa-clock"></i> Horario: 08:00 PM (CDMX)
+                            </p>
+                        </div>
+
+                        <!-- GARANTÍA -->
+                        <div style="border:1px solid var(--border);padding:20px;border-radius:var(--radius-md);margin-top:2rem;background:rgba(255,255,255,0.02);">
+                            <h4 style="color:var(--text-primary);margin-bottom:8px;font-size:1rem;">Garantía de Resultados</h4>
+                            <p style="font-size:0.9rem;color:var(--text-secondary);margin:0;line-height:1.6;">
+                                Si después de la primera clase sientes que este proceso no es para ti, te devolvemos el 100% de tu inversión. Sin preguntas.
+                            </p>
+                        </div>
                     </div>
+
+                    <!-- COLUMNA DERECHA: FORMULARIO -->
                     <div class="payment-right reveal">
-                        <h4>Tu Bonus Exclusivo</h4>
-                        <p class="bonus-desc">Al inscribirte, recibes un audio binaural de alta fidelidad diseñado para guiar tu mente al estado Alfa y reducir el estrés Beta desde el primer día.</p>
+                        <!-- PRECIO -->
+                        <div class="price-display" style="margin-bottom:24px;text-align:center;">
+                            <span style="display:block;font-size:0.9rem;color:var(--text-muted);margin-bottom:5px;">Inversión Total</span>
+                            <span style="font-family:var(--font-display);font-size:3rem;font-weight:300;color:var(--text-accent);line-height:1;">$2,997</span>
+                            <span style="font-size:1rem;color:var(--text-secondary);"> MXN</span>
+                        </div>
+
+                        <!-- BONUS -->
+                        <div style="background:linear-gradient(135deg,rgba(196,160,67,0.10),transparent);padding:20px;border-radius:var(--radius-md);margin-bottom:24px;border-left:3px solid var(--text-accent);">
+                            <h5 style="color:var(--text-accent);margin:0 0 8px 0;text-transform:uppercase;letter-spacing:1px;font-size:0.8rem;">Bonus: Tu Neuroalineación comienza hoy</h5>
+                            <p style="font-size:0.9rem;color:var(--text-secondary);margin:0;line-height:1.5;">
+                                Aunque las clases tienen una fecha de inicio, tu cambio empieza ahora. Al inscribirte, recibes de inmediato un audio binaural para preparar tu sistema.
+                            </p>
+                        </div>
+
+                        <!-- FORMULARIO — IDs y nombres intactos -->
                         <form id="inscription-form" class="inscription-form">
+                            <!-- CAMPOS OCULTOS (sistema dinámico — no modificar) -->
+                            <input type="hidden" name="productName" value="La Calma de Mamá">
+                            <input type="hidden" name="productTone" value="f">
+
                             <div class="form-group">
-                                <label for="name">Nombre y Apellido</label>
-                                <input type="text" id="name" name="name" required autocomplete="name" placeholder="Tu nombre completo">
+                                <label for="name">Nombre Completo</label>
+                                <input type="text" id="name" name="name" required autocomplete="name" placeholder="Tu nombre">
                             </div>
                             <div class="form-group">
                                 <label for="email">Correo Electrónico</label>
@@ -322,19 +988,26 @@
                                 <label for="whatsapp">WhatsApp (con lada)</label>
                                 <input type="tel" id="whatsapp" name="whatsapp" required autocomplete="tel" placeholder="+52 55 0000 0000">
                             </div>
-                            <button type="submit" id="submit-payment-btn" class="cta-button large">Inscribirme y Pagar Seguro</button>
+
+                            <button type="submit" id="submit-payment-btn" class="cta-button large">Inscribirme Ahora</button>
                         </form>
-                        <div class="security-message">
-                            <i class="fas fa-lock"></i>
-                            <span>Pago 100% seguro a través de Stripe</span>
+
+                        <div style="text-align:center;margin-top:15px;">
+                            <p style="font-size:0.75rem;color:var(--text-muted);">
+                                <i class="fas fa-lock" style="color:var(--text-accent);"></i> Pago 100% seguro
+                            </p>
                         </div>
-                    </div>
-                </div>
+                    </div><!-- /.payment-right -->
+
+                </div><!-- /.payment-portal -->
             </div>
         </section>
 
-    </main>
+    </main><!-- /main -->
 
+    <!-- =================================================================
+         FOOTER
+         ================================================================= -->
     <footer class="main-footer">
         <div class="container">
             <div class="footer-content">
@@ -343,55 +1016,223 @@
         </div>
     </footer>
 
+    <!-- WhatsApp Float -->
     <a href="https://wa.me/525511195800" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- =================================================================
+         MODAL DE RESCATE — Lógica intacta
+         ================================================================= -->
+    <div id="rescue-modal" class="rescue-modal">
+        <div class="rescue-content">
+            <button class="rescue-close" onclick="document.getElementById('rescue-modal').classList.remove('active')" aria-label="Cerrar">&times;</button>
+
+            <div style="width:60px;height:4px;background:var(--text-accent);margin:0 auto 30px auto;border-radius:2px;"></div>
+
+            <h3 style="color:var(--text-primary);font-family:var(--font-display);font-size:1.8rem;margin-bottom:20px;line-height:1.2;font-weight:300;">
+                ¿Tuviste un contratiempo?
+            </h3>
+            <p style="color:var(--text-secondary);margin-bottom:30px;line-height:1.7;font-size:1.05rem;">
+                Antes de un gran cambio, a veces el cerebro activa una alerta innecesaria para mantenernos en lo conocido. No es un error, es un mecanismo de defensa.<br><br>
+                Si algún detalle de la plataforma te generó duda, o si prefieres confirmar tu lugar con un especialista, estamos aquí para acompañarte a terminar tu proceso.
+            </p>
+            <a href="https://wa.me/525511195800?text=Hola,%20estuve%20a%20punto%20de%20inscribirme%20y%20necesito%20ayuda." target="_blank" class="cta-button large" style="background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 15px rgba(37,211,102,0.3);">
+                <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i>
+                Hablar con un asesor
+            </a>
+        </div>
+    </div>
+
+    <!-- =================================================================
+         SCRIPTS — Flow Field + Lógica principal
+         ================================================================= -->
     <script src="flow-field.js"></script>
+
     <script>
-    window.addEventListener('DOMContentLoaded', () => {
-        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-        tl.from('.hero h1',          { y:44, opacity:0, duration:1.0, delay:.3 })
-          .from('.hero .subtitle',   { y:28, opacity:0, duration:.8 }, '-=.5')
-          .from('.hero .cta-button', { y:20, opacity:0, duration:.7 }, '-=.4')
-          .from('.hero-scroll-hint', { opacity:0, duration:1 }, '-=.2');
+        document.addEventListener('DOMContentLoaded', () => {
+        
+                    // =====================================================================
+            // MISIÓN 1: WHATSAPP DINÁMICO
+            // =====================================================================
+            (function() {
+                const courseName = document.body.getAttribute('data-curso');
+                if (!courseName) return;
 
-        const io = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); } });
-        }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
-        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+                const rawMessage = `Hola, estuve a punto de inscribirme a ${courseName} y necesito ayuda.`;
+                const encodedMessage = encodeURIComponent(rawMessage);
 
-        const header = document.getElementById('main-header');
-        window.addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 60), { passive: true });
+                // Selecciona todos los enlaces de WhatsApp (flotante y modal)
+                const waLinks = document.querySelectorAll('a[href*="wa.me"]');
 
-        document.getElementById('inscription-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const btn = document.getElementById('submit-payment-btn');
-            const orig = btn.innerText;
-            btn.innerText = 'Procesando…'; btn.disabled = true;
-            const customerName    = document.getElementById('name').value.trim();
-            const customerEmail   = document.getElementById('email').value.trim();
-            const customerWhatsapp = document.getElementById('whatsapp').value.trim();
-            if (!customerName || !customerEmail || !customerWhatsapp) {
-                alert('Por favor completa nombre, correo y WhatsApp.');
-                btn.innerText = orig; btn.disabled = false; return;
-            }
-            try {
-                const response = await fetch('/.netlify/functions/create-checkout-session', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ customerName, customerEmail, customerWhatsapp }),
+                waLinks.forEach(link => {
+                    const baseUrl = link.href.split('?')[0]; // Mantiene el número de teléfono actual
+                    link.href = `${baseUrl}?text=${encodedMessage}`;
                 });
-                const data = await response.json().catch(() => ({}));
-                if (!response.ok) throw new Error(data.error || 'No se pudo iniciar el pago.');
-                if (data.url) { window.location.href = data.url; return; }
-                throw new Error('Respuesta inválida del servidor.');
-            } catch (error) {
-                alert(error.message || 'Hubo un error. Por favor, intenta de nuevo.');
-                btn.innerText = orig; btn.disabled = false;
+            })();    
+            // =====================================================================
+            // ZONA DE CONFIGURACIÓN DE FECHAS (SOLO EDITA AQUÍ)
+            // =====================================================================
+            const CONFIG_FECHAS = [
+                { dia: "Lunes 20 de Abril",   estado: "lleno",      textoBadge: "Cupo Lleno"     },
+                { dia: "Jueves 23 de Abril",  estado: "lleno",      textoBadge: "Cupo Lleno"     },
+                { dia: "Lunes 27 de Abril",   estado: "disponible", textoBadge: "Últimos lugares" }
+            ];
+
+            // =====================================================================
+            // 1. LÓGICA AUTOMÁTICA DE FECHAS
+            // =====================================================================
+            const container = document.getElementById('calendario-render');
+            if (container) {
+                let html = '';
+                CONFIG_FECHAS.forEach(f => {
+                    if (f.estado === 'lleno') {
+                        html += `
+                            <div class="date-card full">
+                                <span class="date-text">${f.dia}</span>
+                                <span class="status">Cupo Lleno</span>
+                            </div>`;
+                    } else {
+                        html += `
+                            <div class="date-card available">
+                                <span class="date-text">${f.dia}</span>
+                                <span class="urgent-badge">${f.textoBadge}</span>
+                            </div>`;
+                    }
+                });
+                container.innerHTML = html;
             }
+
+            // =====================================================================
+            // 2. LÓGICA DE RESCATE (CANCELACIÓN DINÁMICA) — intacta
+            // =====================================================================
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('estado') === 'cancelado') {
+                setTimeout(() => {
+                    const modal = document.getElementById('rescue-modal');
+                    if (modal) modal.classList.add('active');
+                }, 500);
+            }
+
+            // =====================================================================
+            // 3. REVEAL SYSTEM UNIFICADO
+            //    Clase: .reveal → .revealed (único, sin duplicados)
+            // =====================================================================
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('revealed');
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.10, rootMargin: '0px 0px -36px 0px' });
+
+            document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+            // =====================================================================
+            // 4. STICKY HEADER
+            // =====================================================================
+            const header = document.getElementById('main-header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    header.classList.toggle('scrolled', window.scrollY > 60);
+                }, { passive: true });
+            }
+
+            // =====================================================================
+            // 5. ANIMACIONES GSAP — Hero entrance
+            // =====================================================================
+            if (typeof gsap !== 'undefined') {
+                try {
+                    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+                    const heroTitle    = document.querySelector('.hero h1');
+                    const heroSubtitle = document.querySelector('.hero .subtitle');
+                    const heroCta      = document.querySelector('.hero .cta-button');
+                    const heroScroll   = document.querySelector('.hero-scroll-hint');
+
+                    if (heroTitle)    tl.from(heroTitle,    { y: 44, opacity: 0, duration: 1.05, delay: 0.3 });
+                    if (heroSubtitle) tl.from(heroSubtitle, { y: 28, opacity: 0, duration: 0.85 }, '-=0.5');
+                    if (heroCta)      tl.from(heroCta,      { y: 20, opacity: 0, duration: 0.70 }, '-=0.4');
+                    if (heroScroll)   tl.from(heroScroll,   { opacity: 0, duration: 1.0 }, '-=0.2');
+                } catch (e) {
+                    console.warn('GSAP Animation Error:', e);
+                }
+            }
+
+            // =====================================================================
+            // 6. LÓGICA DEL FORMULARIO Y PAGO — intacta
+            // =====================================================================
+            const form = document.getElementById('inscription-form');
+            if (form) {
+                form.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+
+                    const btn = document.getElementById('submit-payment-btn');
+                    const originalBtnText = btn.innerText;
+
+                    btn.innerText = 'Conectando con el servidor...';
+                    btn.disabled = true;
+
+                    const customerName     = document.getElementById('name').value.trim();
+                    const customerEmail    = document.getElementById('email').value.trim();
+                    const customerWhatsapp = document.getElementById('whatsapp').value.trim();
+                    const productName      = document.querySelector('input[name="productName"]').value;
+
+                    if (!customerName || !customerEmail || !customerWhatsapp) {
+                        alert('Por favor completa nombre, correo y WhatsApp.');
+                        btn.innerText = originalBtnText;
+                        btn.disabled = false;
+                        return;
+                    }
+
+                    try {
+                        // Notificación al Admin
+                        const emailResponse = await fetch('/.netlify/functions/send-contact', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                name:     customerName,
+                                email:    customerEmail,
+                                whatsapp: customerWhatsapp,
+                                product:  productName
+                            }),
+                        });
+                        if (!emailResponse.ok) {
+                            console.warn('El email no se envió:', await emailResponse.text());
+                        } else {
+                            console.log('✅ Notificación enviada al Admin.');
+                        }
+
+                        // Sesión de Stripe
+                        btn.innerText = 'Redirigiendo a pago seguro...';
+                        const productTone = document.querySelector('input[name="productTone"]').value;
+                        const stripeResponse = await fetch('/.netlify/functions/create-checkout-session', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ customerName, customerEmail, customerWhatsapp, productName, productTone }),
+                        });
+
+                        const data = await stripeResponse.json().catch(() => ({}));
+                        if (!stripeResponse.ok) {
+                            throw new Error(data.error || 'No se pudo iniciar la sesión de pago.');
+                        }
+                        if (data.url) {
+                            window.location.href = data.url;
+                            return;
+                        }
+                        throw new Error('Respuesta inválida del servidor.');
+
+                    } catch (error) {
+                        console.error('❌ Error en el proceso:', error);
+                        alert('Error: ' + error.message);
+                        btn.innerText = originalBtnText;
+                        btn.disabled = false;
+                    }
+                });
+            }
+
         });
-    });
     </script>
+
 </body>
 </html>
