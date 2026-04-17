@@ -62,7 +62,7 @@ function parejaBody(name, config) {
         </a>
       </div>
       <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">🎧 Instrucciones para tu Audio de Neuro-Alineación</h2>
-      <p>Este audio ajusta tu frecuencia vibratoria y prepara tu sistema nervioso para la apertura y la conexión.</p>
+      <p>Este audio ajusta tu frecuencia vibratoria y prepara tu "destintoxicación emocional" de relaciones anteriores.</p>
       <ul>
         <li><strong>Inmersión:</strong> 20 minutos de introspección total, sin interrupciones.</li>
         <li><strong>Audífonos Indispensables:</strong> Necesarios para que el efecto binaural induzca el estado alfa donde la reprogramación es posible.</li>
@@ -177,7 +177,7 @@ function calmaBody(name, config) {
         <p style="margin:6px 0 0;"><strong>ID / Clave:</strong> ${config.zoomPass || "Se comparte al ingresar"}</p>
       </div>
 
-      <p style="margin-top:20px;"><strong>Garantía de Confianza:</strong> Recuerda que cuentas con una garantía del 100% si después de vivir la Clase 1 completa sientes que este proceso no es para ti.</p>
+      <p style="margin-top:20px;"><strong>Garantía de Confianza:</strong> Recuerda que cuentas con una garantía del 100% si después de vivir la Clase 1 sientes que este proceso no es para ti.</p>
       <p><strong>Tu Entrenador Mental.</strong></p>
     </div>
   </div>`;

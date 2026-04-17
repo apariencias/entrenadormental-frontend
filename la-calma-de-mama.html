@@ -68,10 +68,10 @@
            IDENTIDAD VISUAL — CALMA (ámbar / tierra)
            ========================================================================== */
         body.la-calma-de-mama {
-            --gold-1: #9b5a2b;
-            --gold-2: #d19a3a;
-            --gold-3: #e3c07a;
-            --gold-4: #f4e6c9;
+            --gold-1: #ba9133;
+            --gold-2: #c4a043;
+            --gold-3: #e0c866;
+            --gold-4: #f4e689;
             --text-accent: var(--gold-2);
             --gold-gradient-1: linear-gradient(135deg, var(--gold-2) 0%, var(--gold-3) 100%);
             --gold-gradient-2: linear-gradient(90deg, var(--gold-1) 0%, var(--gold-2) 50%, var(--gold-3) 100%);
@@ -947,25 +947,72 @@
         </section>
 
         <!-- =================================================================
-             EVIDENCIAS — NO TOCAR (carousel)
-             ================================================================= -->
-        <section id="evidencias" class="section">
-            <div class="container">
-                <div class="section-title reveal">
-                    <h2>Evidencias de Nueva Realidad</h2>
-                </div>
-            </div>
-            <div class="carousel-container">
-                <div class="testimonial-track">
-                    <div class="whatsapp-card"><div class="chat-bubble"><p>Sí, y no sé qué pasó hoy pero el caos de la mañana me dio risa en lugar de darme el microinfarto de siempre 😂. Siento que tengo un botón de paz que antes no existía. Qué alivio!</p><span class="chat-time">17:58 ✓✓</span></div></div>
-                    <div class="whatsapp-card"><div class="chat-bubble"><p>Te juro que pensé que esto sería otra cosa teórica, pero se apagó el piloto automático y por primera vez en meses llegué a la noche sin sentir que me pasó un camión por encima. Gracias!</p><span class="chat-time">21:26 ✓✓</span></div></div>
-                    <div class="whatsapp-card"><div class="chat-bubble"><p>Ayer tuve una situación que antes me hubiera arruinado el día, y simplemente no me enganché. Es como si mi mente hubiera decidido que eso ya no es relevante. Es maravilloso tener ese control!</p><span class="chat-time">13:02 ✓✓</span></div></div>
-                    <div class="whatsapp-card"><div class="chat-bubble"><p>Sí, y no sé qué pasó hoy pero el caos de la mañana me dio risa en lugar de darme el microinfarto de siempre 😂. Siento que tengo un botón de paz que antes no existía. Qué alivio!</p><span class="chat-time">17:58 ✓✓</span></div></div>
-                    <div class="whatsapp-card"><div class="chat-bubble"><p>Te juro que pensé que esto sería otra cosa teórica, pero se apagó el piloto automático y por primera vez en meses llegué a la noche sin sentir que me pasó un camión por encima. Gracias!</p><span class="chat-time">21:26 ✓✓</span></div></div>
-                    <div class="whatsapp-card"><div class="chat-bubble"><p>Ayer tuve una situación que antes me hubiera arruinado el día, y simplemente no me enganché. Es como si mi mente hubiera decidido que eso ya no es relevante. Es maravilloso tener ese control!</p><span class="chat-time">13:02 ✓✓</span></div></div>
-                </div>
-            </div>
-        </section>
+     EVIDENCIAS — Carrusel infinito corregido
+     ================================================================= -->
+<section id="evidencias" class="section">
+    <div class="container">
+        <div class="section-title reveal">
+            <h2>Evidencias de Nueva Realidad</h2>
+        </div>
+    </div>
+    
+    <style>
+        /* Asegura un carrusel infinito sin saltos */
+        .carousel-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+        .testimonial-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: scrollInfinite 35s linear infinite;
+        }
+        /* Pausa al hover para mejor usabilidad */
+        .testimonial-track:hover {
+            animation-play-state: paused;
+        }
+        @keyframes scrollInfinite {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                /* Mueve exactamente la mitad del ancho total (porque duplicamos el contenido) */
+                transform: translateX(-50%);
+            }
+        }
+        .whatsapp-card {
+            flex-shrink: 0;
+            width: 300px; /* Ajusta según tu diseño */
+            /* El resto de estilos ya están en tu CSS principal */
+        }
+        @media (max-width: 768px) {
+            .whatsapp-card {
+                width: 260px;
+            }
+            .testimonial-track {
+                gap: 16px;
+            }
+        }
+    </style>
+
+    <div class="carousel-container">
+        <div class="testimonial-track">
+            <!-- Conjunto 1 (original) -->
+            <div class="whatsapp-card"><div class="chat-bubble"><p>Sí, y no sé qué pasó hoy pero el caos de la mañana me dio risa en lugar de darme el microinfarto de siempre 😂. Siento que tengo un botón de paz que antes no existía. Qué alivio!</p><span class="chat-time">17:58 ✓✓</span></div></div>
+            <div class="whatsapp-card"><div class="chat-bubble"><p>Te juro que pensé que esto sería otra cosa teórica, pero se apagó el piloto automático y por primera vez en meses llegué a la noche sin sentir que me pasó un camión por encima. Gracias!</p><span class="chat-time">21:26 ✓✓</span></div></div>
+            <div class="whatsapp-card"><div class="chat-bubble"><p>Ayer tuve una situación que antes me hubiera arruinado el día, y simplemente no me enganché. Es como si mi mente hubiera decidido que eso ya no es relevante. Es maravilloso tener ese control!</p><span class="chat-time">13:02 ✓✓</span></div></div>
+            
+            <!-- Conjunto 2 (duplicado para bucle infinito) -->
+            <div class="whatsapp-card"><div class="chat-bubble"><p>Sí, y no sé qué pasó hoy pero el caos de la mañana me dio risa en lugar de darme el microinfarto de siempre 😂. Siento que tengo un botón de paz que antes no existía. Qué alivio!</p><span class="chat-time">17:58 ✓✓</span></div></div>
+            <div class="whatsapp-card"><div class="chat-bubble"><p>Te juro que pensé que esto sería otra cosa teórica, pero se apagó el piloto automático y por primera vez en meses llegué a la noche sin sentir que me pasó un camión por encima. Gracias!</p><span class="chat-time">21:26 ✓✓</span></div></div>
+            <div class="whatsapp-card"><div class="chat-bubble"><p>Ayer tuve una situación que antes me hubiera arruinado el día, y simplemente no me enganché. Es como si mi mente hubiera decidido que eso ya no es relevante. Es maravilloso tener ese control!</p><span class="chat-time">13:02 ✓✓</span></div></div>
+            
+            <!-- (Opcional) Puedes agregar un tercer conjunto para más fluidez en pantallas muy anchas, pero con dos basta -->
+        </div>
+    </div>
+</section>
 
         <!-- =================================================================
              FILTRO
@@ -1046,7 +1093,7 @@
                         </div>
 
                         <!-- BONUS -->
-                        <div style="background:linear-gradient(135deg,rgba(209,154,58,0.12),transparent);padding:20px;border-radius:var(--radius-md);margin-bottom:24px;border-left:3px solid var(--text-accent);">
+                        <div style="background:linear-gradient(135deg,rgba(196,160,67,0.12),transparent);padding:20px;border-radius:var(--radius-md);margin-bottom:24px;border-left:3px solid var(--text-accent);">
                             <h5 style="color:var(--text-accent);margin:0 0 10px 0;text-transform:uppercase;letter-spacing:1px;font-size:0.8rem;">Bonus</h5>
                             <p style="font-size:0.9rem;color:var(--text-secondary);margin:0;line-height:1.55;">
                                 <strong style="color:var(--text-primary);">Al inscribirte ahora</strong> recibes acceso inmediato a tu <strong style="color:var(--text-primary);">Protocolo de Sincronicidad Cerebral</strong>.

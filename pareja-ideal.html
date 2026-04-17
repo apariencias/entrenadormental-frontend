@@ -88,10 +88,10 @@
            IDENTIDAD VISUAL — PAREJA IDEAL (rosa cobre / magenta suave)
            ========================================================================== */
         body.page-pareja {
-            --gold-1: #8a3a4a;
-            --gold-2: #d48aa8;
-            --gold-3: #e7b3c7;
-            --gold-4: #f6dbe6;
+            --gold-1: #ba9133;
+            --gold-2: #c4a043;
+            --gold-3: #e0c866;
+            --gold-4: #f4e689;
             --text-accent: var(--gold-2);
             --gold-gradient-1: linear-gradient(135deg, var(--gold-2) 0%, var(--gold-3) 100%);
             --gold-gradient-2: linear-gradient(90deg, var(--gold-1) 0%, var(--gold-2) 50%, var(--gold-3) 100%);
@@ -867,7 +867,7 @@
                 <div class="science-layout reveal">
                     <div class="science-content">
                         <h2>La Ciencia de la Conexión</h2>
-                        <p class="authority-italic" style="margin-bottom:18px;">No es suerte, es neurología.</p>
+                        <p class="authority-italic" style="margin-bottom:18px;">No es suerte, es sintonía.</p>
                         <p>Tu cerebro no evalúa a las personas de forma objetiva. Desde la infancia, desarrolló un mapa relacional —lo que John Bowlby llamó estilo de apego— que le dice qué tipo de vínculo siente "normal" y cuál siente "seguro".</p>
                         <p>El problema: cuando ese mapa fue dibujado en un entorno de inconsistencia o carencia, tu sistema nervioso confunde la familiaridad con la compatibilidad.</p>
                     </div>
@@ -882,58 +882,145 @@
         </section>
 
         <!-- =================================================================
-             EVIDENCIAS DE LA NUEVA CONFIGURACIÓN
-             (Carrusel continuo — duplicar tarjetas para seamless loop)
-             ================================================================= -->
-        <section id="evidencias" class="section">
-            <div class="container">
-                <div class="section-title reveal">
-                    <h2>Evidencias de la Nueva Configuración</h2>
+     EVIDENCIAS DE LA NUEVA CONFIGURACIÓN
+     (Carrusel Infinito Blindado — 3 Sets para Precisión Perfecta)
+     ================================================================= -->
+<section id="evidencias" class="section">
+    <div class="container">
+        <div class="section-title reveal">
+            <h2>Capturas de Nueva Configuración</h2>
+        </div>
+    </div>
+
+    <style>
+        /* Configuración Robusta del Carrusel */
+        #evidencias .carousel-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            /* El degradado en los bordes es opcional, ayuda a suavizar la entrada/salida */
+            mask-image: linear-gradient(90deg, transparent, black 3%, black 97%, transparent);
+            -webkit-mask-image: linear-gradient(90deg, transparent, black 3%, black 97%, transparent);
+        }
+
+        #evidencias .testimonial-track {
+            display: flex;
+            gap: 24px;          /* Espacio entre tarjetas */
+            width: max-content;
+            /* Movemos 1/3 del ancho total porque tenemos 3 sets de tarjetas */
+            animation: scrollEvidencias 45s linear infinite;
+            will-change: transform;
+        }
+
+        /* Pausa al pasar el mouse para leer con calma */
+        #evidencias .testimonial-track:hover {
+            animation-play-state: paused;
+        }
+
+        #evidencias .whatsapp-card {
+            flex: 0 0 auto;      /* Ancho fijo, no se estira ni encoge */
+            width: 340px;        /* Ancho consistente, ajústalo a tu diseño */
+            transition: transform 0.3s ease;
+            /* Hereda el resto de estilos de tu CSS global (burbuja, colores, etc.) */
+        }
+
+        /* Animación que mueve exactamente un tercio del ancho */
+        @keyframes scrollEvidencias {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-100% / 3));
+            }
+        }
+
+        /* Ajustes para móviles */
+        @media (max-width: 768px) {
+            #evidencias .whatsapp-card {
+                width: 280px;
+            }
+            #evidencias .testimonial-track {
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #evidencias .whatsapp-card {
+                width: 260px;
+            }
+        }
+    </style>
+
+    <div class="carousel-container">
+        <div class="testimonial-track">
+            <!-- 
+                ⚠️ ATENCIÓN: El contenido se repite 3 VECES. 
+                Esto es intencional para garantizar un bucle perfecto sin huecos.
+                Si añades o quitas un testimonio, hazlo en los 3 bloques.
+            -->
+            
+            <!-- ========== BLOQUE 1 ========== -->
+            <div class="whatsapp-card">
+                <div class="chat-bubble">
+                    <p>Oye, qué fuerte... me buscó el tipo con el que siempre recaía y por primera vez lo vi y no sentí absolutamente nada. Es como si mi cerebro ya no lo reconociera como una opción. Se siente increíble tener este control!</p>
+                    <span class="chat-time">18:41 ✓✓</span>
                 </div>
             </div>
-            <div class="carousel-container">
-                <div class="testimonial-track">
-                    <!-- Set original -->
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Oye, qué fuerte... me buscó el tipo con el que siempre recaía y por primera vez lo vi y no sentí absolutamente nada. Es como si mi cerebro ya no lo reconociera como una opción. Se siente increíble tener este control!</p>
-                            <span class="chat-time">18:41 ✓✓</span>
-                        </div>
-                    </div>
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Hoy tuve una cita y fue diferente. Sin juegos, sin esa ansiedad de no saber si me va a volver a escribir. Siento que al cambiar yo, el tipo de personas que se me acercan también cambió. Todo está fluyendo 🥰</p>
-                            <span class="chat-time">20:15 ✓✓</span>
-                        </div>
-                    </div>
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>No me vas a creer, pero tengo que contártelo. Conocí a alguien que es exactamente lo que puse en mi lista de sintonía, pero lo más loco no es eso, sino que yo me siento súper tranquila, como si fuera lo más normal del mundo que alguien así estuviera conmigo. Cero ansiedad, cero miedo a que sea un juego. Realmente mi mente ya no acepta otra cosa que no sea esto.</p>
-                            <span class="chat-time">22:07 ✓✓</span>
-                        </div>
-                    </div>
-                    <!-- Set duplicado para loop sin cortes -->
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Oye, qué fuerte... me buscó el tipo con el que siempre recaía y por primera vez lo vi y no sentí absolutamente nada. Es como si mi cerebro ya no lo reconociera como una opción. Se siente increíble tener este control!</p>
-                            <span class="chat-time">18:41 ✓✓</span>
-                        </div>
-                    </div>
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>Hoy tuve una cita y fue diferente. Sin juegos, sin esa ansiedad de no saber si me va a volver a escribir. Siento que al cambiar yo, el tipo de personas que se me acercan también cambió. Todo está fluyendo 🥰</p>
-                            <span class="chat-time">20:15 ✓✓</span>
-                        </div>
-                    </div>
-                    <div class="whatsapp-card">
-                        <div class="chat-bubble">
-                            <p>No me vas a creer, pero tengo que contártelo. Conocí a alguien que es exactamente lo que puse en mi lista de sintonía, pero lo más loco no es eso, sino que yo me siento súper tranquila, como si fuera lo más normal del mundo que alguien así estuviera conmigo. Cero ansiedad, cero miedo a que sea un juego. Realmente mi mente ya no acepta otra cosa que no sea esto.</p>
-                            <span class="chat-time">22:07 ✓✓</span>
-                        </div>
-                    </div>
+            <div class="whatsapp-card">
+                <div class="chat-bubble">
+                    <p>Hoy tuve una cita y fue diferente. Sin juegos, sin esa ansiedad de no saber si me va a volver a escribir. Siento que al cambiar yo, el tipo de personas que se me acercan también cambió. Todo está fluyendo 🥰</p>
+                    <span class="chat-time">20:15 ✓✓</span>
                 </div>
             </div>
-        </section>
+            <div class="whatsapp-card">
+                <div class="chat-bubble">
+                    <p>No me vas a creer, pero tengo que contártelo. Conocí a alguien que es exactamente lo que puse en mi lista de sintonía, pero lo más loco no es eso, sino que yo me siento súper tranquila, como si fuera lo más normal del mundo que alguien así estuviera conmigo. Cero ansiedad, cero miedo a que sea un juego. Realmente mi mente ya no acepta otra cosa que no sea esto.</p>
+                    <span class="chat-time">22:07 ✓✓</span>
+                </div>
+            </div>
+
+            <!-- ========== BLOQUE 2 (Duplicado) ========== -->
+            <div class="whatsapp-card">
+                <div class="chat-bubble">
+                    <p>Oye, qué fuerte... me buscó el tipo con el que siempre recaía y por primera vez lo vi y no sentí absolutamente nada. Es como si mi cerebro ya no lo reconociera como una opción. Se siente increíble tener este control!</p>
+                    <span class="chat-time">18:41 ✓✓</span>
+                </div>
+            </div>
+            <div class="whatsapp-card">
+                <div class="chat-bubble">
+                    <p>Hoy tuve una cita y fue diferente. Sin juegos, sin esa ansiedad de no saber si me va a volver a escribir. Siento que al cambiar yo, el tipo de personas que se me acercan también cambió. Todo está fluyendo 🥰</p>
+                    <span class="chat-time">20:15 ✓✓</span>
+                </div>
+            </div>
+            <div class="whatsapp-card">
+                <div class="chat-bubble">
+                    <p>No me vas a creer, pero tengo que contártelo. Conocí a alguien que es exactamente lo que puse en mi lista de sintonía, pero lo más loco no es eso, sino que yo me siento súper tranquila, como si fuera lo más normal del mundo que alguien así estuviera conmigo. Cero ansiedad, cero miedo a que sea un juego. Realmente mi mente ya no acepta otra cosa que no sea esto.</p>
+                    <span class="chat-time">22:07 ✓✓</span>
+                </div>
+            </div>
+
+            <!-- ========== BLOQUE 3 (Triplicado - La clave del éxito) ========== -->
+            <div class="whatsapp-card">
+                <div class="chat-bubble">
+                    <p>Oye, qué fuerte... me buscó el tipo con el que siempre recaía y por primera vez lo vi y no sentí absolutamente nada. Es como si mi cerebro ya no lo reconociera como una opción. Se siente increíble tener este control!</p>
+                    <span class="chat-time">18:41 ✓✓</span>
+                </div>
+            </div>
+            <div class="whatsapp-card">
+                <div class="chat-bubble">
+                    <p>Hoy tuve una cita y fue diferente. Sin juegos, sin esa ansiedad de no saber si me va a volver a escribir. Siento que al cambiar yo, el tipo de personas que se me acercan también cambió. Todo está fluyendo 🥰</p>
+                    <span class="chat-time">20:15 ✓✓</span>
+                </div>
+            </div>
+            <div class="whatsapp-card">
+                <div class="chat-bubble">
+                    <p>No me vas a creer, pero tengo que contártelo. Conocí a alguien que es exactamente lo que puse en mi lista de sintonía, pero lo más loco no es eso, sino que yo me siento súper tranquila, como si fuera lo más normal del mundo que alguien así estuviera conmigo. Cero ansiedad, cero miedo a que sea un juego. Realmente mi mente ya no acepta otra cosa que no sea esto.</p>
+                    <span class="chat-time">22:07 ✓✓</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
         <!-- =================================================================
              FILTRO — Algo Importante
@@ -942,7 +1029,7 @@
             <div class="container">
                 <div class="authority-content reveal">
                     <h3>Algo Importante</h3>
-                    <p class="body-copy">Este proceso no es para todos 🌹 Acompañamos a quienes han decidido que "entender" sus patrones relacionales ya no es suficiente y están listos para una transformación real. Es normal que aparezca la duda de "mejor después". Es solo tu programación antigua tratando de mantenerse activa. Pero la pareja ideal no es algo que vas a encontrar; es algo que vas a <span class="accent">sintonizar</span>.</p>
+                    <p class="body-copy">Este proceso no es para todas 🌹 Acompañamos a quienes han decidido que "entender" sus patrones relacionales ya no es suficiente y están listas para una transformación real. Es normal que aparezca la duda de "mejor después". Es solo tu programación antigua tratando de mantenerse activa. Pero la pareja ideal no es algo que vas a encontrar; es algo que vas a <span class="accent">sintonizar</span>.</p>
                 </div>
             </div>
         </section>
@@ -1016,7 +1103,7 @@
                         </div>
 
                         <!-- BONUS -->
-                        <div style="background:linear-gradient(135deg,rgba(212,138,168,0.12),transparent);padding:20px;border-radius:var(--radius-md);margin-bottom:24px;border-left:3px solid var(--text-accent);">
+                        <div style="background:linear-gradient(135deg,rgba(196,160,67,0.12),transparent);padding:20px;border-radius:var(--radius-md);margin-bottom:24px;border-left:3px solid var(--text-accent);">
                             <h5 style="color:var(--text-accent);margin:0 0 10px 0;text-transform:uppercase;letter-spacing:1px;font-size:0.8rem;">Bonus</h5>
                             <p style="font-size:0.9rem;color:var(--text-secondary);margin:0;line-height:1.55;">
                                 <strong style="color:var(--text-primary);">Al inscribirte ahora</strong>, recibes de inmediato un protocolo de <strong style="color:var(--text-primary);">"destintoxicación emocional"</strong> de relaciones anteriores.

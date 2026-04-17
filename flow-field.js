@@ -1,13 +1,14 @@
 /**
  * flow-field.js — Entrenador Mental / La Calma de Mamá
- * Breathing Gold Flow Field — v2 (evolved)
+ * Breathing Gold Flow Field — v3 (scroll-proof)
  *
  * Filosofía de diseño somático:
- *  - ~560 partículas (vs 3 000 original) — densidad intencional, no ruido
- *  - Velocidad global oscila en ciclo de 8 s (0.785 rad/s) — inhala / exhala
+ *  - ~560 partículas — densidad intencional, no ruido
+ *  - Velocidad global oscila en ciclo de 8 s — inhala / exhala
  *  - Profundidad Z simulada: near = brillante + rápida, far = tenue + lenta
  *  - Ruido por octavas de seno: movimiento orgánico sin libraries externas
- *  - Retina-ready: usa devicePixelRatio, lógica en px CSS
+ *  - Retina-ready: devicePixelRatio, lógica en px CSS
+ *  - Resistente a pausas por scroll móvil (delta time + reinicio automático)
  */
 (function () {
     'use strict';
@@ -19,7 +20,8 @@
       const ctx = canvas.getContext('2d');
       let W, H, particles = [];
       let raf;
-      const t0 = performance.now();
+      let lastTimestamp = 0;
+      const MAX_DELTA_MS = 200; // Si el delta supera esto, asumimos pausa y reiniciamos suavemente
   
       /* ─── Pseudo-Perlin: tres octavas de seno/coseno entrelazadas ──────── */
       function noise(x, y, t) {
@@ -32,65 +34,92 @@
   
       /* ─── Resize con soporte DPR ────────────────────────────────────────── */
       function resize() {
-        const dpr = Math.min(window.devicePixelRatio || 1, 2); // cap 2× para perf
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
         W = window.innerWidth;
         H = window.innerHeight;
         canvas.width  = Math.round(W * dpr);
         canvas.height = Math.round(H * dpr);
         canvas.style.width  = W + 'px';
         canvas.style.height = H + 'px';
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // resetea + escala, sin acumulación
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
   
       /* ─── Construir partículas ──────────────────────────────────────────── */
       function buildParticles() {
         particles = [];
-        // Densidad proporcional al área, techo conservador para móviles
         const count = Math.min(560, Math.round((W * H) / 3400));
         for (let i = 0; i < count; i++) {
-          const z = Math.random();        // 0 = lejana, 1 = cercana
+          const z = Math.random();
           particles.push({
             x:           Math.random() * W,
             y:           Math.random() * H,
             z,
-            size:        0.35 + z * 1.55,  // near = más grande
-            baseOpacity: 0.06 + z * 0.44,  // near = más visible
-            speed:       0.20 + z * 0.75,  // near = más rápida
-            phase:       Math.random() * Math.PI * 2,     // fase individual de pulso
-            hueShift:    (Math.random() - 0.5) * 9        // variación sutil de tono dorado
+            size:        0.35 + z * 1.55,
+            baseOpacity: 0.06 + z * 0.44,
+            speed:       0.20 + z * 0.75,
+            phase:       Math.random() * Math.PI * 2,
+            hueShift:    (Math.random() - 0.5) * 9
           });
         }
       }
   
-      /* ─── Loop de dibujo ────────────────────────────────────────────────── */
-      function draw() {
-        const t = (performance.now() - t0) / 1000;
+      /* ─── Reinicio suave tras pausa (scroll) ────────────────────────────── */
+      function softResetAfterPause() {
+        // No reiniciamos posiciones completamente, solo aseguramos que no haya saltos bruscos
+        // El delta time ya se encarga de normalizar el movimiento.
+        // Podemos ajustar ligeramente las fases para evitar patrones estáticos tras la pausa.
+        for (const p of particles) {
+          p.phase = (p.phase + 0.01) % (Math.PI * 2);
+        }
+      }
   
-        // Respiración: velocidad oscila en ciclo de 8 s — diseño somático
+      /* ─── Loop de dibujo con delta time controlado ──────────────────────── */
+      function draw(now) {
+        raf = requestAnimationFrame(draw);
+  
+        // Inicializar timestamp en el primer frame
+        if (!lastTimestamp) {
+          lastTimestamp = now;
+          return;
+        }
+  
+        // Calcular delta time en segundos, cap al máximo para evitar saltos
+        let deltaMs = now - lastTimestamp;
+        if (deltaMs > MAX_DELTA_MS) {
+          // Probable pausa por scroll o cambio de pestaña
+          deltaMs = 16.67; // Asumir ~60fps para evitar salto
+          softResetAfterPause();
+        }
+        const deltaSec = deltaMs / 1000;
+        lastTimestamp = now;
+  
+        // El tiempo global sigue usando performance.now para el ruido continuo,
+        // pero el movimiento de partículas escala con deltaSec para mantener velocidad constante.
+        const t = performance.now() / 1000;
+  
+        // Respiración: ciclo de 8s
         const breath = 0.68 + Math.sin(t * 0.785) * 0.32;
   
-        // Trail suave: fondo semi-transparente preserva la "estela" de cada partícula
+        // Trail
         ctx.fillStyle = 'rgba(10,10,10,0.15)';
         ctx.fillRect(0, 0, W, H);
   
         for (const p of particles) {
-          // Ángulo del campo de flujo vía noise
           const angle = noise(p.x / 230, p.y / 230, t) * Math.PI * 2.65;
   
-          // Movimiento — leve sesgo vertical para que el flujo "caiga con gracia"
-          p.x += Math.cos(angle) * p.speed * breath;
-          p.y += Math.sin(angle) * p.speed * breath * 0.66;
+          // Movimiento con velocidad base * delta * factor de respiración
+          // Factor de escala para mantener la velocidad visual similar a la versión original
+          const moveFactor = deltaSec * 60; // Normalizado a 60fps
+          p.x += Math.cos(angle) * p.speed * breath * moveFactor;
+          p.y += Math.sin(angle) * p.speed * breath * 0.66 * moveFactor;
   
-          // Wrap de bordes
+          // Wrap
           if (p.x < -4) p.x = W + 4;
           else if (p.x > W + 4) p.x = -4;
           if (p.y < -4) p.y = H + 4;
           else if (p.y > H + 4) p.y = -4;
   
-          // Opacidad pulsante — cada partícula respira en su propia fase
           const o = p.baseOpacity * (0.60 + Math.sin(t * 0.82 + p.phase) * 0.40);
-  
-          // Paleta dorada: hue 43–51, saturación/luminosidad varían con profundidad
           const h = 44 + p.hueShift;
           const s = 46 + p.z * 20;
           const l = 48 + p.z * 18;
@@ -100,25 +129,46 @@
           ctx.fillStyle = `hsla(${h.toFixed(1)},${s.toFixed(1)}%,${l.toFixed(1)}%,${o.toFixed(3)})`;
           ctx.fill();
         }
+      }
   
+      /* ─── Iniciar el loop correctamente ─────────────────────────────────── */
+      function startLoop() {
+        if (raf) cancelAnimationFrame(raf);
+        lastTimestamp = 0; // Reiniciar timestamp para que el primer frame no calcule delta enorme
         raf = requestAnimationFrame(draw);
       }
   
-      /* ─── Init ──────────────────────────────────────────────────────────── */
+      /* ─── Init completo ─────────────────────────────────────────────────── */
       function init() {
-        if (raf) cancelAnimationFrame(raf);
         resize();
         buildParticles();
-        draw();
+        startLoop();
       }
   
       init();
   
-      // Debounce resize para evitar rebuilds en cada px de redimensión
+      // Debounce resize
       let _resizeTimer;
       window.addEventListener('resize', () => {
         clearTimeout(_resizeTimer);
         _resizeTimer = setTimeout(init, 180);
       }, { passive: true });
+  
+      // Manejo de visibilidad: pausar el loop cuando la pestaña no está visible
+      // y reanudar con reinicio suave
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          if (raf) {
+            cancelAnimationFrame(raf);
+            raf = null;
+          }
+        } else {
+          if (!raf) {
+            lastTimestamp = 0; // Fuerza reinicio de delta
+            softResetAfterPause();
+            raf = requestAnimationFrame(draw);
+          }
+        }
+      });
     });
   })();
