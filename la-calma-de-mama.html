@@ -77,61 +77,44 @@
             --gold-gradient-2: linear-gradient(90deg, var(--gold-1) 0%, var(--gold-2) 50%, var(--gold-3) 100%);
         }
 
-        /* Visual calma: olas suaves */
-        body.la-calma-de-mama .calm-waves {
-            position: relative;
-            width: 260px;
-            height: 220px;
-            margin: 0 auto;
-            border-radius: 999px;
-            border: 1px solid rgba(209, 154, 58, 0.22);
-            background:
-                radial-gradient(circle at 50% 50%, rgba(209, 154, 58, 0.12), transparent 62%),
-                linear-gradient(180deg, rgba(209, 154, 58, 0.06), transparent 55%);
-            overflow: hidden;
-            box-shadow: 0 0 0 1px rgba(209, 154, 58, 0.10), 0 18px 60px rgba(0,0,0,.45);
-        }
-        body.la-calma-de-mama .calm-waves::before,
-        body.la-calma-de-mama .calm-waves::after {
-            content: "";
-            position: absolute;
-            left: -40%;
-            width: 180%;
-            height: 68%;
-            top: 52%;
-            border-radius: 42% 58% 52% 48% / 48% 52% 48% 52%;
-            background: rgba(209, 154, 58, 0.10);
-            filter: blur(0.3px);
-            animation: calmWave 10s ease-in-out infinite;
-            opacity: 0.75;
-        }
-        body.la-calma-de-mama .calm-waves::after {
-            top: 58%;
-            height: 62%;
-            background: rgba(209, 154, 58, 0.07);
-            animation-duration: 14s;
-            animation-direction: reverse;
-            opacity: 0.65;
-        }
-        body.la-calma-de-mama .calm-waves .calm-dot {
-            position: absolute;
-            inset: 0;
-            display: grid;
-            place-items: center;
-        }
-        body.la-calma-de-mama .calm-waves .calm-dot::before {
-            content: "";
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: var(--text-accent);
-            box-shadow: 0 0 24px 10px rgba(209, 154, 58, 0.22);
-        }
-        @keyframes calmWave {
-            0%   { transform: translateX(0) translateY(0) rotate(0deg); }
-            50%  { transform: translateX(14%) translateY(-6%) rotate(6deg); }
-            100% { transform: translateX(0) translateY(0) rotate(0deg); }
-        }
+       /* Ondas continuas sin pausas */
+body.la-calma-de-mama .wave-lines {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    background: transparent; /* Sin fondo */
+}
+
+body.la-calma-de-mama .wave-group {
+    animation: driftContinuous linear infinite;
+    will-change: transform;
+}
+
+/* Velocidades distintas para cada grupo */
+body.la-calma-de-mama .wave-group:nth-child(1) { animation-duration: 20s; }
+body.la-calma-de-mama .wave-group:nth-child(2) { animation-duration: 26s; animation-delay: -7s; }
+body.la-calma-de-mama .wave-group:nth-child(3) { animation-duration: 32s; animation-delay: -14s; }
+body.la-calma-de-mama .wave-group:nth-child(4) { animation-duration: 38s; animation-delay: -21s; }
+body.la-calma-de-mama .wave-group:nth-child(5) { animation-duration: 44s; animation-delay: -28s; }
+
+@keyframes driftContinuous {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Se mueve exactamente el ancho de una copia (800px) */
+        transform: translateX(-800px);
+    }
+}
+
+/* Asegurar que no haya bordes visibles */
+body.la-calma-de-mama .science-visual {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
 
         /* ==========================================================================
            ESPACIO NEGATIVO — SECCIONES RESPIRAN
@@ -937,12 +920,26 @@
                         <p>Tu sistema nervioso autónomo no distingue entre un peligro real y uno imaginado. Cuando tu amígdala —el centro de alarma del cerebro— detecta una amenaza, dispara cortisol en segundos.</p>
                         <p>El problema: después de años de alta demanda, tu cerebro aprende a disparar esa alarma incluso cuando no hay peligro. No estás exagerando. Estás calibrada para sobrevivir, no para vivir.</p>
                     </div>
-                    <div class="science-visual" aria-hidden="true">
-                        <div class="calm-waves">
-                            <div class="calm-dot"></div>
-                        </div>
-                    </div>
-                </div>
+                   <div class="science-visual" aria-hidden="true">
+    <!-- Hipotrocoide Animada — Se dibuja a sí misma -->
+    <div class="hypotrochoid-container">
+        <svg class="hypotrochoid-svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+            <!-- Trazo hipotrocoide (R=80, r=30, d=40) — suave y equilibrado -->
+            <path class="hypotrochoid-path" 
+                  d="M100,20 C133.1,20 160,46.9 160,80 C160,113.1 133.1,140 100,140 C66.9,140 40,113.1 40,80 C40,46.9 66.9,20 100,20 Z M100,30 C127.6,30 150,52.4 150,80 C150,107.6 127.6,130 100,130 C72.4,130 50,107.6 50,80 C50,52.4 72.4,30 100,30 Z M100,40 C122.1,40 140,57.9 140,80 C140,102.1 122.1,120 100,120 C77.9,120 60,102.1 60,80 C60,57.9 77.9,40 100,40 Z M100,50 C116.6,50 130,63.4 130,80 C130,96.6 116.6,110 100,110 C83.4,110 70,96.6 70,80 C70,63.4 83.4,50 100,50 Z M100,60 C111,60 120,69 120,80 C120,91 111,100 100,100 C89,100 80,91 80,80 C80,69 89,60 100,60 Z" 
+                  fill="none" 
+                  stroke="var(--text-accent)" 
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-dasharray="1200"
+                  stroke-dashoffset="1200"
+                  />
+            <!-- Núcleo pulsante sutil -->
+            <circle class="hypotrochoid-core" cx="100" cy="80" r="4" fill="var(--text-accent)" opacity="0.6" />
+        </svg>
+    </div>
+</div>
             </div>
         </section>
 
@@ -952,7 +949,7 @@
 <section id="evidencias" class="section">
     <div class="container">
         <div class="section-title reveal">
-            <h2>Evidencias de Nueva Realidad</h2>
+            <h2>Capturas de Nueva Realidad</h2>
         </div>
     </div>
     
@@ -1216,7 +1213,7 @@
             // =====================================================================
             const HORARIO_VISIBLE = "08:00 PM (CDMX)";
             const CONFIG_FECHAS = [
-                { dia: "Lunes 20 de Abril",   hora: HORARIO_VISIBLE, estado: "lleno",      textoBadge: "Cupo Lleno"      },
+                { dia: "Martes 14 de Abril",   hora: HORARIO_VISIBLE, estado: "lleno",      textoBadge: "Cupo Lleno"      },
                 { dia: "Jueves 23 de Abril",  hora: HORARIO_VISIBLE, estado: "lleno",      textoBadge: "Cupo Lleno"      },
                 { dia: "Lunes 27 de Abril",   hora: HORARIO_VISIBLE, estado: "disponible", textoBadge: "Últimos lugares" }
             ];
@@ -1409,6 +1406,22 @@
                         btn.innerText = originalBtnText;
                         btn.disabled = false;
                     }
+                });
+            }
+
+            // =====================================================================
+            // 7. ANIMACIÓN HIPOTROCOIDE — Dibujo progresivo como spirograph
+            // =====================================================================
+            const hypotrochoidPath = document.querySelector('.hypotrochoid-path');
+            if (hypotrochoidPath && typeof gsap !== 'undefined') {
+                // Animar el trazo como si se estuviera dibujando
+                gsap.to(hypotrochoidPath, {
+                    strokeDashoffset: 0,
+                    duration: 4, // Duración de la animación en segundos
+                    ease: 'power1.inOut', // Suave entrada y salida
+                    delay: 1, // Retraso antes de empezar
+                    repeat: -1, // Repetir infinitamente
+                    yoyo: true, // Ir y volver para efecto continuo
                 });
             }
 

@@ -13,10 +13,10 @@ const COURSES_DB = {
     audioNombre: "Protocolo de Sincronicidad Cerebral",
     guiaNombre: "Guía de Entrenamiento Mental",
     sessions: [
-      { label: "Clase 1", fecha: "[Fecha]", hora: "08:00 PM" },
-      { label: "Clase 2", fecha: "[Fecha]", hora: "08:00 PM" },
-      { label: "Clase 3", fecha: "[Fecha]", hora: "08:00 PM" },
-      { label: "Clase 4", fecha: "[Fecha]", hora: "08:00 PM" },
+      { label: "Clase 1", fecha: "[Lunes 27 de Abril]", hora: "08:00 PM" },
+      { label: "Clase 2", fecha: "[Lunes 4 de Mayo]", hora: "08:00 PM" },
+      { label: "Clase 3", fecha: "[Lunes 11 de Mayo]", hora: "08:00 PM" },
+      { label: "Clase 4", fecha: "[Lunes 18 de Mayo]", hora: "08:00 PM" },
     ],
   },
   "Sintoniza a tu Pareja Ideal": {
