@@ -7,16 +7,16 @@ const COURSES_DB = {
   "La Calma de Mamá": {
     subject: "Bienvenida a La Calma de Mamá: Tu proceso de reprogramación comienza hoy",
     titulo: "Bienvenida a La Calma de Mamá",
-    zoomLink: "https://us05web.zoom.us/j/123456789?pwd=ejemplo",
-    zoomPass: "1234",
+    zoomLink: "https://us06web.zoom.us/j/86468025186?pwd=ektHetJ7bSHT5BMCxavI7nX4iWu9fg.1",
+    zoomPass: "464310",
     audioLink: "https://entrenadormental.mx/assets/audios/neuro-alineacion-inicial.mp3",
     audioNombre: "Protocolo de Sincronicidad Cerebral",
     guiaNombre: "Guía de Entrenamiento Mental",
     sessions: [
-      { label: "Clase 1", fecha: "[Lunes 27 de Abril]", hora: "08:00 PM" },
-      { label: "Clase 2", fecha: "[Lunes 4 de Mayo]", hora: "08:00 PM" },
-      { label: "Clase 3", fecha: "[Lunes 11 de Mayo]", hora: "08:00 PM" },
-      { label: "Clase 4", fecha: "[Lunes 18 de Mayo]", hora: "08:00 PM" },
+      { label: "Clase 1", fecha: "Lunes 27 de Abril", hora: "08:00 PM" },
+      { label: "Clase 2", fecha: "Lunes 4 de Mayo", hora: "08:00 PM" },
+      { label: "Clase 3", fecha: "Lunes 11 de Mayo", hora: "08:00 PM" },
+      { label: "Clase 4", fecha: "Lunes 18 de Mayo", hora: "08:00 PM" },
     ],
   },
   "Sintoniza a tu Pareja Ideal": {
@@ -90,7 +90,7 @@ function parejaBody(name, config) {
         <li><strong>Cámara:</strong> Tienes libertad total. Enciéndela si deseas que calibre los ejercicios según tu lenguaje no verbal, o mantenla apagada si necesitas privacidad.</li>
       </ul>
 
-      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">🛡️ Activación de tu Pase de Acceso (Zoom)</h2>
+      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">🛡️ Tu Pase de Acceso (Zoom)</h2>
       <p>He precargado tu correo en nuestro sistema de seguridad de Zoom para que tu entrada sea fluida y privada.</p>
       <ul>
         <li><strong>Tu Pase VIP:</strong> Recibirás un correo de Zoom Confirmations con tu enlace personal e intransferible.</li>
@@ -165,11 +165,14 @@ function calmaBody(name, config) {
         <li><strong>Cámara:</strong> Tienes libertad total. Enciéndela si deseas que calibre los ejercicios según tu lenguaje no verbal, o mantenla apagada si necesitas privacidad.</li>
       </ul>
 
-      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">🛡️ Activación de tu Pase de Acceso (Zoom)</h2>
-      <p>Para garantizar la privacidad de nuestras sesiones, he autorizado tu correo directamente en nuestra plataforma.</p>
+      <h2 style="color:#c4a043;font-size:20px;margin-top:28px;">🛡️ Tu Pase de Acceso (Zoom)</h2>
+      <p>Para garantizar la privacidad de nuestras sesiones, hemos autorizado tu correo en nuestra plataforma.</p>
       <ul>
-        <li><strong>¿Qué sigue?</strong> En unos minutos recibirás un correo de Zoom Confirmations con tu Pase de Entrada Personal.</li>
+        <li><strong>¿Qué sigue?</strong> Conéctate 5 minutos antes a tu clase en Zoom para asegurar que tu audio funcione correctamente.</li>
+        <li><strong>Ten a la mano una libreta y un bolígrafo:</strong> El anclaje físico de tus ideas es parte esencial del proceso.</li>
+        <li><strong>Procura usar audífonos durante la clase:</strong> Esto es fundamental para que mi voz guíe tu sistema nervioso sin distracciones externas.</li>
         <li><strong>Acceso Automático:</strong> Ese enlace es único para ti. Al usarlo, entrarás directamente a la sala sin esperas. Si te desconectas, puedes volver a entrar con el mismo link.</li>
+
       </ul>
 
       <div style="margin:16px 0 0;">

@@ -84,14 +84,10 @@ exports.handler = async (event) => {
         return jsonResponse(500, { error: "Configuración del servidor incompleta." });
     }
 
-    const baseUrl = (envBaseUrl || "http://localhost:8888").replace(/\/$/, "");
+    const baseUrl = (envBaseUrl || "http://localhost:3000").replace(/\/$/, "");
 
     // SUCCESS_URL base (desde variables de entorno)
-    let successUrl = process.env.SUCCESS_URL;
-    if (!successUrl) {
-        console.error("Falta SUCCESS_URL en el entorno");
-        return jsonResponse(500, { error: "Configuración del servidor incompleta." });
-    }
+    let successUrl = process.env.SUCCESS_URL || "success.html";
     if (!successUrl.startsWith('http')) {
         successUrl = `${baseUrl}/${successUrl.replace(/^\//, '')}`;
     }
