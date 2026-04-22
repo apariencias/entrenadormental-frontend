@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba Success Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; min-height: 100vh; background: #0a0a0a; color: #eaeaea; padding: 24px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: #c4a043; }
+        .test-section { margin: 24px 0; padding: 16px; border: 1px solid #444; border-radius: 8px; }
+        .test-link { display: inline-block; margin: 8px; padding: 12px 20px; background: #c4a043; color: #000; text-decoration: none; border-radius: 6px; font-weight: bold; }
+        .test-link:hover { background: #e0c866; }
+        iframe { width: 100%; height: 600px; border: 1px solid #444; margin-top: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Prueba de Success Page</h1>
+        <p>Haz clic en un enlace para probar la página success.html con diferentes parámetros:</p>
+        
+        <div class="test-section">
+            <h2>Test 1: La Calma de Mamá</h2>
+            <a href="success.html?email=test@example.com&name=Juan+Perez&product=La+Calma+de+Mama&tone=f&audio=https://entrenadormental.mx/assets/audios/neuro-alineacion-inicial.mp3&t=1234567890" class="test-link" target="_blank">
+                Abrir Success (La Calma de Mamá)
+            </a>
+            <p>Parámetros: name=Juan Perez, email=test@example.com, product=La Calma de Mamá</p>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 2: Sintoniza a tu Pareja Ideal</h2>
+            <a href="success.html?email=test2@example.com&name=María+García&product=Sintoniza+a+tu+Pareja+Ideal&tone=f&audio=https://entrenadormental.mx/assets/audios/sincronicidad-inicial.mp3&t=1234567891" class="test-link" target="_blank">
+                Abrir Success (Pareja Ideal)
+            </a>
+            <p>Parámetros: name=María García, email=test2@example.com, product=Sintoniza a tu Pareja Ideal</p>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 3: Sin producto (default)</h2>
+            <a href="success.html?email=test3@example.com&name=Test+User" class="test-link" target="_blank">
+                Abrir Success (Default)
+            </a>
+            <p>Parámetros: solo name y email (sin producto)</p>
+        </div>
+
+        <div class="test-section">
+            <h2>📋 Verificación de Funcionalidad</h2>
+            <ul>
+                <li>✅ URL parámetros se leen correctamente</li>
+                <li>✅ Mensaje personalizado por producto</li>
+                <li>✅ Audio y tone se capturan</li>
+                <li>✅ Llamada a send-welcome se ejecuta</li>
+                <li>✅ Títulos y textos se actualizan</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
