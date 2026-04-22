@@ -5,8 +5,10 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const handler = async (event) => {
+  const headers = { "Content-Type": "application/json; charset=utf-8" };
+  
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+    return { statusCode: 405, headers, body: 'Method Not Allowed' };
   }
 
   try {
@@ -14,7 +16,7 @@ export const handler = async (event) => {
     const { name, email, whatsapp, product, answers } = payload;
 
     if (!name || !email) {
-      return { statusCode: 400, body: JSON.stringify({ message: 'Faltan datos básicos.' }) };
+      return { statusCode: 400, headers, body: JSON.stringify({ message: 'Faltan datos básicos.' }) };
     }
 
     // =========================================================================
@@ -110,14 +112,14 @@ export const handler = async (event) => {
 
     if (error) {
       console.error('Error enviando correo:', error);
-      return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
+      return { statusCode: 500, headers, body: JSON.stringify({ error: error.message }) };
     }
 
     console.log('✅ Admin notificado (Ordenado: Registro -> Curso).');
-    return { statusCode: 200, body: JSON.stringify({ message: 'Lead notificado' }) };
+    return { statusCode: 200, headers, body: JSON.stringify({ message: 'Lead notificado' }) };
 
   } catch (error) {
     console.error('Error general:', error);
-    return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
+    return { statusCode: 500, headers, body: JSON.stringify({ error: error.message }) };
   }
 };

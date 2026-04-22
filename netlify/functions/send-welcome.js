@@ -187,8 +187,10 @@ function calmaBody(name, config) {
 }
 
 exports.handler = async (event) => {
+  const headers = { "Content-Type": "application/json; charset=utf-8" };
+  
   if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: "Method Not Allowed" };
+    return { statusCode: 405, headers, body: "Method Not Allowed" };
   }
 
   try {
@@ -212,11 +214,11 @@ exports.handler = async (event) => {
     });
 
     if (error) {
-      return { statusCode: 500, body: JSON.stringify({ error }) };
+      return { statusCode: 500, headers, body: JSON.stringify({ error }) };
     }
-    return { statusCode: 200, body: JSON.stringify({ message: "Bienvenida enviada" }) };
+    return { statusCode: 200, headers, body: JSON.stringify({ message: "Bienvenida enviada" }) };
   } catch (error) {
     console.error("Error en send-welcome:", error);
-    return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
+    return { statusCode: 500, headers, body: JSON.stringify({ error: error.message }) };
   }
 };

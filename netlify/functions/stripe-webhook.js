@@ -13,6 +13,7 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.handler = async (event) => {
+    const headers = { "Content-Type": "application/json; charset=utf-8" };
     const sig = event.headers['stripe-signature'];
     let webhookEvent;
 
@@ -20,7 +21,7 @@ exports.handler = async (event) => {
         webhookEvent = stripe.webhooks.constructEvent(event.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
     } catch (err) {
         console.log(`Webhook signature verification failed.`, err.message);
-        return { statusCode: 400 };
+        return { statusCode: 400, headers };
     }
 
     if (webhookEvent.type === 'checkout.session.completed') {
@@ -46,12 +47,12 @@ exports.handler = async (event) => {
         try {
             await transporter.sendMail(mailOptions);
             console.log('Correo de confirmación enviado a:', customerEmail);
-            return { statusCode: 200 };
+            return { statusCode: 200, headers };
         } catch (emailError) {
             console.error('Error al enviar el correo:', emailError);
-            return { statusCode: 500, body: 'Failed to send email' };
+            return { statusCode: 500, headers, body: 'Failed to send email' };
         }
     }
 
-    return { statusCode: 200 };
+    return { statusCode: 200, headers };
 };
