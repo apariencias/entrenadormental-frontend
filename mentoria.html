@@ -461,22 +461,27 @@
                     <form id="mentoria-application-form" class="application-form">
                         <!-- Campos del formulario según especificación -->
                         <div class="form-group">
-                            <label>1. Nombre completo y WhatsApp</label>
-                            <input type="text" name="fullname_whatsapp" placeholder="Tu nombre y número con lada" required>
+                            <label>1. Nombre completo</label>
+                            <input type="text" id="name" name="name" required autocomplete="name" placeholder="Tu nombre completo" minlength="3" maxlength="80" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+">
                         </div>
 
                         <div class="form-group">
-                            <label>2. Describe específicamente el objetivo que deseas alcanzar mediante este acompañamiento privado.</label>
+                            <label>2. WhatsApp</label>
+                            <input type="tel" id="whatsapp" name="whatsapp" required autocomplete="tel" maxlength="15">
+                        </div>
+
+                        <div class="form-group">
+                            <label>3. Describe específicamente el objetivo que deseas alcanzar mediante este acompañamiento privado.</label>
                             <textarea name="objetivo" placeholder="Sé precisa. La claridad de tu objetivo determina la precisión de la intervención." required></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label>3. ¿Qué métodos has intentado antes y por qué consideras que no han generado la transformación permanente?</label>
+                            <label>4. ¿Qué métodos has intentado antes y por qué consideras que no han generado la transformación permanente?</label>
                             <textarea name="metodos_previos" placeholder="Terapias, cursos, lecturas... Queremos entender tu punto de partida." required></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label>4. En una escala del 1 al 10, ¿cuál es tu disposición actual para abandonar tu identidad antigua y adoptar una nueva configuración mental?</label>
+                            <label>5. En una escala del 1 al 10, ¿cuál es tu disposición actual para abandonar tu identidad antigua y adoptar una nueva configuración mental?</label>
                             <select name="disposicion" required>
                                 <option value="" disabled selected>Selecciona un número</option>
                                 <option value="10">10 — Compromiso total</option>
@@ -493,7 +498,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>5. ¿Eres consciente de que este es un entrenamiento de alto nivel que requiere una inversión profunda de tiempo, energía y recursos?</label>
+                            <label>6. ¿Eres consciente de que este es un entrenamiento de alto nivel que requiere una inversión profunda de tiempo, energía y recursos?</label>
                             <select name="consciencia_inversion" required>
                                 <option value="" disabled selected>Selecciona una opción</option>
                                 <option value="Sí, completamente">Sí, completamente</option>
@@ -624,9 +629,9 @@
                     // Recopilar datos del formulario
                     const formData = new FormData(form);
                     const payload = {
-                        name: formData.get('fullname_whatsapp') || '',
+                        name: formData.get('name') || '',
                         email: 'mentoria@entrenadormental.mx',
-                        whatsapp: formData.get('fullname_whatsapp') || '',
+                        whatsapp: formData.get('whatsapp') || '',
                         product: 'Mentoria de Alto Impacto',
                         objetivo: formData.get('objetivo') || '',
                         metodos_previos: formData.get('metodos_previos') || '',
@@ -719,6 +724,65 @@
                 }));
             }
 
+        })();
+    </script>
+    <!-- intl-tel-input CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.0.0/build/css/intlTelInput.css">
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.0.0/build/js/intlTelInput.min.js"></script>
+
+    <!-- intl-tel-input: bandera + dropdown estándar -->
+    <style>
+        .iti { display: block !important; width: 100% !important; position: relative !important; }
+        #whatsapp { width: 100% !important; box-sizing: border-box !important;
+                    padding-left: 52px !important; height: 48px !important; line-height: normal !important; }
+        /* Suprimir cualquier color de validación */
+        #whatsapp,
+        #whatsapp:focus,
+        .iti--invalid #whatsapp,
+        .iti--valid   #whatsapp,
+        #mentoria-application-form #whatsapp:invalid,
+        #mentoria-application-form #whatsapp:valid {
+            border-color: inherit !important;
+            box-shadow: none !important;
+            color: inherit !important;
+        }
+        .iti__error-message, .iti__valid-message { display: none !important; }
+    </style>
+    <script>
+        (function() {
+            function setupITI() {
+                const input = document.getElementById('whatsapp');
+                if (!input || typeof intlTelInput === 'undefined') {
+                    setTimeout(setupITI, 50); return;
+                }
+                if (window._itiInstance) { try { window._itiInstance.destroy(); } catch(e) {} }
+                if (input._iti)          { try { input._iti.destroy(); }          catch(e) {} }
+
+                const iti = intlTelInput(input, {
+                    initialCountry: 'mx',
+                    preferredCountries: ['mx', 'us', 'co', 'ar', 'es']
+                    /* Sin utilsScript: sin validación de formato */
+                });
+                window._itiInstance = iti;
+                input._iti = iti;
+
+                ['input','change','blur','focus','keyup','keydown'].forEach(ev => {
+                    input.addEventListener(ev, () => {
+                        input.classList.remove('iti__tel-input--invalid','iti__tel-input--valid',
+                                               'error','valid','is-invalid','is-valid');
+                        input.style.borderColor = '';
+                        input.style.boxShadow   = '';
+                        input.style.color       = '';
+                        const wrapper = input.closest('.iti');
+                        if (wrapper) wrapper.classList.remove('iti--invalid','iti--valid','error','valid');
+                    }, true);
+                });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setupITI);
+            } else {
+                setupITI();
+            }
         })();
     </script>
 

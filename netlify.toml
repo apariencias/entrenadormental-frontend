@@ -9,3 +9,18 @@
   # - STRIPE_PUBLISHABLE_KEY: Es pública por naturaleza.
   # - SMTP_USER: El escáner la confunde con el email de contacto público en index.html.
   SECRETS_SCAN_OMIT_KEYS = "STRIPE_PUBLISHABLE_KEY,SMTP_USER"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Content-Type = "text/html; charset=utf-8"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Content-Type = "text/css; charset=utf-8"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Content-Type = "application/javascript; charset=utf-8"

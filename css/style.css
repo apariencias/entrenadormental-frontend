@@ -556,7 +556,7 @@ strong { color:var(--text-primary); font-weight:600; }
 #iti-wrapper input {
     width: 100%;
     padding: 12px 14px;
-    padding-left: 48px;
+    padding-left: 72px;
     background: rgba(255, 255, 255, .04);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
@@ -575,6 +575,21 @@ strong { color:var(--text-primary); font-weight:600; }
     outline: none;
     border-color: var(--text-accent);
     background: rgba(196, 160, 67, .04);
+}
+
+#iti-wrapper .iti__arrow {
+    display: none !important;
+}
+
+#iti-wrapper input[type=tel]::-webkit-clear-button,
+#iti-wrapper input[type=tel]::-webkit-outer-spin-button,
+#iti-wrapper input[type=tel]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#iti-wrapper input[type=tel] {
+    -moz-appearance: textfield;
 }
 
 #iti-wrapper input[aria-invalid="true"] {
@@ -607,17 +622,31 @@ strong { color:var(--text-primary); font-weight:600; }
     position: absolute;
     top: 0;
     left: 0;
-    padding: 0 8px;
+    padding: 0 10px 0 12px;
     height: 100%;
     display: flex;
     align-items: center;
     color: var(--text-secondary);
     font-size: var(--text-sm);
+    pointer-events: none;
+}
+
+.iti__selected-dial-code {
+    position: absolute;
+    top: 0;
+    left: 46px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    padding-left: 4px;
+    pointer-events: none;
 }
 
 .iti__country-list {
     position: absolute;
-    z-index: 10;
+    z-index: 9999;
     list-style: none;
     max-height: 200px;
     overflow-y: auto;
@@ -685,7 +714,7 @@ strong { color:var(--text-primary); font-weight:600; }
 @media (max-width: 768px) {
     #iti-wrapper input {
         font-size: 16px; /* Evita zoom en iOS */
-        padding: 14px 14px 14px 48px;
+        padding: 14px 14px 14px 60px;
     }
     
     .iti__country-list {

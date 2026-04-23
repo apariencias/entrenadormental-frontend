@@ -211,6 +211,9 @@ exports.handler = async (event) => {
       to: email,
       subject: config.subject,
       html,
+      headers: {
+        'Content-Type': 'text/html; charset=utf-8',
+      },
     });
 
     if (error) {

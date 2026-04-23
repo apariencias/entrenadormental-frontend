@@ -34,7 +34,7 @@
 
     const nameInput = form.querySelector('#name');
     const emailInput = form.querySelector('#email');
-    const whatsappInput = form.querySelector('#whatsapp');
+    let whatsappInput = form.querySelector('#whatsapp');
     const submitBtn = form.querySelector('#submit-payment-btn');
 
     if (!nameInput || !emailInput || !whatsappInput) {
@@ -44,7 +44,9 @@
 
     // Inicializar intl-tel-input si está disponible
     if (typeof intlTelInput !== 'undefined') {
-      initIntlTelInput(whatsappInput);
+      const whatsappIti = initIntlTelInput(whatsappInput);
+      whatsappInput = form.querySelector('#whatsapp');
+      whatsappInput._iti = whatsappIti;
     } else {
       console.warn('intl-tel-input no cargado. Asegúrate de incluir el CDN.');
     }
@@ -67,6 +69,12 @@
   // INICIALIZACIÓN DE INTL-TEL-INPUT
   // =========================================================================
   function initIntlTelInput(whatsappInput) {
+    // Evitar reinicializar si ya está envuelto
+    const existingWrapper = whatsappInput.closest('#iti-wrapper');
+    if (existingWrapper) {
+      return window.intlTelInput(whatsappInput);
+    }
+
     // Crear wrapper para intl-tel-input
     const telInputWrapper = document.createElement('div');
     telInputWrapper.id = 'iti-wrapper';
@@ -93,7 +101,11 @@
     const iti = window.intlTelInput(newInput, {
       initialCountry: 'mx', // México por defecto
       preferredCountries: ['mx', 'us', 'ar', 'co', 'es'],
+      allowDropdown: true,
       separateDialCode: true,
+      autoHideDialCode: false,
+      nationalMode: false,
+      dropdownContainer: document.body,
       utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@24.0.0/build/js/utils.js',
       formatOnDisplay: true,
       autoPlaceholder: 'polite'
@@ -112,6 +124,11 @@
           // Silenciosamente fallar si no se puede detectar
           console.debug('No se pudo detectar país por IP');
         });
+    }
+
+    // Asegurar que el campo muestre +52 si no hay valor inicial
+    if (!newInput.value.trim()) {
+      newInput.value = '+52 ';
     }
 
     // Actualizar el atributo data-country cuando cambia
@@ -190,15 +207,18 @@
     
     // Si intl-tel-input está inicializado
     if (itiWrapper && typeof intlTelInput !== 'undefined') {
-      const iti = window.intlTelInput(whatsappInput);
+      const existingInstance = window.intlTelInputGlobals && window.intlTelInputGlobals.getInstance
+        ? window.intlTelInputGlobals.getInstance(whatsappInput)
+        : null;
+      const itiInstance = whatsappInput._iti || existingInstance || window.intlTelInput(whatsappInput);
       
-      if (!iti || !iti.isValidNumber()) {
+      if (!itiInstance || !itiInstance.isValidNumber()) {
         showError(whatsappInput, errorContainer, 'Número de teléfono inválido para el país seleccionado');
         return false;
       }
 
       // Obtener el número en formato E.164 para enviar a Stripe/Correo
-      const internationalNumber = iti.getNumber(intlTelInputUtils.numberFormat.E164);
+      const internationalNumber = itiInstance.getNumber(intlTelInputUtils.numberFormat.E164);
       whatsappInput.dataset.internationalFormat = internationalNumber;
       
       clearError(whatsappInput, errorContainer);
