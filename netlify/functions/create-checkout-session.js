@@ -4,10 +4,10 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // =============================================================================
-// 🔧 ZONA DE CONFIGURACIÓN — SOLO MODIFICA ESTOS VALORES
+// 🔧 ZONA DE CONFIGURACIÓN — Los Price IDs se leen desde variables de entorno
 // =============================================================================
-const PRICE_ID_CALMA = process.env.STRIPE_PRICE_ID_CALMA || "price_1SJkrS49pVvXIqagmqSmEOtf";
-const PRICE_ID_PAREJA = process.env.STRIPE_PRICE_ID_PAREJA || "price_1TMWSJ49pVvXIqagdbUtZMzC";
+const PRICE_ID_CALMA = process.env.STRIPE_PRICE_ID_CALMA;
+const PRICE_ID_PAREJA = process.env.STRIPE_PRICE_ID_PAREJA;
 
 // Mapeo de ProductName → Price ID
 const PRODUCT_PRICE_MAP = {
@@ -38,6 +38,18 @@ function jsonResponse(statusCode, payload) {
 exports.handler = async (event) => {
     if (event.httpMethod !== "POST") {
         return jsonResponse(405, { error: "Método no permitido" });
+    }
+
+    // Validación: los Price IDs deben venir de variables de entorno
+    const missingEnv = [];
+    if (!PRICE_ID_CALMA) missingEnv.push("STRIPE_PRICE_ID_CALMA");
+    if (!PRICE_ID_PAREJA) missingEnv.push("STRIPE_PRICE_ID_PAREJA");
+    if (missingEnv.length > 0) {
+        console.error(`Configuración de Stripe incompleta. Faltan: ${missingEnv.join(", ")}`);
+        return jsonResponse(500, {
+            error: "Configuración de Stripe incompleta",
+            missing: missingEnv,
+        });
     }
 
     let body;
