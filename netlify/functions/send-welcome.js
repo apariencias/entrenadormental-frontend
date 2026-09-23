@@ -13,10 +13,10 @@ const COURSES_DB = {
     audioNombre: "Protocolo de Sincronicidad Cerebral",
     guiaNombre: "Guía de Entrenamiento Mental",
     sessions: [
-      { label: "Clase 1", fecha: "Lunes 27 de Julio", hora: "08:00 PM" },
-      { label: "Clase 2", fecha: "Lunes 03 de Agosto", hora: "08:00 PM" },
-      { label: "Clase 3", fecha: "Lunes 10 de Agosto", hora: "08:00 PM" },
-      { label: "Clase 4", fecha: "Lunes 17 de Agosto", hora: "08:00 PM" },
+      { label: "Clase 1", fecha: "Lunes 12 de Octubre", hora: "08:00 PM" },
+      { label: "Clase 2", fecha: "Lunes 19 de Octubre", hora: "08:00 PM" },
+      { label: "Clase 3", fecha: "Lunes 26 de Octubre", hora: "08:00 PM" },
+      { label: "Clase 4", fecha: "Lunes 02 de Noviembre", hora: "08:00 PM" },
     ],
   },
   "Sintoniza a tu Pareja Ideal": {
@@ -28,10 +28,10 @@ const COURSES_DB = {
     audioNombre: "Audio de Sincronicidad",
     guiaNombre: "Guía de Sintonía",
     sessions: [
-      { label: "Clase 1", fecha: "Miércoles 05 de Agosto", hora: "08:00 PM" },
-      { label: "Clase 2", fecha: "Miércoles 12 de Agosto", hora: "08:00 PM" },
-      { label: "Clase 3", fecha: "Miércoles 19 de Agosto", hora: "08:00 PM" },
-      { label: "Clase 4", fecha: "Miércoles 26 de Agosto", hora: "08:00 PM" },
+      { label: "Clase 1", fecha: "Martes 20 de Octubre", hora: "08:00 PM" },
+      { label: "Clase 2", fecha: "Martes 27 de Octubre", hora: "08:00 PM" },
+      { label: "Clase 3", fecha: "Martes 03 de Noviembre", hora: "08:00 PM" },
+      { label: "Clase 4", fecha: "Martes 10 de Noviembre", hora: "08:00 PM" },
     ],
   },
 };

@@ -6,8 +6,8 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 // =============================================================================
 // 🔧 ZONA DE CONFIGURACIÓN — SOLO MODIFICA ESTOS VALORES
 // =============================================================================
-const PRICE_ID_CALMA = process.env.STRIPE_PRICE_ID_CALMA || "price_1TB01m49pVvXIqaguJHNWTsQ";
-const PRICE_ID_PAREJA = process.env.STRIPE_PRICE_ID_PAREJA || "price_1TB01m49pVvXIqaguJHNWTsQ";
+const PRICE_ID_CALMA = process.env.STRIPE_PRICE_ID_CALMA || "price_1SJkrS49pVvXIqagmqSmEOtf";
+const PRICE_ID_PAREJA = process.env.STRIPE_PRICE_ID_PAREJA || "price_1TMWSJ49pVvXIqagdbUtZMzC";
 
 // Mapeo de ProductName → Price ID
 const PRODUCT_PRICE_MAP = {
